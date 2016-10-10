@@ -1,8 +1,6 @@
 package uade.tp.ai.reclamo;
 
-import uade.tp.ai.Cliente;
 import uade.tp.ai.Zona;
-import uade.tp.ai.tablero.TableroDistribucion;
 import uade.tp.ai.tablero.TableroZona;
 
 public class ReclamoZona extends ReclamoSimple {

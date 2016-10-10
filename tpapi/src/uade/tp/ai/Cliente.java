@@ -9,7 +9,6 @@ public class Cliente {
 	private String dni;
 
 	public Cliente(String nombre, String domicilio, String telefono, String email, String dni) {
-		super();
 		this.nombre = nombre;
 		this.domicilio = domicilio;
 		this.telefono = telefono;
