@@ -6,6 +6,7 @@ import java.util.List;
 import uade.tp.ai.reclamo.Reclamo;
 import uade.tp.ai.reclamo.ReclamoDistribucion;
 import uade.tp.ai.reclamo.ReclamoZona;
+import uade.tp.bbdd.ReclamoMapper;
 
 public class TableroZona extends Tablero {
 
@@ -21,6 +22,11 @@ public class TableroZona extends Tablero {
 
 	public void agregarReclamo(Reclamo r) {
 		reclamos.add((ReclamoZona) r);
+	}
+
+	@Override
+	public List<Reclamo> getReclamos() {
+		return ReclamoMapper.getInstancia().getReclamosZona();
 	}
 
 }

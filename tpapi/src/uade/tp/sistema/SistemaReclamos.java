@@ -35,7 +35,6 @@ public class SistemaReclamos {
 	private List<Factura> facturas;
 	private List<Reclamo> reclamos;
 	private Reclamo recActual;
-	private List<Reclamo> listadoReclamos;
 
 	public SistemaReclamos() {
 		clientes = new ArrayList<Cliente>();
@@ -110,7 +109,7 @@ public class SistemaReclamos {
 		Reclamo r = this.buscarReclamo(nroReclamo);
 		if (r != null) {
 			r.setEstado("Cerrado");
-			r.setDescripcion(desc);
+			r.agregarDescTratamiento(desc);
 		}
 
 	}
@@ -119,7 +118,7 @@ public class SistemaReclamos {
 		Reclamo r = this.buscarReclamo(nroReclamo);
 		if (r != null) {
 			r.setEstado("En tratamiento");
-			r.setDescripcion(desc);
+			r.agregarDescTratamiento(desc);
 		}
 	}
 
@@ -127,7 +126,7 @@ public class SistemaReclamos {
 		Reclamo r = this.buscarReclamo(nroReclamo);
 		if (r != null) {
 			r.setEstado("Solucionado");
-			r.setDescripcion(desc);
+			r.agregarDescTratamiento(desc);
 		}
 	}
 

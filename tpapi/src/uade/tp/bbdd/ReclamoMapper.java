@@ -1,5 +1,6 @@
 package uade.tp.bbdd;
 
+import java.util.List;
 import java.util.Vector;
 
 import uade.tp.ai.reclamo.Reclamo;
@@ -34,6 +35,20 @@ public class ReclamoMapper extends Mapper {
 	}
 
 	public Reclamo buscarReclamo(String nro) {
+		return null;
+	}
+
+	public List<Reclamo> getReclamosDistribucion() {
+		return null;
+	}
+
+	public List<Reclamo> getReclamosZona() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Reclamo> getReclamosFacturacion() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -5,6 +5,7 @@ import java.util.List;
 
 import uade.tp.ai.reclamo.Reclamo;
 import uade.tp.ai.reclamo.ReclamoDistribucion;
+import uade.tp.bbdd.ReclamoMapper;
 
 public class TableroDistribucion extends Tablero {
 	
@@ -20,6 +21,11 @@ public class TableroDistribucion extends Tablero {
 
 	public void agregarReclamo(Reclamo r) {
 		reclamos.add((ReclamoDistribucion) r);
+	}
+
+	@Override
+	public List<Reclamo> getReclamos() {
+		return ReclamoMapper.getInstancia().getReclamosDistribucion();
 	}
 
 

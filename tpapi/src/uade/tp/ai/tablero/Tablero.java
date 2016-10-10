@@ -8,8 +8,6 @@ public abstract class Tablero {
 		
 	public abstract void agregarReclamo(Reclamo r);
 	
-	public List<Reclamo> getReclamos() {
-		return null;
-	}
+	public abstract List<Reclamo> getReclamos();
 
 }
