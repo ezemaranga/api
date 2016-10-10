@@ -1,0 +1,39 @@
+CREATE TABLE Cliente
+(
+	Nombre varchar(255),
+	Domicilio varchar(255),
+	Telefono varchar(255),
+	Email varchar(255)
+);
+
+CREATE TABLE Factura
+(
+	Factura_Id int
+);
+
+CREATE TABLE Factura_ItemFactura
+(
+	Factura_Id int,
+	ItemFactura_Id int	
+);
+
+CREATE TABLE ItemFactura
+(
+	ItemFactura_Id int,
+	Producto_Id int
+);
+
+CREATE TABLE Producto
+(
+	Producto_Id int,
+	Titulo varchar(255),
+	CodPublicacion varchar(255),
+	Descripcion varchar(255),
+	Precio float
+);
+
+CREATE TABLE Zona
+(
+	Zona_Id int,
+	Nombre varchar(255)
+);
