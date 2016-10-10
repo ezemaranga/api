@@ -196,7 +196,7 @@ public class SistemaReclamos {
 	}
 
 	public boolean existeCliente(String dni) {
-		Cliente c = null;
+		Cliente c = this.buscarCliente(dni);
 		if (c != null)
 			recActual.setCliente(c);
 		return c != null;
