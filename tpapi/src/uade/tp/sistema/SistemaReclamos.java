@@ -16,10 +16,13 @@ import uade.tp.ai.reclamo.ReclamoFaltante;
 import uade.tp.ai.reclamo.ReclamoProducto;
 import uade.tp.ai.reclamo.ReclamoView;
 import uade.tp.ai.reclamo.ReclamoZona;
+import uade.tp.ai.tablero.TableroDistribucion;
 import uade.tp.ai.tablero.TableroFacturacion;
+import uade.tp.ai.tablero.TableroZona;
 import uade.tp.bbdd.ClienteMapper;
 import uade.tp.bbdd.FacturaMapper;
 import uade.tp.bbdd.ProductoMapper;
+import uade.tp.bbdd.ReclamoMapper;
 import uade.tp.bbdd.UsuarioMapper;
 import uade.tp.bbdd.ZonaMapper;
 
@@ -32,6 +35,7 @@ public class SistemaReclamos {
 	private List<Factura> facturas;
 	private List<Reclamo> reclamos;
 	private Reclamo recActual;
+	private List<Reclamo> listadoReclamos;
 
 	public SistemaReclamos() {
 		clientes = new ArrayList<Cliente>();
@@ -49,11 +53,29 @@ public class SistemaReclamos {
 
 
 	// =================================== RECLAMOS ===================================
-	public List<ReclamoView> getReclamos() {
+	public List<ReclamoView> getReclamosDistribucion() {
+		List<Reclamo> reclamos = TableroDistribucion.getInstance().getReclamos();
+		List<ReclamoView> reclamosView = new ArrayList<ReclamoView>();
+		for(Reclamo r : reclamos) {
+			reclamosView.add(((ReclamoDistribucion) r).getReclamoView());
+		}
+		return reclamosView;
+	}
+	
+	public List<ReclamoView> getReclamosFacturacion() {
 		List<Reclamo> reclamos = TableroFacturacion.getInstance().getReclamos();
 		List<ReclamoView> reclamosView = new ArrayList<ReclamoView>();
 		for(Reclamo r : reclamos) {
-			reclamosView.add(r.getReclamoView());
+			reclamosView.add(((ReclamoFacturacion) r).getReclamoView());
+		}
+		return reclamosView;
+	}
+	
+	public List<ReclamoView> getReclamosZona() {
+		List<Reclamo> reclamos = TableroZona.getInstance().getReclamos();
+		List<ReclamoView> reclamosView = new ArrayList<ReclamoView>();
+		for(Reclamo r : reclamos) {
+			reclamosView.add(((ReclamoZona) r).getReclamoView());
 		}
 		return reclamosView;
 	}
@@ -155,7 +177,7 @@ public class SistemaReclamos {
 				return reclamo;
 			}
 		}
-		return null;
+		return ReclamoMapper.getInstancia().buscarReclamo(nro);
 	}
 
 	public Usuario buscarUsuario(String apodo, String password) {
