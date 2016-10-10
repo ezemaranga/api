@@ -37,10 +37,10 @@ public class ClienteMapper extends Mapper {
 			Connection con = ConnectionManager.getInstance().connect();
 			PreparedStatement s = con.prepareStatement("INSERT INTO Cliente (dni, nombre, domicilio, telefono, email) VALUES (?, ?, ?, ?, ?)");
 			s.setString(1, c.getDni());
-			s.setString(1, c.getNombre());
-			s.setString(1, c.getDomicilio());
-			s.setString(1, c.getTelefono());
-			s.setString(1, c.getEmail());
+			s.setString(2, c.getNombre());
+			s.setString(3, c.getDomicilio());
+			s.setString(4, c.getTelefono());
+			s.setString(5, c.getEmail());
 			s.execute();
 			ConnectionManager.getInstance().closeCon();
 		} catch (Exception e) {
