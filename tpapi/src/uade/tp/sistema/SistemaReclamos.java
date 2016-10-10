@@ -108,8 +108,9 @@ public class SistemaReclamos {
 	public void cerrarReclamo(String nroReclamo, String desc) {
 		Reclamo r = this.buscarReclamo(nroReclamo);
 		if (r != null) {
-			r.setEstado("Cerrado");
-			r.agregarDescTratamiento(desc);
+			String estado = "Cerrado";
+			r.setEstadoActual(estado);
+			r.agregarTratamiento(desc, estado);
 		}
 
 	}
@@ -117,16 +118,18 @@ public class SistemaReclamos {
 	public void tratarReclamo(String nroReclamo, String desc) {
 		Reclamo r = this.buscarReclamo(nroReclamo);
 		if (r != null) {
-			r.setEstado("En tratamiento");
-			r.agregarDescTratamiento(desc);
+			String estado = "En tratamiento";
+			r.setEstadoActual(estado);
+			r.agregarTratamiento(desc, estado);
 		}
 	}
 
 	public void solucionarReclamo(String nroReclamo, String desc) {
 		Reclamo r = this.buscarReclamo(nroReclamo);
 		if (r != null) {
-			r.setEstado("Solucionado");
-			r.agregarDescTratamiento(desc);
+			String estado = "Solucionado";
+			r.setEstadoActual(estado);
+			r.agregarTratamiento(desc, estado);
 		}
 	}
 

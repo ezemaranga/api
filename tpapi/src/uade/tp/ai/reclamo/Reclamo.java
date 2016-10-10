@@ -1,6 +1,7 @@
 package uade.tp.ai.reclamo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import uade.tp.ai.Cliente;
@@ -11,8 +12,8 @@ public abstract class Reclamo {
 	private String nroReclamo;
 	private Cliente cliente;
 	private String descripcion;
-	private String estado;
-	private List<String> descTratamiento = new ArrayList<String>();
+	private String estadoActual;
+	private List<TratamientoReclamo> tratamientos = new ArrayList<TratamientoReclamo>();
 	
 	public ReclamoView getReclamoView() {
 		ReclamoView rv = ReclamoView.createReclamoView(this);
@@ -51,16 +52,16 @@ public abstract class Reclamo {
 		this.descripcion = descripcion;
 	}
 
-	public String getEstado() {
-		return estado;
+	public String getEstadoActual() {
+		return estadoActual;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setEstadoActual(String estado) {
+		this.estadoActual = estado;
 	}
 	
-	public void agregarDescTratamiento(String desc) {
-		this.descTratamiento.add(desc);
+	public void agregarTratamiento(String desc, String estado) {
+		this.tratamientos.add(new TratamientoReclamo(new Date().toString(), estado, desc));
 	}
 	
 	public abstract void agregarATablero();

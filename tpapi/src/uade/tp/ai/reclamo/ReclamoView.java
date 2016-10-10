@@ -16,7 +16,7 @@ public class ReclamoView {
 		rv.setNroReclamo(r.getNroReclamo());
 		rv.setCliente(r.getCliente());
 		rv.setDescripcion(r.getDescripcion());
-		rv.setEstado(r.getEstado());
+		rv.setEstado(r.getEstadoActual());
 		return rv;
 	}
 	
