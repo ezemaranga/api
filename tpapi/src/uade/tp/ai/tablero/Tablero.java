@@ -4,7 +4,9 @@ import java.util.List;
 
 import uade.tp.ai.reclamo.Reclamo;
 
-public class Tablero {
+public abstract class Tablero {
+		
+	public abstract void agregarReclamo(Reclamo r);
 	
 	public List<Reclamo> getReclamos() {
 		return null;

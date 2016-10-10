@@ -3,7 +3,7 @@ package uade.tp.ai.reclamo;
 import uade.tp.ai.Cliente;
 import uade.tp.ai.Usuario;
 
-public class Reclamo {
+public abstract class Reclamo {
 	
 	private String fecha;
 	private String nroReclamo;
@@ -55,5 +55,7 @@ public class Reclamo {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	
+	public abstract void agregarATablero();
 
 }

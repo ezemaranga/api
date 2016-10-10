@@ -1,5 +1,8 @@
 package uade.tp.ai.reclamo;
 
-public class Simple extends Reclamo {
+public abstract class Simple extends Reclamo {
+
+	@Override
+	public abstract void agregarATablero();
 
 }

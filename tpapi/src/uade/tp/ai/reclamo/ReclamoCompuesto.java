@@ -10,4 +10,10 @@ public class ReclamoCompuesto extends Reclamo {
 		return reclamos;
 	}
 
+	@Override
+	public void agregarATablero() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

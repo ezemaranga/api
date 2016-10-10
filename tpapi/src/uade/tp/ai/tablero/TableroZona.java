@@ -1,11 +1,26 @@
 package uade.tp.ai.tablero;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import uade.tp.ai.reclamo.Reclamo;
+import uade.tp.ai.reclamo.ReclamoDistribucion;
+import uade.tp.ai.reclamo.ReclamoZona;
 
 public class TableroZona extends Tablero {
-	
-	public void agregarReclamoZona(Reclamo r) {
-		
+
+	private static TableroZona instancia;
+
+	private List<ReclamoZona> reclamos = new ArrayList<ReclamoZona>();
+
+	public static TableroZona getInstance() {
+		if (instancia == null)
+			instancia = new TableroZona();
+		return instancia;
+	}
+
+	public void agregarReclamo(Reclamo r) {
+		reclamos.add((ReclamoZona) r);
 	}
 
 }
