@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uade.tp.ai.reclamo.Reclamo;
-import uade.tp.ai.reclamo.ReclamoDistribucion;
 import uade.tp.ai.reclamo.ReclamoFacturacion;
 
 public class TableroFacturacion extends Tablero {

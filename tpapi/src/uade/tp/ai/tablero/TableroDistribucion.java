@@ -5,7 +5,6 @@ import java.util.List;
 
 import uade.tp.ai.reclamo.Reclamo;
 import uade.tp.ai.reclamo.ReclamoDistribucion;
-import uade.tp.bbdd.ClienteMapper;
 
 public class TableroDistribucion extends Tablero {
 	

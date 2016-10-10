@@ -1,7 +1,6 @@
 package uade.tp.sistema;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import uade.tp.ai.Cliente;
@@ -114,7 +113,7 @@ public class SistemaReclamos {
 
 	}
 
-	public void ingresarDatosFactura(Date fecha, String nro, String desc) {
+	public void ingresarDatosFactura(String fecha, String nro, String desc) {
 		Factura fact = buscarFactura(fecha, nro);
 		if (fact != null) {
 			recActual.setDescripcion(desc);
@@ -141,7 +140,7 @@ public class SistemaReclamos {
 	
 	// =================================== BUSCAR ===================================
 
-	public Factura buscarFactura(Date fecha, String nro) {
+	public Factura buscarFactura(String fecha, String nro) {
 		for (Factura factura : facturas) {
 			if (factura.getNumero().equals(nro) && factura.getFecha().equals(fecha)) {
 				return factura;

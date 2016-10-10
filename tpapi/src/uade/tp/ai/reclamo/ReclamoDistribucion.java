@@ -1,8 +1,5 @@
 package uade.tp.ai.reclamo;
 
-import java.util.List;
-
-import uade.tp.ai.Cliente;
 import uade.tp.ai.Producto;
 import uade.tp.ai.tablero.TableroDistribucion;
 

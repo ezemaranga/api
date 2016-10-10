@@ -9,6 +9,12 @@ public class Factura {
 	private Cliente cliente;
 	private List<ItemFactura> items;
 
+	public Factura(String fecha, String numero, Cliente cliente) {
+		this.fecha = fecha;
+		this.numero = numero;
+		this.cliente = cliente;
+	}
+
 	public String getFecha() {
 		return fecha;
 	}
@@ -35,6 +41,10 @@ public class Factura {
 
 	public List<ItemFactura> getItems() {
 		return items;
+	}
+	
+	public void addItems(List<ItemFactura> items) {
+		this.items = items;
 	}
 
 }
