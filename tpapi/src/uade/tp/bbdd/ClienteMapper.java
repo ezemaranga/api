@@ -80,12 +80,13 @@ public class ClienteMapper extends Mapper {
 					"set nombre = ?," +
 					"set domicilio = ?," +
 					"set telefono = ?," +
-					"set email = ?");
+					"set email = ? WHERE dni = ?");
 			
 			s.setString(1, c.getNombre());
 			s.setString(2, c.getDomicilio());
 			s.setString(3, c.getTelefono());
 			s.setString(4, c.getEmail());
+			s.setString(5, c.getDni());
 			s.execute();
 			ConnectionManager.getInstance().closeCon();
 		} catch (Exception e) {
