@@ -1,5 +1,6 @@
 package uade.tp.sistema;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,9 @@ import uade.tp.ai.Usuario;
 import uade.tp.ai.Zona;
 import uade.tp.ai.reclamo.Reclamo;
 import uade.tp.ai.reclamo.ReclamoView;
+import uade.tp.bbdd.ClienteMapper;
+import uade.tp.bbdd.FacturaMapper;
+import uade.tp.bbdd.UsuarioMapper;
 
 public class SistemaReclamos {
 	
@@ -19,16 +23,29 @@ public class SistemaReclamos {
 	private List<Producto> productos;
 	private List<Factura> facturas;
 	private List<Reclamo> reclamos;
+	private Reclamo recActual;
 	
-	//FIXME En el diagrama de secuencia devuelve un boolean... en el de clases es void.
-	public boolean ingresoAplicacion(String usuario, String password) {
-		Usuario usuarioActual = this.buscarUsuario(usuario, password);
+	public SistemaReclamos() {
+		clientes = new ArrayList<Cliente>();
+		usuarios = new ArrayList<Usuario>();
+		zonas = new ArrayList<Zona>();
+		productos = new ArrayList<Producto>();
+		facturas = new ArrayList<Factura>();
+		reclamos = new ArrayList<Reclamo>();
+	}
+
+	public boolean ingresoAplicacion(String apodo, String password) {
+		Usuario usuarioActual = this.buscarUsuario(apodo, password);
 		return usuarioActual != null;
 	}
 	
-	public Usuario buscarUsuario(String usuario, String password) {
-		Usuario u = null;
-		return u;
+	public Usuario buscarUsuario(String apodo, String password) {
+		for(Usuario usuario : usuarios) {
+			if(usuario.getApodo().equals(apodo) && usuario.getPassword().equals(password)) {
+				return usuario;
+			}
+		}
+		return UsuarioMapper.getInstancia().buscarUsuario(apodo, password);
 	}
 	
 	public List<ReclamoView> getReclamos() {
@@ -52,10 +69,6 @@ public class SistemaReclamos {
 		
 	}
 	
-	public Cliente existeCliente(String dni) {
-		return null;
-	}
-	
 	public void ingresarDatosFactura(Date fecha, String nro, String desc) {
 		
 	}
@@ -69,7 +82,12 @@ public class SistemaReclamos {
 	}
 	
 	public Factura buscarFactura(Date fecha, String nro) {
-		return null;
+		for(Factura factura : facturas) {
+			if(factura.getNumero().equals(nro) && factura.getFecha().equals(fecha)) {
+				return factura;
+			}
+		}
+		return FacturaMapper.getInstancia().buscarFactura(nro, fecha);
 	}
 	
 	public void agregarReclamo() {
@@ -89,6 +107,11 @@ public class SistemaReclamos {
 	}
 	
 	public Reclamo buscarReclamo(String nro) {
+		for(Reclamo reclamo : reclamos) {
+			if(reclamo.getNroReclamo().equals(nro)) {
+				return reclamo;
+			}
+		}
 		return null;
 	}
 	
@@ -97,7 +120,18 @@ public class SistemaReclamos {
 	}
 	
 	public Cliente buscarCliente(String dni) {
-		return null;
+		for(Cliente cliente : clientes) {
+			if(cliente.getDni().equals(dni)) {
+				return cliente;
+			}
+		}
+		return ClienteMapper.getInstancia().buscarCliente(dni);
+	}
+	
+	
+	// TODO remove this, just for testing
+	public void agregarCliente(Cliente c) {
+		this.clientes.add(c);
 	}
 	
 }
