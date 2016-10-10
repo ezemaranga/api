@@ -17,6 +17,7 @@ import uade.tp.ai.reclamo.ReclamoFaltante;
 import uade.tp.ai.reclamo.ReclamoProducto;
 import uade.tp.ai.reclamo.ReclamoView;
 import uade.tp.ai.reclamo.ReclamoZona;
+import uade.tp.ai.tablero.TableroFacturacion;
 import uade.tp.bbdd.ClienteMapper;
 import uade.tp.bbdd.FacturaMapper;
 import uade.tp.bbdd.ProductoMapper;
@@ -47,12 +48,17 @@ public class SistemaReclamos {
 		return usuarioActual != null;
 	}
 
-	public List<ReclamoView> getReclamos() {
-		List<ReclamoView> reclamos = null;
-		return reclamos;
-	}
 
 	// =================================== RECLAMOS ===================================
+	public List<ReclamoView> getReclamos() {
+		List<Reclamo> reclamos = TableroFacturacion.getInstance().getReclamos();
+		List<ReclamoView> reclamosView = new ArrayList<ReclamoView>();
+		for(Reclamo r : reclamos) {
+			reclamosView.add(r.getReclamoView());
+		}
+		return reclamosView;
+	}
+	
 	public void inicializarReclamoFacturacion() {
 		recActual = new ReclamoFacturacion();
 	}
@@ -79,16 +85,29 @@ public class SistemaReclamos {
 		recActual = null;
 	}
 
-	public void cerrarReclamo(String nroReclamo, String description) {
+	public void cerrarReclamo(String nroReclamo, String desc) {
+		Reclamo r = this.buscarReclamo(nroReclamo);
+		if (r != null) {
+			r.setEstado("Cerrado");
+			r.setDescripcion(desc);
+		}
 
 	}
 
-	public void tratarReclamo(String nroReclamo, String descripcion) {
-
+	public void tratarReclamo(String nroReclamo, String desc) {
+		Reclamo r = this.buscarReclamo(nroReclamo);
+		if (r != null) {
+			r.setEstado("En tratamiento");
+			r.setDescripcion(desc);
+		}
 	}
 
-	public void solucionarReclamo(String nroReclamo, String descripcion) {
-
+	public void solucionarReclamo(String nroReclamo, String desc) {
+		Reclamo r = this.buscarReclamo(nroReclamo);
+		if (r != null) {
+			r.setEstado("Solucionado");
+			r.setDescripcion(desc);
+		}
 	}
 
 	public void agregarReclamoCompuesto() {

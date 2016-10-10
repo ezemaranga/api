@@ -1,7 +1,6 @@
 package uade.tp.ai.reclamo;
 
 import uade.tp.ai.Cliente;
-import uade.tp.ai.Usuario;
 
 public abstract class Reclamo {
 	
@@ -11,8 +10,8 @@ public abstract class Reclamo {
 	private String descripcion;
 	private String estado;
 	
-	public ReclamoView getReclamoView(Usuario u) {
-		ReclamoView rv = null;
+	public ReclamoView getReclamoView() {
+		ReclamoView rv = ReclamoView.createReclamoView(this);
 		return rv;
 	}
 
