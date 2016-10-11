@@ -1,5 +1,6 @@
 CREATE TABLE Cliente
 (
+	Dni varchar(255),
 	Nombre varchar(255),
 	Domicilio varchar(255),
 	Telefono varchar(255),
@@ -8,32 +9,81 @@ CREATE TABLE Cliente
 
 CREATE TABLE Factura
 (
-	Factura_Id int
+	Fecha varchar(255),
+	Numero varchar(255),
+	DniCliente varchar(255),
 );
 
-CREATE TABLE Factura_ItemFactura
-(
-	Factura_Id int,
-	ItemFactura_Id int	
-);
 
 CREATE TABLE ItemFactura
 (
-	ItemFactura_Id int,
-	Producto_Id int
+	numeroFactura varchar(255),
+	codigoProducto varchar(255),
+	cantidad int
 );
 
 CREATE TABLE Producto
 (
-	Producto_Id int,
+	Codigo varchar(255),
 	Titulo varchar(255),
-	CodPublicacion varchar(255),
 	Descripcion varchar(255),
 	Precio float
 );
 
 CREATE TABLE Zona
 (
-	Zona_Id int,
+	Codigo varchar(255),
 	Nombre varchar(255)
+);
+
+CREATE TABLE Usuario
+(
+	Apodo varchar(255),
+	Nombre varchar(255),
+	Apellido varchar(255),
+	Password varchar(255),
+	Rol varchar(255)
+);
+
+CREATE TABLE Reclamo
+(
+	NroReclamo varchar(255),
+	Fecha varchar(255),
+	DniCliente varchar(255),
+	Descripcion varchar(255),
+	EstadoActual varchar(255),
+	Tipo varchar(255)
+);
+
+CREATE TABLE ReclamoFacturacion
+(
+	NroReclamo varchar(255),
+	NumeroFactura varchar(255)
+);
+
+CREATE TABLE ReclamoDistribucion
+(
+	NroReclamo varchar(255),
+	CodigoProducto varchar(255),
+	Cantidad int
+);
+
+CREATE TABLE ReclamoZona
+(
+	NroReclamo varchar(255),
+	CodigoZona varchar(255)
+);
+
+CREATE TABLE ReclamoCompuesto
+(
+	NroReclamo varchar(255),
+	NroReclamoComponente varchar(255)
+);
+
+CREATE TABLE TratamientoReclamo
+(
+	NroReclamo varchar(255),
+	Fecha varchar(255),
+	Estado varchar(255),
+	Descripcion varchar(255)
 );

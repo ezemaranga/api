@@ -22,6 +22,14 @@ public abstract class Reclamo {
 		ReclamoView rv = ReclamoView.createReclamoView(this);
 		return rv;
 	}
+	
+	public abstract void agregarATablero();
+
+	public abstract void addFactura(Factura fact);
+
+	public abstract void addItemReclamo(Producto prod, int cantidad);
+
+	public abstract void setZona(Zona zona);
 
 	public String getFecha() {
 		return fecha;
@@ -67,11 +75,4 @@ public abstract class Reclamo {
 		this.tratamientos.add(new TratamientoReclamo(new Date().toString(), estado, desc));
 	}
 	
-	public abstract void agregarATablero();
-
-	public abstract void addFactura(Factura fact);
-
-	public abstract void addItemReclamo(Producto prod, int cantidad);
-
-	public abstract void setZona(Zona zona);
 }

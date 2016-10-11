@@ -3,9 +3,7 @@ package uade.tp.ai.reclamo;
 import java.util.ArrayList;
 import java.util.List;
 
-import uade.tp.ai.Factura;
 import uade.tp.ai.Producto;
-import uade.tp.ai.Zona;
 import uade.tp.ai.tablero.TableroDistribucion;
 
 public class ReclamoCantidad extends ReclamoDistribucion {
