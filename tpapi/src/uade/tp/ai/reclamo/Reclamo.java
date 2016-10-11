@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import uade.tp.ai.Cliente;
+import uade.tp.ai.Factura;
+import uade.tp.ai.Producto;
+import uade.tp.ai.Zona;
 
 public abstract class Reclamo {
 	
@@ -66,4 +69,9 @@ public abstract class Reclamo {
 	
 	public abstract void agregarATablero();
 
+	public abstract void addFactura(Factura fact);
+
+	public abstract void addItemReclamo(Producto prod, int cantidad);
+
+	public abstract void setZona(Zona zona);
 }

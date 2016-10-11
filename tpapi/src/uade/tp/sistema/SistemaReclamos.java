@@ -10,6 +10,7 @@ import uade.tp.ai.Usuario;
 import uade.tp.ai.Zona;
 import uade.tp.ai.reclamo.Reclamo;
 import uade.tp.ai.reclamo.ReclamoCantidad;
+import uade.tp.ai.reclamo.ReclamoCompuesto;
 import uade.tp.ai.reclamo.ReclamoDistribucion;
 import uade.tp.ai.reclamo.ReclamoFacturacion;
 import uade.tp.ai.reclamo.ReclamoFaltante;
@@ -98,7 +99,19 @@ public class SistemaReclamos {
 	public void inicializarReclamoZona() {
 		recActual = new ReclamoZona();
 	}
+	
+	public void inicializarReclamoCompuesto() {
+		recActual = new ReclamoCompuesto();
+	}
+	
+	public void agregarRelcamoCantidadAActual() {
+		((ReclamoCompuesto) recActual).agregarReclamoCantidad();;
+	}
 
+	public void guardarReclamoEnActual() {
+		((ReclamoCompuesto) recActual).guardarReclamoEnActual();;
+	}
+	
 	public void agregarReclamo() {
 		recActual.agregarATablero();
 		reclamos.add(recActual);
@@ -133,15 +146,11 @@ public class SistemaReclamos {
 		}
 	}
 
-	public void agregarReclamoCompuesto() {
-
-	}
-
 	public void ingresarDatosFactura(String fecha, String nro, String desc) {
 		Factura fact = buscarFactura(fecha, nro);
 		if (fact != null) {
 			recActual.setDescripcion(desc);
-			((ReclamoFacturacion) recActual).addFactura(fact);
+			recActual.addFactura(fact);
 		}
 	}
 
@@ -149,7 +158,7 @@ public class SistemaReclamos {
 		Producto prod = buscarProducto(codPublicacion);
 		if (prod != null) {
 			recActual.setDescripcion(desc);
-			((ReclamoDistribucion) recActual).addItemReclamo(prod, cantidad);
+			recActual.addItemReclamo(prod, cantidad);
 		}
 	}
 
@@ -157,7 +166,7 @@ public class SistemaReclamos {
 		Zona zona = buscarZona(codZona);
 		if (zona != null) {
 			recActual.setDescripcion(desc);
-			((ReclamoZona) recActual).setZona(zona);
+			recActual.setZona(zona);
 		}
 	}
 
@@ -225,7 +234,7 @@ public class SistemaReclamos {
 		return c != null;
 	}
 
-	// TODO remove this, just for testing
+	// ==========================   TODO remove this, just for testing ================
 	public void agregarCliente(Cliente c) {
 		this.clientes.add(c);
 	}
