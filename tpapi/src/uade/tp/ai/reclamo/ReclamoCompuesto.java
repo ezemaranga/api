@@ -41,9 +41,28 @@ public class ReclamoCompuesto extends Reclamo {
 		recActual = new ReclamoCantidad();
 		recActual.setCliente(this.getCliente());
 	}
+	
+	public void agregarReclamoProducto() {
+		recActual = new ReclamoProducto();
+		recActual.setCliente(this.getCliente());
+	}
+	
+	public void agregarReclamoFaltante() {
+		recActual = new ReclamoFaltante();
+		recActual.setCliente(this.getCliente());
+	}
+	
+	public void agregarReclamoFacturacion() {
+		recActual = new ReclamoFacturacion();
+		recActual.setCliente(this.getCliente());
+	}
+	
+	public void agregarReclamoZona() {
+		recActual = new ReclamoZona();
+		recActual.setCliente(this.getCliente());
+	}
 
-	public void guardarReclamoEnActual() {
-		recActual.agregarATablero();
+	public void guardarReclamoActual() {
 		reclamos.add(recActual);
 		recActual = null;
 	}

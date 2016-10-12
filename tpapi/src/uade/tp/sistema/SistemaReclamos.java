@@ -52,7 +52,7 @@ public class SistemaReclamos {
 	}
 
 
-	// =================================== RECLAMOS ===================================
+	// =================================== obtener vistas de reclamos ===================================
 	public List<ReclamoView> getReclamosDistribucion() {
 		List<Reclamo> reclamos = TableroDistribucion.getInstance().getReclamos();
 		List<ReclamoView> reclamosView = new ArrayList<ReclamoView>();
@@ -80,6 +80,7 @@ public class SistemaReclamos {
 		return reclamosView;
 	}
 	
+	// =========== inicializar reclamos simples ==========
 	public void inicializarReclamoFacturacion() {
 		recActual = new ReclamoFacturacion();
 	}
@@ -100,24 +101,45 @@ public class SistemaReclamos {
 		recActual = new ReclamoZona();
 	}
 	
+	// inicializar reclamo compuesto
 	public void inicializarReclamoCompuesto() {
 		recActual = new ReclamoCompuesto();
 	}
 	
+	// ============== agregar reclamos a reclamo compuesto ============
 	public void agregarRelcamoCantidadAActual() {
-		((ReclamoCompuesto) recActual).agregarReclamoCantidad();;
-	}
-
-	public void guardarReclamoEnActual() {
-		((ReclamoCompuesto) recActual).guardarReclamoEnActual();;
+		((ReclamoCompuesto) recActual).agregarReclamoCantidad();
 	}
 	
+	public void agregarRelcamoProductoAActual() {
+		((ReclamoCompuesto) recActual).agregarReclamoProducto();;
+	}
+	
+	public void agregarRelcamoFaltanteAActual() {
+		((ReclamoCompuesto) recActual).agregarReclamoFaltante();;
+	}
+	
+	public void agregarRelcamoFacturacionAActual() {
+		((ReclamoCompuesto) recActual).agregarReclamoFacturacion();;
+	}
+	
+	public void agregarRelcamoZonaAActual() {
+		((ReclamoCompuesto) recActual).agregarReclamoZona();;
+	}
+
+	// guardar reclamo compuesto
+	public void guardarReclamoEnCompuesto() {
+		((ReclamoCompuesto) recActual).guardarReclamoActual();
+	}
+	
+	// guardar reclamo simple
 	public void agregarReclamo() {
 		recActual.agregarATablero();
 		reclamos.add(recActual);
 		recActual = null;
 	}
 
+	// ============= tratamiento de reclamos =================
 	public void cerrarReclamo(String nroReclamo, String desc) {
 		Reclamo r = this.buscarReclamo(nroReclamo);
 		if (r != null) {
@@ -146,6 +168,7 @@ public class SistemaReclamos {
 		}
 	}
 
+	// ========= ingresar datos de reclamos ===================
 	public void ingresarDatosFactura(String fecha, String nro, String desc) {
 		Factura fact = buscarFactura(fecha, nro);
 		if (fact != null) {
@@ -171,8 +194,7 @@ public class SistemaReclamos {
 	}
 
 	
-	// =================================== BUSCAR ===================================
-
+	// =================================== buscar ===================================
 	public Factura buscarFactura(String fecha, String nro) {
 		for (Factura factura : facturas) {
 			if (factura.getNumero().equals(nro) && factura.getFecha().equals(fecha)) {
