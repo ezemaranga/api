@@ -3,10 +3,6 @@ package uade.tp.vistas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JMenu;
-import javax.swing.JMenuBar; 
-import javax.swing.JMenuItem;
-
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -15,16 +11,12 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
-import uade.tp.ai.Usuario;
+import uade.tp.ai.UsuarioView;
 import uade.tp.bbdd.UsuarioMapper;
 import uade.tp.sistema.SistemaReclamos;
 
 @SuppressWarnings("serial")
 public class Login extends javax.swing.JFrame{
-	
-	private JMenuBar jMenuBar1;
-	private JMenuItem jMenuItem4;
-	private JMenu jMenu1;
 	
 	private JLabel usuarioLbl;
 	private JLabel passwordLbl;
@@ -34,7 +26,7 @@ public class Login extends javax.swing.JFrame{
 
 	private JButton aceptar;
 	
-	private static Usuario usuario;
+	private static UsuarioView usuario;
 	
 	private static Login instancia;
 	

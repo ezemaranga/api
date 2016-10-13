@@ -176,29 +176,6 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 				getContentPane().add(scrollPane);
 				scrollPane.setBounds(202, 166, 161, 62);
 			}
-//			{
-//				jLabel7 = new JLabel();
-//				getContentPane().add(jLabel7);
-//				jLabel7.setText("Producto");
-//				jLabel7.setBounds(33, 240, 78, 16);
-//			}
-//			{
-//				productoText = new JTextField();
-//				getContentPane().add(productoText);
-//				productoText.setBounds(202, 240, 120, 22);
-//			}
-//			{
-//				jLabel8 = new JLabel();
-//				getContentPane().add(jLabel8);
-//				jLabel8.setText("Cantidad");
-//				jLabel8.setBounds(33, 275, 78, 16);
-//			}
-//			{
-//				cantidadText = new JTextField();
-//				getContentPane().add(cantidadText);
-//				cantidadText.setBounds(202, 275, 120, 22);
-//			}
-			
 			{
 				jLabel7 = new JLabel();
 				getContentPane().add(jLabel7);
@@ -232,26 +209,8 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 				aceptar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
-						if(fechaReclamoText.getText().equals("") || numeroReclamoText.getText().equals("") || dniText.getText().equals("") ||
-						   jTextArea.getText().equals("") || productoText.getText().equals("")){
-							if(fechaReclamoText.getText().equals("")){
-								JOptionPane.showMessageDialog(null, "Complete el campo Fecha Reclamo", "Error Alta Reclamo", JOptionPane.ERROR_MESSAGE);
-								return;
-							} else if(numeroReclamoText.getText().equals("")){
-								JOptionPane.showMessageDialog(null, "Complete el campo numero de reclamo", "Error Alta Reclamo", JOptionPane.ERROR_MESSAGE);
-								return;
-								} else if(dniText.getText().equals("")){
-									JOptionPane.showMessageDialog(null, "Complete el campo DNI", "Error Alta Reclamo", JOptionPane.ERROR_MESSAGE);
-									return;
-									} else if(jTextArea.getText().equals("")){
-										JOptionPane.showMessageDialog(null, "Complete el campo Descripcion", "Error Alta Reclamo", JOptionPane.ERROR_MESSAGE);
-										return;
-										}  else if(productoText.getText().equals("")){
-											JOptionPane.showMessageDialog(null, "Complete el campo Producto", "Error Alta Reclamo", JOptionPane.ERROR_MESSAGE);
-											return;
-											} 
-						}
-						SistemaReclamos.getInstance().agregarRelcamoCantidadAActual();
+
+//						SistemaReclamos.getInstance().agregarRelcamoCantidadAActual();
 //						long codigo = Long.parseLong(nroAfiliado.getText());
 //						TipoDocView tip = tipDocs.elementAt(tiposDoc.getSelectedIndex());
 //						if (((String)distribuidora.getSelectedItem()).equalsIgnoreCase("  "))

@@ -9,7 +9,6 @@ import javax.swing.JMenuItem;
 
 import javax.swing.WindowConstants;
 
-import uade.tp.ai.Usuario;
 import uade.tp.ai.UsuarioView;
 
 import javax.swing.SwingUtilities;
@@ -20,12 +19,7 @@ public class Menu extends javax.swing.JFrame {
 	
 	private JMenu jMenu1;
 	private JMenu jMenu2;
-	private JMenu jMenu3;
 
-	
-//	private JMenuItem jMenuItem1;
-//	private JMenuItem jMenuItem2;
-//	private JMenuItem jMenuItem3;
 	private JMenuItem jMenuItem4;
 	
 	private JMenuItem jMenuReclamoCantidad;
@@ -33,8 +27,18 @@ public class Menu extends javax.swing.JFrame {
 	private JMenuItem jMenuReclamoFaltante;
 	private JMenuItem jMenuReclamoZona;
 	private JMenuItem jMenuReclamoFacturacion;
+	
+	private JMenuItem jMenuAtencionReclamoCantidad;
+	private JMenuItem jMenuAtencionReclamoProducto;
+	private JMenuItem jMenuAtencionReclamoFaltante;
+	private JMenuItem jMenuAtencionReclamoZona;
+	private JMenuItem jMenuAtencionReclamoFacturacion;
 
-	private UsuarioView usuarioView = new UsuarioView();
+//	private UsuarioView usuarioView = new UsuarioView("Call Center", "Apellido A", "Apodo A", "PASS A", "CALL_CENTER");
+//	private UsuarioView usuarioView = new UsuarioView("Responsable Zona Entrega", "Apellido B", "Apodo B", "PASS B", "RESP_ZONA_ENTREGA");
+//	private UsuarioView usuarioView = new UsuarioView("Responsable Facturacion", "Apellido C", "Apodo C", "PASS C", "RESP_FACTURACION");
+	private UsuarioView usuarioView = new UsuarioView("Responsable Distribucion", "Apellido D", "Apodo D", "PASS D", "RESP_DISTRIBUCION");
+	
 	
 	/**
 	* Auto-generated main method to display this JFrame
@@ -67,6 +71,7 @@ public class Menu extends javax.swing.JFrame {
 	}
 	
 	
+	@SuppressWarnings("static-access")
 	private void initGUI() {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -80,53 +85,148 @@ public class Menu extends javax.swing.JFrame {
 				jMenuBar1 = new JMenuBar();
 				setJMenuBar(jMenuBar1);
 				{
-					jMenu2 = new JMenu();
-					jMenuBar1.add(jMenu2);
-					jMenu2.setText("Ingreso de Reclamos");
-					{
-						
-//						jMenu3 = new JMenu();
-//						jMenu2.add(jMenu3);
-//						jMenu3.setText("Alta de Reclamos");
-//						jMenu3.setBounds(39, 0, 57, 23);
-//						{
-//							jMenuItem1 = new JMenuItem();
-//							jMenu3.add(jMenuItem1);
-//							jMenuItem1.setText("Alta Afiliado");
-//							jMenuItem1.addActionListener(new ActionListener() {
-//								public void actionPerformed(ActionEvent evt) 
-//								{
-////									AltaAfiliado.getInstancia().setLocationRelativeTo(null);
-////									AltaAfiliado.getInstancia().setVisible(true);
-//								}
-//							});
-//						}
-//						{
-//							jMenuItem2 = new JMenuItem();
-//							jMenu3.add(jMenuItem2);
-//							jMenuItem2.setText("Modificacion Afiliado");
-//							jMenuItem2.addActionListener(new ActionListener() {
-//								public void actionPerformed(ActionEvent evt) 
-//								{
-//									System.out.println("jMenuItem2.actionPerformed, event="+evt);
-//									//TODO add your code for jMenuItem2.actionPerformed
-//								}
-//							});
-//						}
-//						{
-//							jMenuItem3 = new JMenuItem();
-//							jMenu3.add(jMenuItem3);
-//							jMenuItem3.setText("Baja Afiliado");
-//							jMenuItem3.addActionListener(new ActionListener() {
-//								public void actionPerformed(ActionEvent evt) 
-//								{
-////									BajaAfiliado.getInstancia().setLocationRelativeTo(null);
-////									BajaAfiliado.getInstancia().setVisible(true);
-//								}
-//							});
-//						}
+					if(usuarioView.getRol().equals("CALL_CENTER")){
+						jMenu2 = new JMenu();
+						jMenuBar1.add(jMenu2);
+						jMenu2.setText("Ingreso de Reclamos");
+						{
+							jMenuReclamoCantidad = new JMenuItem();
+							jMenu2.add(jMenuReclamoCantidad);
+							jMenuReclamoCantidad.setText("Reclamo de Cantidad");
+							jMenuReclamoCantidad.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) 
+							{
+								ReclamoCantidadVista.getInstancia().setLocationRelativeTo(null);
+								ReclamoCantidadVista.getInstancia().setVisible(true);
+							}
+						});
+						}
+						{
+							jMenuReclamoProducto = new JMenuItem();
+							jMenu2.add(jMenuReclamoProducto);
+							jMenuReclamoProducto.setText("Reclamo de Productos");
+							jMenuReclamoProducto.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) 
+							{
+								ReclamoProductoVista.getInstancia().setLocationRelativeTo(null);
+								ReclamoProductoVista.getInstancia().setVisible(true);
+							}
+						});
+						}
+						{
+							jMenuReclamoFaltante = new JMenuItem();
+							jMenu2.add(jMenuReclamoFaltante);
+							jMenuReclamoFaltante.setText("Reclamo de Faltantes");
+							jMenuReclamoFaltante.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) 
+							{
+								ReclamoFaltantesVista.getInstancia().setLocationRelativeTo(null);
+								ReclamoFaltantesVista.getInstancia().setVisible(true);
+							}
+						});
+						}
+						{
+							jMenuReclamoZona = new JMenuItem();
+							jMenu2.add(jMenuReclamoZona);
+							jMenuReclamoZona.setText("Reclamo de Zona");
+							jMenuReclamoZona.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) 
+							{
+								ReclamoZonaVista.getInstancia().setLocationRelativeTo(null);
+								ReclamoZonaVista.getInstancia().setVisible(true);
+							}
+						});
+						}
+						{
+							jMenuReclamoFacturacion = new JMenuItem();
+							jMenu2.add(jMenuReclamoFacturacion);
+							jMenuReclamoFacturacion.setText("Reclamo de Facturación");
+							jMenuReclamoFacturacion.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) 
+							{
+								ReclamoFacturacionVista.getInstancia().setLocationRelativeTo(null);
+								ReclamoFacturacionVista.getInstancia().setVisible(true);
+							}
+						});
+						}
+					}
+					if(usuarioView.getRol().equals("RESP_ZONA_ENTREGA")){
+						jMenu2 = new JMenu();
+						jMenuBar1.add(jMenu2);
+						jMenu2.setText("Atención de Reclamos");
+						{
+							jMenuAtencionReclamoZona = new JMenuItem();
+							jMenu2.add(jMenuAtencionReclamoZona);
+							jMenuAtencionReclamoZona.setText("Atencion Reclamos de Zona");
+							jMenuAtencionReclamoZona.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) 
+							{
+								AtencionReclamoZonaVista.getInstancia().setLocationRelativeTo(null);
+								AtencionReclamoZonaVista.getInstancia().setVisible(true);
+							}
+						});
+						}
+					}
+					if(usuarioView.getRol().equals("RESP_DISTRIBUCION")){
+						jMenu2 = new JMenu();
+						jMenuBar1.add(jMenu2);
+						jMenu2.setText("Atención de Reclamos");
+						{
+							jMenuAtencionReclamoFaltante = new JMenuItem();
+							jMenu2.add(jMenuAtencionReclamoFaltante);
+							jMenuAtencionReclamoFaltante.setText("Atencion Reclamos de Faltantes");
+							jMenuAtencionReclamoFaltante.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) 
+							{
+								AtencionReclamoFaltantesVista.getInstancia().setLocationRelativeTo(null);
+								AtencionReclamoFaltantesVista.getInstancia().setVisible(true);
+							}
+						});
+						}
+						{
+							jMenuAtencionReclamoProducto = new JMenuItem();
+							jMenu2.add(jMenuAtencionReclamoProducto);
+							jMenuAtencionReclamoProducto.setText("Atencion Reclamos de Productos");
+							jMenuAtencionReclamoProducto.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) 
+							{
+								AtencionReclamoProductoVista.getInstancia().setLocationRelativeTo(null);
+								AtencionReclamoProductoVista.getInstancia().setVisible(true);
+							}
+						});
+						}
+						{
+							jMenuAtencionReclamoCantidad = new JMenuItem();
+							jMenu2.add(jMenuAtencionReclamoCantidad);
+							jMenuAtencionReclamoCantidad.setText("Atencion Reclamos de Cantidad");
+							jMenuAtencionReclamoCantidad.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) 
+							{
+								AtencionReclamoCantidadVista.getInstancia().setLocationRelativeTo(null);
+								AtencionReclamoCantidadVista.getInstancia().setVisible(true);
+							}
+						});
+						}
+					}
+					if(usuarioView.getRol().equals("RESP_FACTURACION")){
+						jMenu2 = new JMenu();
+						jMenuBar1.add(jMenu2);
+						jMenu2.setText("Atención de Reclamos");
+						{
+							jMenuAtencionReclamoFacturacion = new JMenuItem();
+							jMenu2.add(jMenuAtencionReclamoFacturacion);
+							jMenuAtencionReclamoFacturacion.setText("Atencion Reclamos de Facturación");
+							jMenuAtencionReclamoFacturacion.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) 
+							{
+								AtencionReclamoFaltantesVista.getInstancia().setLocationRelativeTo(null);
+								AtencionReclamoFaltantesVista.getInstancia().setVisible(true);
+							}
+						});
+						}
 					}
 				}
+
 				{
 					jMenu1 = new JMenu();
 					jMenuBar1.add(jMenu1);
