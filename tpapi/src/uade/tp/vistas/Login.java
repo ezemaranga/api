@@ -8,11 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 import uade.tp.ai.UsuarioView;
-import uade.tp.sistema.SistemaReclamos;
 
 @SuppressWarnings("serial")
 public class Login extends javax.swing.JFrame{
@@ -35,23 +33,16 @@ public class Login extends javax.swing.JFrame{
 			instancia = new Login();
 		return instancia;
 	}
-
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				Login inst = new Login();
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
-	
 	
 	public Login() {
 		super();
 		initGUI();
 	}
-	
+			
+	public static UsuarioView getUsuario() {
+		return usuario;
+	}
+
 	private void initGUI() {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -97,27 +88,30 @@ public class Login extends javax.swing.JFrame{
 				aceptar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
-						if(usuarioTxt.getText().equals("") || passwordTxt.getText().equals("")){
-							if(usuarioTxt.getText().equals("")){
-								JOptionPane.showMessageDialog(null, "complete el campo Usuario", "Error Login", JOptionPane.ERROR_MESSAGE);
-								return;
-							} else {
-								JOptionPane.showMessageDialog(null, "Complete el campo Contraseña", "Error Login", JOptionPane.ERROR_MESSAGE);
-								return;
-							}
-						} else {
-							usuario = SistemaReclamos.getInstance().buscarUsuario((String) usuarioTxt.getText(), (String) passwordTxt.getText());
-							
-							if (usuario == null) 
-							{
-								JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecta", "Error Login", JOptionPane.ERROR_MESSAGE);
-								return;								
-							} else {								
-								Menu.getInstancia().setLocationRelativeTo(null);
-								Menu.getInstancia().setVisible(true);
-								instancia.setVisible(false);
-							}
+						if(usuarioTxt.getText().equals("")){
+							JOptionPane.showMessageDialog(null, "complete el campo Usuario", "Error Login", JOptionPane.ERROR_MESSAGE);
+							return;
+						} 
+						
+						if(passwordTxt.getText().equals("")) {
+							JOptionPane.showMessageDialog(null, "Complete el campo Contraseña", "Error Login", JOptionPane.ERROR_MESSAGE);
+							return;
 						}
+
+						usuario = new UsuarioView("Responsable Facturacion", "Apellido C", "Apodo C", "PASS C", "RESP_FACTURACION");
+						
+//						usuario = SistemaReclamos.getInstance().buscarUsuario((String) usuarioTxt.getText(), (String) passwordTxt.getText());
+						
+//						if (usuario == null) 
+//						{
+//							JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecta", "Error Login", JOptionPane.ERROR_MESSAGE);
+//							return;								
+//						} else {								
+							Menu.getInstancia().setLocationRelativeTo(null);
+							Menu.getInstancia().setVisible(true);
+							setVisible(false);
+							dispose();
+//						}
 					}
 				});
 			}

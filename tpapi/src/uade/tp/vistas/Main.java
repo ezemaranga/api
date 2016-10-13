@@ -8,9 +8,8 @@ public class Main {
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				Login inst = new Login();
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
+				Login.getInstancia().setLocationRelativeTo(null);
+				Login.getInstancia().setVisible(true);
 			}
 		});
 

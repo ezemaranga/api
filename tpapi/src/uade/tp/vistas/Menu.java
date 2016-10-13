@@ -4,15 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JMenu;
-import javax.swing.JMenuBar; 
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
+import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 import uade.tp.ai.UsuarioView;
 
-import javax.swing.SwingUtilities;
-
+@SuppressWarnings("serial")
 public class Menu extends javax.swing.JFrame {
 	
 	private JMenuBar jMenuBar1;
@@ -34,10 +33,12 @@ public class Menu extends javax.swing.JFrame {
 	private JMenuItem jMenuAtencionReclamoZona;
 	private JMenuItem jMenuAtencionReclamoFacturacion;
 
-//	private UsuarioView usuarioView = new UsuarioView("Call Center", "Apellido A", "Apodo A", "PASS A", "CALL_CENTER");
-//	private UsuarioView usuarioView = new UsuarioView("Responsable Zona Entrega", "Apellido B", "Apodo B", "PASS B", "RESP_ZONA_ENTREGA");
-//	private UsuarioView usuarioView = new UsuarioView("Responsable Facturacion", "Apellido C", "Apodo C", "PASS C", "RESP_FACTURACION");
-	private UsuarioView usuarioView = new UsuarioView("Responsable Distribucion", "Apellido D", "Apodo D", "PASS D", "RESP_DISTRIBUCION");
+	private UsuarioView usuarioView;
+	
+//	usuarioView = new UsuarioView("Call Center", "Apellido A", "Apodo A", "PASS A", "CALL_CENTER");
+//	usuarioView = new UsuarioView("Responsable Zona Entrega", "Apellido B", "Apodo B", "PASS B", "RESP_ZONA_ENTREGA");
+//	usuarioView = new UsuarioView("Responsable Facturacion", "Apellido C", "Apodo C", "PASS C", "RESP_FACTURACION");
+//	usuarioView = new UsuarioView("Responsable Distribucion", "Apellido D", "Apodo D", "PASS D", "RESP_DISTRIBUCION");
 	
 	
 	/**
@@ -85,6 +86,8 @@ public class Menu extends javax.swing.JFrame {
 				jMenuBar1 = new JMenuBar();
 				setJMenuBar(jMenuBar1);
 				{
+					usuarioView = Login.getUsuario();
+					
 					if(usuarioView.getRol().equals("CALL_CENTER")){
 						jMenu2 = new JMenu();
 						jMenuBar1.add(jMenu2);
