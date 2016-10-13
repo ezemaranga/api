@@ -261,5 +261,22 @@ public class SistemaReclamos {
 	private void agregarCliente(Cliente c) {
 		this.clientes.add(c);
 	}
+	
+	public void cargaInicial() {
+		Cliente c1 = new Cliente("pepe", "calle falsa 123", "123456", "pepe@gmail.com", "1");
+		Cliente c2 = new Cliente("cacho", "calle trucha 456", "435345", "cacho@gmail.com", "2");
+		Cliente c3 = new Cliente("tito", "calle inexistente 789", "45677", "tito@gmail.com", "3");
+		Cliente c4 = new Cliente("willy", "calle perdida 123", "44435", "willy@gmail.com", "4");
+		Cliente c5 = new Cliente("yayo", "calle 456", "6666", "yayo@gmail.com", "5");
+		
+		this.agregarCliente(c1);
+		this.agregarCliente(c2);
+		this.agregarCliente(c3);
+		this.agregarCliente(c4);
+		this.agregarCliente(c5);
+		
+		Cliente c = this.buscarCliente("2");
+		System.out.println(c);
+	}
 
 }
