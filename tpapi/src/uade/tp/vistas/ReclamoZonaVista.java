@@ -89,12 +89,11 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-			this.setTitle("Alta Reclamos");
+			this.setTitle("Alta de Reclamos - Reclamo de Zona");
 			this.setPreferredSize(new java.awt.Dimension(600, 500));
 			this.setDefaultLookAndFeelDecorated(true);
 			this.setResizable(false);
 			this.setMinimumSize(new java.awt.Dimension(600, 500));
-			this.setUndecorated(true);	
 			{
 				jLabel1 = new JLabel();
 				getContentPane().add(jLabel1);
@@ -228,7 +227,7 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 			{
 				aceptar = new JButton();
 				getContentPane().add(aceptar);
-				aceptar.setText("Aceptar");
+				aceptar.setText("Guardar");
 				aceptar.setBounds(70, 360, 123, 22);
 				aceptar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
