@@ -25,5 +25,11 @@ public class Zona {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public ZonaView getView() {
+		ZonaView zv = new ZonaView(codigo, nombre);
+		
+		return zv;
+	}
 
 }

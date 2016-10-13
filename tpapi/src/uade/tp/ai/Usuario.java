@@ -9,7 +9,6 @@ public class Usuario {
 	private String rol;
 
 	public Usuario(String nombre, String apellido, String apodo, String password, String rol) {
-		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.apodo = apodo;
@@ -55,6 +54,12 @@ public class Usuario {
 
 	public void setRol(String rol) {
 		this.rol = rol;
+	}
+	
+	public UsuarioView getView() {
+		UsuarioView uv = new UsuarioView(nombre, apellido, apodo, password, rol);
+		
+		return uv;
 	}
 
 }

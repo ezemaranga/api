@@ -56,4 +56,10 @@ public class Cliente {
 		this.dni = dni;
 	}
 
+	public ClienteView getView() {
+		ClienteView cv = new ClienteView(nombre, domicilio, telefono, email, dni);
+		
+		return cv;
+	}
+	
 }
