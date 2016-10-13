@@ -7,6 +7,7 @@ import uade.tp.ai.Cliente;
 import uade.tp.ai.Factura;
 import uade.tp.ai.Producto;
 import uade.tp.ai.Usuario;
+import uade.tp.ai.UsuarioView;
 import uade.tp.ai.Zona;
 import uade.tp.ai.reclamo.Reclamo;
 import uade.tp.ai.reclamo.ReclamoCantidad;
@@ -47,7 +48,7 @@ public class SistemaReclamos {
 	}
 
 	public boolean ingresoAplicacion(String apodo, String password) {
-		Usuario usuarioActual = this.buscarUsuario(apodo, password);
+		UsuarioView usuarioActual = this.buscarUsuario(apodo, password);
 		return usuarioActual != null;
 	}
 
@@ -195,7 +196,7 @@ public class SistemaReclamos {
 
 	
 	// =================================== buscar ===================================
-	public Factura buscarFactura(String fecha, String nro) {
+	private Factura buscarFactura(String fecha, String nro) {
 		for (Factura factura : facturas) {
 			if (factura.getNumero().equals(nro) && factura.getFecha().equals(fecha)) {
 				return factura;
@@ -204,7 +205,7 @@ public class SistemaReclamos {
 		return FacturaMapper.getInstancia().buscarFactura(nro, fecha);
 	}
 
-	public Reclamo buscarReclamo(String nro) {
+	private Reclamo buscarReclamo(String nro) {
 		for (Reclamo reclamo : reclamos) {
 			if (reclamo.getNroReclamo().equals(nro)) {
 				return reclamo;
@@ -213,16 +214,16 @@ public class SistemaReclamos {
 		return ReclamoMapper.getInstancia().buscarReclamo(nro);
 	}
 
-	public Usuario buscarUsuario(String apodo, String password) {
+	public UsuarioView buscarUsuario(String apodo, String password) {
 		for (Usuario usuario : usuarios) {
 			if (usuario.getApodo().equals(apodo) && usuario.getPassword().equals(password)) {
-				return usuario;
+				return usuario.getView();
 			}
 		}
 		return UsuarioMapper.getInstancia().buscarUsuario(apodo, password);
 	}
 
-	public Producto buscarProducto(String codPublicacion) {
+	private Producto buscarProducto(String codPublicacion) {
 		for (Producto producto : productos) {
 			if (producto.getCodPublicacion().equals(codPublicacion)) {
 				return producto;
@@ -231,7 +232,7 @@ public class SistemaReclamos {
 		return ProductoMapper.getInstancia().buscarProducto(codPublicacion);
 	}
 	
-	public Zona buscarZona(String codZona) {
+	private Zona buscarZona(String codZona) {
 		for (Zona zona : zonas) {
 			if (zona.getCodigo().equals(codZona)) {
 				return zona;
@@ -240,7 +241,7 @@ public class SistemaReclamos {
 		return ZonaMapper.getInstancia().buscarZona(codZona);
 	}
 
-	public Cliente buscarCliente(String dni) {
+	private Cliente buscarCliente(String dni) {
 		for (Cliente cliente : clientes) {
 			if (cliente.getDni().equals(dni)) {
 				return cliente;
@@ -249,7 +250,7 @@ public class SistemaReclamos {
 		return ClienteMapper.getInstancia().buscarCliente(dni);
 	}
 
-	public boolean existeCliente(String dni) {
+	private boolean existeCliente(String dni) {
 		Cliente c = this.buscarCliente(dni);
 		if (c != null)
 			recActual.setCliente(c);
@@ -257,7 +258,7 @@ public class SistemaReclamos {
 	}
 
 	// ==========================   TODO remove this, just for testing ================
-	public void agregarCliente(Cliente c) {
+	private void agregarCliente(Cliente c) {
 		this.clientes.add(c);
 	}
 
