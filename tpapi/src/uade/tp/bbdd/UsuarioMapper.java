@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 import uade.tp.ai.Usuario;
+import uade.tp.ai.UsuarioView;
 
 public class UsuarioMapper extends Mapper {
 	private static UsuarioMapper instancia;
@@ -93,7 +94,7 @@ public class UsuarioMapper extends Mapper {
 		}
 	}
 
-	public Usuario buscarUsuario(String apodoUsuario, String passwordUsuario) {
+	public UsuarioView buscarUsuario(String apodoUsuario, String passwordUsuario) {
 		try {
 			Connection con = ConnectionManager.getInstance().connect();
 			PreparedStatement s = con.prepareStatement("SELECT * FROM Usuario WHERE apodo = ? AND password = ?");
@@ -109,7 +110,7 @@ public class UsuarioMapper extends Mapper {
 				String rol = result.getString(5);
 				
 				Usuario u = new Usuario(apodo, nombre, apellido, password, rol);
-				return u;
+				return u.getView();
 			}
 			ConnectionManager.getInstance().closeCon();
 		} catch (Exception e) {
