@@ -14,7 +14,6 @@ import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
 public class AtencionReclamoProductoVista extends javax.swing.JFrame{
 
@@ -105,13 +104,11 @@ public class AtencionReclamoProductoVista extends javax.swing.JFrame{
 				jTable.setPreferredScrollableViewportSize(new Dimension(650, 100));
 				jTable.setFillsViewportHeight(true);
 				
-				TableColumn column = null;
 				for (int i = 0; i < 5; i++) {
-				    column = jTable.getColumnModel().getColumn(i);
 				    if (i == 2) {
-				        column.setPreferredWidth(100);
+				    	jTable.getColumnModel().getColumn(i).setPreferredWidth(100);
 				    } else {
-				        column.setPreferredWidth(50);
+				    	jTable.getColumnModel().getColumn(i).setPreferredWidth(50);
 				    }
 				}
 				
@@ -150,7 +147,7 @@ public class AtencionReclamoProductoVista extends javax.swing.JFrame{
 
 			jPanel.setOpaque(true);
 			this.setContentPane(jPanel);
-			pack();
+			this.pack();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
