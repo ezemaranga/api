@@ -4,11 +4,12 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
-
+ 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -89,12 +90,11 @@ public class ReclamoProductoVista extends javax.swing.JFrame{
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-			this.setTitle("Alta Reclamos");
+			this.setTitle("Alta de Reclamos - Reclamo de Productos");
 			this.setPreferredSize(new java.awt.Dimension(600, 500));
 			this.setDefaultLookAndFeelDecorated(true);
 			this.setResizable(false);
 			this.setMinimumSize(new java.awt.Dimension(600, 500));
-			this.setUndecorated(true);	
 			{
 				jLabel1 = new JLabel();
 				getContentPane().add(jLabel1);
@@ -220,7 +220,7 @@ public class ReclamoProductoVista extends javax.swing.JFrame{
 			{
 				aceptar = new JButton();
 				getContentPane().add(aceptar);
-				aceptar.setText("Aceptar");
+				aceptar.setText("Guardar");
 				aceptar.setBounds(70, 360, 123, 22);
 				aceptar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 

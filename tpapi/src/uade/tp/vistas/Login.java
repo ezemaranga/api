@@ -3,23 +3,38 @@ package uade.tp.vistas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar; 
+import javax.swing.JMenuItem;
+
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.JOptionPane;
+
+import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
-import uade.tp.ai.UsuarioView;
+import uade.tp.ai.Usuario;
+import uade.tp.bbdd.UsuarioMapper;
 import uade.tp.sistema.SistemaReclamos;
 
 @SuppressWarnings("serial")
 public class Login extends javax.swing.JFrame{
+	
+	private JMenuBar jMenuBar1;
+	private JMenuItem jMenuItem4;
+	private JMenu jMenu1;
+	
 	private JLabel usuarioLbl;
-	private JTextField usuarioTxt;
 	private JLabel passwordLbl;
+	
+	private JTextField usuarioTxt;
 	private JTextField passwordTxt;
+
 	private JButton aceptar;
-	private static UsuarioView usuario;
+	
+	private static Usuario usuario;
 	
 	private static Login instancia;
 	
@@ -29,6 +44,17 @@ public class Login extends javax.swing.JFrame{
 			instancia = new Login();
 		return instancia;
 	}
+
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				Login inst = new Login();
+				inst.setLocationRelativeTo(null);
+				inst.setVisible(true);
+			}
+		});
+	}
+	
 	
 	public Login() {
 		super();
@@ -39,12 +65,11 @@ public class Login extends javax.swing.JFrame{
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-			this.setTitle("Login");
 			this.setPreferredSize(new java.awt.Dimension(400, 200));
+			this.setTitle("Login");			
 			Login.setDefaultLookAndFeelDecorated(true);
-			this.setResizable(false);
 			this.setMinimumSize(new java.awt.Dimension(400, 200));
-			this.setUndecorated(true);
+			this.setResizable(false);
 			{
 				usuarioLbl = new JLabel();
 				getContentPane().add(usuarioLbl);
@@ -59,7 +84,7 @@ public class Login extends javax.swing.JFrame{
 			{
 				passwordLbl = new JLabel();
 				getContentPane().add(passwordLbl);
-				passwordLbl.setText("Password:");
+				passwordLbl.setText("Contraseña:");
 				passwordLbl.setBounds(13, 59, 80, 16);
 			}
 			{
@@ -78,10 +103,10 @@ public class Login extends javax.swing.JFrame{
 					{
 						if(usuarioTxt.getText().equals("") || passwordTxt.getText().equals("")){
 							if(usuarioTxt.getText().equals("")){
-								JOptionPane.showMessageDialog(null, "Complete el campo Usuario", "Error Login", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(null, "complete el campo Usuario", "Error Login", JOptionPane.ERROR_MESSAGE);
 								return;
 							} else {
-								JOptionPane.showMessageDialog(null, "Complete el campo Password", "Error Login", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(null, "Complete el campo Contraseña", "Error Login", JOptionPane.ERROR_MESSAGE);
 								return;
 							}
 						} else {
@@ -89,7 +114,7 @@ public class Login extends javax.swing.JFrame{
 							
 							if (usuario == null) 
 							{
-								JOptionPane.showMessageDialog(null, "Usuario/Password incorrecta", "Error Login", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecta", "Error Login", JOptionPane.ERROR_MESSAGE);
 								return;
 								
 							} else {
