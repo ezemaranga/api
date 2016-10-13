@@ -1,18 +1,17 @@
 package uade.tp.vistas;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
 import javax.swing.JButton;
-import javax.swing.JTextField;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 import uade.tp.ai.UsuarioView;
-import uade.tp.bbdd.UsuarioMapper;
 import uade.tp.sistema.SistemaReclamos;
 
 @SuppressWarnings("serial")
@@ -58,7 +57,7 @@ public class Login extends javax.swing.JFrame{
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
 			this.setPreferredSize(new java.awt.Dimension(400, 200));
-			this.setTitle("Login");			
+			this.setTitle("Sistema Reclamos");			
 			Login.setDefaultLookAndFeelDecorated(true);
 			this.setMinimumSize(new java.awt.Dimension(400, 200));
 			this.setResizable(false);
@@ -66,30 +65,35 @@ public class Login extends javax.swing.JFrame{
 				usuarioLbl = new JLabel();
 				getContentPane().add(usuarioLbl);
 				usuarioLbl.setText("Usuario:");
-				usuarioLbl.setBounds(12, 24, 80, 16);
+				usuarioLbl.setBounds(12, 41, 80, 16);
 			}
 			{
 				usuarioTxt = new JTextField();
 				getContentPane().add(usuarioTxt);
-				usuarioTxt.setBounds(142, 21, 121, 22);
+				usuarioTxt.setBounds(142, 38, 121, 22);
 			}
 			{
 				passwordLbl = new JLabel();
 				getContentPane().add(passwordLbl);
 				passwordLbl.setText("Contraseña:");
-				passwordLbl.setBounds(13, 59, 80, 16);
+				passwordLbl.setBounds(12, 73, 80, 16);
 			}
 			{
 				passwordTxt = new JTextField();
 				getContentPane().add(passwordTxt);
-				passwordTxt.setBounds(142, 56, 121, 21);
+				passwordTxt.setBounds(142, 71, 121, 21);
 			}
 			{
 				aceptar = new JButton();
 				getContentPane().add(aceptar);
 				aceptar.setText("Aceptar");
-				aceptar.setBounds(142, 100, 123, 22);
-				//                al-h/al-f/ 
+				aceptar.setBounds(142, 124, 123, 22);
+				
+				JLabel lblLogin = new JLabel("Login");
+				lblLogin.setFont(new Font("Verdana", Font.BOLD, 13));
+				lblLogin.setBounds(12, 11, 46, 19);
+				getContentPane().add(lblLogin);
+				
 				aceptar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
@@ -107,10 +111,8 @@ public class Login extends javax.swing.JFrame{
 							if (usuario == null) 
 							{
 								JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecta", "Error Login", JOptionPane.ERROR_MESSAGE);
-								return;
-								
-							} else {
-								
+								return;								
+							} else {								
 								Menu.getInstancia().setLocationRelativeTo(null);
 								Menu.getInstancia().setVisible(true);
 								instancia.setVisible(false);
@@ -119,11 +121,9 @@ public class Login extends javax.swing.JFrame{
 					}
 				});
 			}
-			pack();
-			this.setSize(400, 200);
+			this.pack();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
 }
