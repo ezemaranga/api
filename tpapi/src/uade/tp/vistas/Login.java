@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import uade.tp.ai.UsuarioView;
+import uade.tp.sistema.SistemaReclamos;
 
 @SuppressWarnings("serial")
 public class Login extends javax.swing.JFrame{
@@ -98,20 +99,20 @@ public class Login extends javax.swing.JFrame{
 							return;
 						}
 
-						usuario = new UsuarioView("Responsable Facturacion", "Apellido C", "Apodo C", "PASS C", "RESP_FACTURACION");
+						//usuario = new UsuarioView("Responsable Facturacion", "Apellido C", "Apodo C", "PASS C", "RESP_FACTURACION");
 						
-//						usuario = SistemaReclamos.getInstance().buscarUsuario((String) usuarioTxt.getText(), (String) passwordTxt.getText());
+						usuario = SistemaReclamos.getInstance().buscarUsuario((String) usuarioTxt.getText(), (String) passwordTxt.getText());
 						
-//						if (usuario == null) 
-//						{
-//							JOptionPane.showMessageDialog(null, "Usuario/Contrase�a incorrecta", "Error Login", JOptionPane.ERROR_MESSAGE);
-//							return;								
-//						} else {								
+						if (usuario == null) 
+						{
+							JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecta", "Error Login", JOptionPane.ERROR_MESSAGE);
+							return;								
+						} else {								
 							Menu.getInstancia().setLocationRelativeTo(null);
 							Menu.getInstancia().setVisible(true);
 							setVisible(false);
 							dispose();
-//						}
+						}
 					}
 				});
 			}
