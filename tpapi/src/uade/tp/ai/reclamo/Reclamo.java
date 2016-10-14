@@ -9,6 +9,7 @@ import uade.tp.ai.Cliente;
 import uade.tp.ai.Factura;
 import uade.tp.ai.Producto;
 import uade.tp.ai.Zona;
+import uade.tp.bbdd.ReclamoMapper;
 
 public abstract class Reclamo {
 	
@@ -33,6 +34,10 @@ public abstract class Reclamo {
 	public abstract void setZona(Zona zona);
 	
 	public abstract String getTipo();
+	
+	public void guardarReclamo(Reclamo r) {
+		ReclamoMapper.getInstancia().insert(r);
+	}
 
 	public String getFecha() {
 		return fecha;

@@ -347,8 +347,60 @@ public class ReclamoMapper extends Mapper {
 	}
 
 	public List<Reclamo> getReclamosFacturacion() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Reclamo> reclamos = new ArrayList<Reclamo>();
+		try {
+			Connection con = ConnectionManager.getInstance().connect();
+			PreparedStatement s = con.prepareStatement("SELECT * FROM Reclamo WHERE Tipo = 'RECLAMO_FACTURACION'");
+			ResultSet result = s.executeQuery();
+			while (result.next()) {
+				String nroReclamo = result.getString(1);
+				String fecha = result.getString(2);
+				String dniCliente = result.getString(3);
+				Cliente cliente = ClienteMapper.getInstancia().buscarCliente(dniCliente);
+				String descripcion = result.getString(4);
+				String estadoActual = result.getString(5);
+				String tipo = result.getString(6);
+				
+				Reclamo reclamo = this.buildReclamoFacturacion(nroReclamo, fecha, cliente, descripcion, estadoActual, tipo);
+				reclamos.add(reclamo);
+			}
+			ConnectionManager.getInstance().closeCon();
+		} catch (Exception e) {
+			System.out.println();
+		}
+		return reclamos;
+	}
+	
+	private Reclamo buildReclamoFacturacion(String nroReclamo, String fecha, Cliente cliente, String descripcion, String estadoActual, String tipo) throws SQLException {
+		ReclamoFacturacion reclamo = new ReclamoFacturacion();;
+		
+		reclamo.setNroReclamo(nroReclamo);
+		reclamo.setFecha(fecha);
+		reclamo.setCliente(cliente);
+		reclamo.setDescripcion(descripcion);
+		reclamo.setEstadoActual(estadoActual);
+		
+		List<Factura> facturas = this.selectFacturasReclamo(nroReclamo);
+		for(Factura f : facturas) {
+			reclamo.addFactura(f);
+		}
+		
+		return reclamo;
+	}
+
+	private List<Factura> selectFacturasReclamo(String nroReclamo) throws SQLException {
+		List<Factura> facturas = new ArrayList<Factura>();
+		Connection con = ConnectionManager.getInstance().connect();
+		PreparedStatement s = con.prepareStatement("SELECT * FROM ReclamoFacturacion WHERE NroReclamo = ?");
+		s.setString(1, nroReclamo);
+		ResultSet result = s.executeQuery();
+		while (result.next()) {
+			String numeroFactura = result.getString(2);
+			Factura f = FacturaMapper.getInstancia().buscarFactura(numeroFactura);
+			facturas.add(f);
+		}
+		ConnectionManager.getInstance().closeCon();
+		return facturas;
 	}
 
 }
