@@ -177,38 +177,14 @@ public class Menu extends javax.swing.JFrame {
 						jMenuBar1.add(jMenu2);
 						jMenu2.setText("Atencion de Reclamos");
 						{
-							jMenuAtencionReclamoFaltante = new JMenuItem();
-							jMenu2.add(jMenuAtencionReclamoFaltante);
-							jMenuAtencionReclamoFaltante.setText("Atencion Reclamos de Faltantes");
-							jMenuAtencionReclamoFaltante.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) 
-							{
-								AtencionReclamoFaltantesVista.getInstancia().setLocationRelativeTo(null);
-								AtencionReclamoFaltantesVista.getInstancia().setVisible(true);
-							}
-						});
-						}
-						{
 							jMenuAtencionReclamoProducto = new JMenuItem();
 							jMenu2.add(jMenuAtencionReclamoProducto);
-							jMenuAtencionReclamoProducto.setText("Atencion Reclamos de Productos");
+							jMenuAtencionReclamoProducto.setText("Atencion Reclamos de Distribucion");
 							jMenuAtencionReclamoProducto.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) 
 							{
 								AtencionReclamoProductoVista.getInstancia().setLocationRelativeTo(null);
 								AtencionReclamoProductoVista.getInstancia().setVisible(true);
-							}
-						});
-						}
-						{
-							jMenuAtencionReclamoCantidad = new JMenuItem();
-							jMenu2.add(jMenuAtencionReclamoCantidad);
-							jMenuAtencionReclamoCantidad.setText("Atencion Reclamos de Cantidad");
-							jMenuAtencionReclamoCantidad.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) 
-							{
-								AtencionReclamoCantidadVista.getInstancia().setLocationRelativeTo(null);
-								AtencionReclamoCantidadVista.getInstancia().setVisible(true);
 							}
 						});
 						}
