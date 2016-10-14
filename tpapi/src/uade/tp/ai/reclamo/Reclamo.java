@@ -3,6 +3,7 @@ package uade.tp.ai.reclamo;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import uade.tp.ai.Cliente;
 import uade.tp.ai.Factura;
@@ -30,6 +31,8 @@ public abstract class Reclamo {
 	public abstract void addItemReclamo(Producto prod, int cantidad);
 
 	public abstract void setZona(Zona zona);
+	
+	public abstract String getTipo();
 
 	public String getFecha() {
 		return fecha;
@@ -40,6 +43,9 @@ public abstract class Reclamo {
 	}
 
 	public String getNroReclamo() {
+		if(nroReclamo == null) {
+			nroReclamo = UUID.randomUUID().toString(); 
+		}
 		return nroReclamo;
 	}
 

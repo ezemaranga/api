@@ -67,4 +67,9 @@ public class ReclamoCompuesto extends Reclamo {
 		recActual = null;
 	}
 
+	@Override
+	public String getTipo() {
+		return "RECLAMO_COMPUESTO";
+	}
+
 }

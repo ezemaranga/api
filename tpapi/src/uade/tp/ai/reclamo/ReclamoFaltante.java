@@ -19,4 +19,9 @@ public class ReclamoFaltante extends ReclamoDistribucion {
 		TableroDistribucion.getInstance().agregarReclamo(this);
 	}
 
+	@Override
+	public List<ItemReclamo> getItemsReclamo() {
+		return this.items;
+	}
+
 }

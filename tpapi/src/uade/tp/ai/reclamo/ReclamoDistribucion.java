@@ -1,5 +1,7 @@
 package uade.tp.ai.reclamo;
 
+import java.util.List;
+
 import uade.tp.ai.Factura;
 import uade.tp.ai.Producto;
 import uade.tp.ai.Zona;
@@ -18,6 +20,8 @@ public abstract class ReclamoDistribucion extends Reclamo {
 	public void agregarATablero() {
 		TableroFacturacion.getInstance().agregarReclamo(this);
 	}
+	
+	public abstract List<ItemReclamo> getItemsReclamo();
 
 	@Override
 	public void addFactura(Factura fact){
@@ -27,5 +31,10 @@ public abstract class ReclamoDistribucion extends Reclamo {
 	@Override
 	public void setZona(Zona zona){
 		// TODO Auto-generated method stub
+	}
+	
+	@Override
+	public String getTipo() {
+		return "RECLAMO_DISTRIBUCION";
 	}
 }
