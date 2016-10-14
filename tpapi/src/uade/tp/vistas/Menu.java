@@ -143,7 +143,7 @@ public class Menu extends javax.swing.JFrame {
 						{
 							jMenuReclamoFacturacion = new JMenuItem();
 							jMenu2.add(jMenuReclamoFacturacion);
-							jMenuReclamoFacturacion.setText("Reclamo de Facturación");
+							jMenuReclamoFacturacion.setText("Reclamo de Facturacion");
 							jMenuReclamoFacturacion.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) 
 							{
@@ -156,7 +156,7 @@ public class Menu extends javax.swing.JFrame {
 					if(usuarioView.getRol().equals("RESP_ZONA_ENTREGA")){
 						jMenu2 = new JMenu();
 						jMenuBar1.add(jMenu2);
-						jMenu2.setText("Atención de Reclamos");
+						jMenu2.setText("Atencion de Reclamos");
 						{
 							jMenuAtencionReclamoZona = new JMenuItem();
 							jMenu2.add(jMenuAtencionReclamoZona);
@@ -173,7 +173,7 @@ public class Menu extends javax.swing.JFrame {
 					if(usuarioView.getRol().equals("RESP_DISTRIBUCION")){
 						jMenu2 = new JMenu();
 						jMenuBar1.add(jMenu2);
-						jMenu2.setText("Atención de Reclamos");
+						jMenu2.setText("Atencion de Reclamos");
 						{
 							jMenuAtencionReclamoFaltante = new JMenuItem();
 							jMenu2.add(jMenuAtencionReclamoFaltante);
@@ -214,11 +214,11 @@ public class Menu extends javax.swing.JFrame {
 					if(usuarioView.getRol().equals("RESP_FACTURACION")){
 						jMenu2 = new JMenu();
 						jMenuBar1.add(jMenu2);
-						jMenu2.setText("Atención de Reclamos");
+						jMenu2.setText("Atencion de Reclamos");
 						{
 							jMenuAtencionReclamoFacturacion = new JMenuItem();
 							jMenu2.add(jMenuAtencionReclamoFacturacion);
-							jMenuAtencionReclamoFacturacion.setText("Atencion Reclamos de Facturación");
+							jMenuAtencionReclamoFacturacion.setText("Atencion Reclamos de Facturacion");
 							jMenuAtencionReclamoFacturacion.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) 
 							{

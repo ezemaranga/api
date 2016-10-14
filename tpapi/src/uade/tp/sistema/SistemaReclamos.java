@@ -37,6 +37,8 @@ public class SistemaReclamos {
 	private List<Factura> facturas;
 	private List<Reclamo> reclamos;
 	private Reclamo recActual;
+	
+	private static SistemaReclamos instancia;
 
 	public SistemaReclamos() {
 		clientes = new ArrayList<Cliente>();
@@ -275,6 +277,12 @@ public class SistemaReclamos {
 		
 		Cliente c = this.buscarCliente("2");
 		System.out.println(c);
+	}
+
+	public static SistemaReclamos getInstance() {
+		if (instancia == null)
+			instancia = new SistemaReclamos();
+		return instancia;
 	}
 
 }

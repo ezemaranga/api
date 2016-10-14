@@ -11,7 +11,7 @@ CREATE TABLE Factura
 (
 	Fecha varchar(255),
 	Numero varchar(255),
-	DniCliente varchar(255),
+	DniCliente varchar(255)
 );
 
 
