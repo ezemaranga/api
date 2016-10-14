@@ -134,7 +134,8 @@ public class SistemaReclamos {
 	}
 	
 	// guardar reclamo simple
-	public void agregarReclamo() {
+	public void agregarReclamo(String desc) {
+		recActual.setDescripcion(desc);
 		recActual.agregarATablero();
 		reclamos.add(recActual);
 		recActual = null;
@@ -170,26 +171,23 @@ public class SistemaReclamos {
 	}
 
 	// ========= ingresar datos de reclamos ===================
-	public void ingresarDatosFactura(String fecha, String nro, String desc) {
+	public void ingresarDatosFactura(String fecha, String nro) {
 		Factura fact = buscarFactura(fecha, nro);
 		if (fact != null) {
-			recActual.setDescripcion(desc);
 			recActual.addFactura(fact);
 		}
 	}
 
-	public void ingresarDatosProducto(String codPublicacion, int cantidad, String desc) {
+	public void ingresarDatosProducto(String codPublicacion, int cantidad) {
 		Producto prod = buscarProducto(codPublicacion);
 		if (prod != null) {
-			recActual.setDescripcion(desc);
 			recActual.addItemReclamo(prod, cantidad);
 		}
 	}
 
-	public void ingresarDatosZona(String codZona, String barrio, String desc) {
+	public void ingresarDatosZona(String codZona, String barrio) {
 		Zona zona = buscarZona(codZona);
 		if (zona != null) {
-			recActual.setDescripcion(desc);
 			recActual.setZona(zona);
 		}
 	}
@@ -250,7 +248,7 @@ public class SistemaReclamos {
 		return ClienteMapper.getInstancia().buscarCliente(dni);
 	}
 
-	private boolean existeCliente(String dni) {
+	public boolean existeCliente(String dni) {
 		Cliente c = this.buscarCliente(dni);
 		if (c != null)
 			recActual.setCliente(c);
