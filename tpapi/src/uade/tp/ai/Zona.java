@@ -1,5 +1,9 @@
 package uade.tp.ai;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
 import uade.tp.bbdd.ZonaMapper;
 
 public class Zona {
@@ -44,6 +48,15 @@ public class Zona {
 	
 	public static Zona buscar(String codZona) {
 		return ZonaMapper.getInstancia().buscarZona(codZona);
+	}
+	
+	public static List<Zona> getZonas() {
+		List<Zona> listaZonas = new ArrayList<Zona>();
+		Vector<Object> zonas = ZonaMapper.getInstancia().select(null);
+		for(Object z : zonas) {
+			listaZonas.add((Zona) z);
+		}
+		return listaZonas;
 	}
 
 }

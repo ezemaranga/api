@@ -42,6 +42,12 @@ public class CargaDeDatos {
 //		Zona almagro = new Zona("A", "Almagro");
 //		almagro.guardar();
 		
+//		Zona boedo = new Zona("B", "Boedo");
+//		boedo.guardar();
+//		
+//		Zona caba = new Zona("C", "Caballito");
+//		caba.guardar();
+		
 //		Zona almagro = Zona.buscar("A");
 //		Cliente coco = Cliente.buscar("dni de coco");
 //		
@@ -53,8 +59,8 @@ public class CargaDeDatos {
 //		
 //		reclamoZona.guardarReclamo();
 		
-		List<Reclamo> reclamosZona = Reclamo.getReclamosZona();
-		System.out.println(reclamosZona.size());
+//		List<Reclamo> reclamosZona = Reclamo.getReclamosZona();
+//		System.out.println(reclamosZona.size());
 		
 		
 		

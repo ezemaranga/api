@@ -9,6 +9,7 @@ import uade.tp.ai.Producto;
 import uade.tp.ai.Usuario;
 import uade.tp.ai.UsuarioView;
 import uade.tp.ai.Zona;
+import uade.tp.ai.ZonaView;
 import uade.tp.ai.reclamo.Reclamo;
 import uade.tp.ai.reclamo.ReclamoCantidad;
 import uade.tp.ai.reclamo.ReclamoCompuesto;
@@ -246,6 +247,15 @@ public class SistemaReclamos {
 			}
 		}
 		return ZonaMapper.getInstancia().buscarZona(codZona);
+	}
+	
+	public List<ZonaView> getZonasView() {
+		List<ZonaView> zonasView = new ArrayList<ZonaView>();
+		List<Zona> zonas = Zona.getZonas();
+		for(Zona z : zonas) {
+			zonasView.add(z.getView());
+		}
+		return zonasView;
 	}
 
 	public Cliente buscarCliente(String dni) {
