@@ -15,6 +15,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
+import uade.tp.ai.reclamo.ReclamoView;
+import uade.tp.sistema.SistemaReclamos;
+
 public class AtencionReclamoProductoVista extends javax.swing.JFrame{
 
 	private static final long serialVersionUID = 1L;
@@ -31,20 +34,12 @@ public class AtencionReclamoProductoVista extends javax.swing.JFrame{
 	
 	private JScrollPane jScrollPane;
 	
-	Object[][] data = {
-		    {"Kathy", "Smith", "Snowboarding", new Integer(5), "Zona 1", new Boolean(false)},
-		    {"John", "Doe", "Rowing", new Integer(3), "Zona 2", new Boolean(true)},
-		    {"Sue", "Black", "Knitting", new Integer(2), "Zona 3", new Boolean(false)},
-		    {"Jane", "White", "Speed reading", new Integer(20), "Zona 4", new Boolean(true)},
-		    {"Joe", "Brown", "Pool", new Integer(10), "Zona 5", new Boolean(false)}
-		};
+	Object[][] data = {};
 	
 	String[] columnNames = {"ID Reclamo",
             				"Fecha",
             				"Cliente",
-            				"Estado",
-            				"Zona",
-            				"Atender"};
+            				"Estado"};
 	
 	//Combos
 	
@@ -79,7 +74,7 @@ public class AtencionReclamoProductoVista extends javax.swing.JFrame{
 	private void initGUI() {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			this.setTitle("Atención de Reclamos - Reclamo de Productos");
+			this.setTitle("Atencion de Reclamos - Reclamo de Productos");
 			this.setPreferredSize(new java.awt.Dimension(700, 500));
 			this.setDefaultLookAndFeelDecorated(true);
 			this.setResizable(false);
@@ -90,27 +85,31 @@ public class AtencionReclamoProductoVista extends javax.swing.JFrame{
 			{
 				jLabel1 = new JLabel();
 				jPanel.add(jLabel1);
-				jLabel1.setText("Atención de Reclamo Productos");
+				jLabel1.setText("Atencion de Reclamo Productos");
 				jLabel1.setFont(font);
 				jLabel1.setBounds(160, 21, 500, 22);
 			}
 
 			{
 			    DefaultTableModel dtm= new DefaultTableModel(data, columnNames);
-			    Object[] newRow={"Pepe", "Grillo","Tenis", new Integer(5), new Boolean(false)};
-			    dtm.addRow(newRow);
+			    for(ReclamoView rec : SistemaReclamos.getInstance().getReclamosDistribucion()) {
+			    	Object[] newRow={rec.getNroReclamo(), rec.getFecha(),rec.getCliente().getNombre(), rec.getEstado()};
+				    dtm.addRow(newRow);
+			    }
+
+			    
 			    
 				jTable = new JTable(dtm);
 				jTable.setPreferredScrollableViewportSize(new Dimension(650, 100));
 				jTable.setFillsViewportHeight(true);
 				
-				for (int i = 0; i < 5; i++) {
+				/*for (int i = 0; i < 5; i++) {
 				    if (i == 2) {
 				    	jTable.getColumnModel().getColumn(i).setPreferredWidth(100);
 				    } else {
 				    	jTable.getColumnModel().getColumn(i).setPreferredWidth(50);
 				    }
-				}
+				}*/
 				
 				jScrollPane = new JScrollPane(jTable);
 				jScrollPane.setBounds(50, 60, 600, 22);
