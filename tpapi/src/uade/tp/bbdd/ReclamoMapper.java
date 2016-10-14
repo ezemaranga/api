@@ -11,6 +11,7 @@ import java.util.Vector;
 import uade.tp.ai.Cliente;
 import uade.tp.ai.Factura;
 import uade.tp.ai.Producto;
+import uade.tp.ai.Zona;
 import uade.tp.ai.reclamo.ItemReclamo;
 import uade.tp.ai.reclamo.Reclamo;
 import uade.tp.ai.reclamo.ReclamoCantidad;
@@ -276,6 +277,7 @@ public class ReclamoMapper extends Mapper {
 		List<ItemReclamo> items = new ArrayList<ItemReclamo>();
 		Connection con = ConnectionManager.getInstance().connect();
 		PreparedStatement s = con.prepareStatement("SELECT * FROM ReclamoDistribucion WHERE NroReclamo = ?");
+		s.setString(1, nroReclamo);
 		ResultSet result = s.executeQuery();
 		while (result.next()) {
 			String codigoProducto = result.getString(2);
@@ -291,8 +293,57 @@ public class ReclamoMapper extends Mapper {
 	}
 
 	public List<Reclamo> getReclamosZona() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Reclamo> reclamos = new ArrayList<Reclamo>();
+		try {
+			Connection con = ConnectionManager.getInstance().connect();
+			PreparedStatement s = con.prepareStatement("SELECT * FROM Reclamo WHERE Tipo = 'RECLAMO_ZONA'");
+			ResultSet result = s.executeQuery();
+			while (result.next()) {
+				String nroReclamo = result.getString(1);
+				String fecha = result.getString(2);
+				String dniCliente = result.getString(3);
+				Cliente cliente = ClienteMapper.getInstancia().buscarCliente(dniCliente);
+				String descripcion = result.getString(4);
+				String estadoActual = result.getString(5);
+				String tipo = result.getString(6);
+				
+				Reclamo reclamo = this.buildReclamoZona(nroReclamo, fecha, cliente, descripcion, estadoActual, tipo);
+				reclamos.add(reclamo);
+			}
+			ConnectionManager.getInstance().closeCon();
+		} catch (Exception e) {
+			System.out.println();
+		}
+		return reclamos;
+	}
+	
+	private Reclamo buildReclamoZona(String nroReclamo, String fecha, Cliente cliente, String descripcion, String estadoActual, String tipo) throws SQLException {
+		ReclamoZona reclamo = new ReclamoZona();;
+		
+		reclamo.setNroReclamo(nroReclamo);
+		reclamo.setFecha(fecha);
+		reclamo.setCliente(cliente);
+		reclamo.setDescripcion(descripcion);
+		reclamo.setEstadoActual(estadoActual);
+		
+		Zona zona = this.selectZonaReclamo(nroReclamo);
+		reclamo.setZona(zona);
+		
+		return reclamo;
+	}
+
+	private Zona selectZonaReclamo(String nroReclamo) throws SQLException {
+		Zona zona = null;
+		Connection con = ConnectionManager.getInstance().connect();
+		PreparedStatement s = con.prepareStatement("SELECT * FROM ReclamoZona WHERE NroReclamo = ?");
+		s.setString(1, nroReclamo);
+		ResultSet result = s.executeQuery();
+		while (result.next()) {
+			String codigoZona = result.getString(2);
+			zona = ZonaMapper.getInstancia().buscarZona(codigoZona);
+		}
+		ConnectionManager.getInstance().closeCon();
+		return zona;
 	}
 
 	public List<Reclamo> getReclamosFacturacion() {
