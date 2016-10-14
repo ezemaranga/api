@@ -1,5 +1,7 @@
 package uade.tp.ai;
 
+import uade.tp.bbdd.ProductoMapper;
+
 public class Producto {
 	
 	private String titulo;
@@ -50,6 +52,10 @@ public class Producto {
 		ProductoView pv = new ProductoView(titulo, codPublicacion, descripcion, precio);
 		
 		return pv;
+	}
+	
+	public void guardar() {
+		ProductoMapper.getInstancia().insert(this);
 	}
 
 }

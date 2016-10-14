@@ -2,8 +2,6 @@ package uade.tp.bbdd;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConnectionManager {
@@ -15,16 +13,6 @@ public class ConnectionManager {
 		if (connectionManager == null)
 			connectionManager = new ConnectionManager();
 		return connectionManager;
-	}
-	
-	public static void main(String[] args) throws SQLException {
-		Connection conn = getInstance().connect();
-		
-		PreparedStatement s = conn.prepareStatement("CREATE TABLE Cliente(Dni varchar(255),Nombre varchar(255),Domicilio varchar(255),Telefono varchar(255),Email varchar(255));");
-		s.execute();
-		
-		
-		System.out.println("conn created");
 	}
 	
 	public Connection connect() {

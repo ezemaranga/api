@@ -35,8 +35,8 @@ public abstract class Reclamo {
 	
 	public abstract String getTipo();
 	
-	public void guardarReclamo(Reclamo r) {
-		ReclamoMapper.getInstancia().insert(r);
+	public void guardarReclamo() {
+		ReclamoMapper.getInstancia().insert(this);
 	}
 
 	public String getFecha() {
