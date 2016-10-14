@@ -1,5 +1,6 @@
 package uade.tp.ai;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uade.tp.bbdd.FacturaMapper;
@@ -43,6 +44,13 @@ public class Factura {
 
 	public List<ItemFactura> getItems() {
 		return items;
+	}
+	
+	public void addItem(Producto prod, int cantidad) {
+		if(this.items == null) {
+			this. items = new ArrayList<ItemFactura>();
+		}
+		this.items.add(new ItemFactura(prod, cantidad));
 	}
 	
 	public void addItems(List<ItemFactura> items) {

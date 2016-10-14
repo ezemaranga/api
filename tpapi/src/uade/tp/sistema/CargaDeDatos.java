@@ -1,10 +1,13 @@
 package uade.tp.sistema;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 import uade.tp.ai.Cliente;
+import uade.tp.ai.Factura;
 import uade.tp.ai.Producto;
-import uade.tp.ai.reclamo.ReclamoFaltante;
+import uade.tp.ai.reclamo.Reclamo;
+import uade.tp.ai.reclamo.ReclamoFacturacion;
 
 public class CargaDeDatos {
 	
@@ -71,7 +74,30 @@ public class CargaDeDatos {
 //		
 //		reclamoFaltante.guardarReclamo();
 		
+//		Cliente coco = Cliente.buscar("dni de coco");
+//		Cliente eze = Cliente.buscar("dni");
+//		Producto pelota = Producto.buscar("ART80");
+//		
+//		Factura facturaCoco = new Factura(new Date().toString(), "1111", coco);
+//		facturaCoco.addItem(pelota, 20);
+//		facturaCoco.guardar();
+//		
+//		Factura facturaEze = new Factura(new Date().toString(), "3333", eze);
+//		facturaEze.addItem(pelota, 50);
+//		facturaEze.guardar();
 		
+//		Factura facturaCoco = Factura.buscar("1111");
+//		Factura facturaEze = Factura.buscar("3333");
+//		
+//		ReclamoFacturacion recFact = new ReclamoFacturacion();
+//		recFact.setCliente(eze);
+//		recFact.setDescripcion("desc reclamo facturacion");
+//		recFact.setEstadoActual("En espera");
+//		recFact.addFactura(facturaCoco);
+//		recFact.addFactura(facturaEze);
+//		recFact.guardarReclamo();
+		
+		Reclamo.getReclamosFacturacion();
 		
 	}
 

@@ -1,5 +1,6 @@
 package uade.tp.ai.reclamo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uade.tp.ai.Factura;
@@ -12,7 +13,10 @@ public class ReclamoFacturacion extends Reclamo {
 	private List<Factura> facturas;
 	
 	public void addFactura(Factura f) {
-		facturas.add(f);
+		if(facturas == null) {
+			this.facturas = new ArrayList<Factura>();
+		}
+		this.facturas.add(f);
 	}
 	
 	public List<Factura> getFacturas() {
