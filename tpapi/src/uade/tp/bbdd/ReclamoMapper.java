@@ -33,7 +33,7 @@ public class ReclamoMapper extends Mapper {
 			Reclamo r = (Reclamo) o;
 			
 			//Primero borro los atributos asociados al reclamo
-			this.deleteReclamoTablasAnexas(r.getNroReclamo());
+			this.deleteReclamoTablasAnexas(r);
 			
 			//Despues borro el reclamo en si.
 			Connection con = ConnectionManager.getInstance().connect();
@@ -47,12 +47,12 @@ public class ReclamoMapper extends Mapper {
 		}
 	}
 	
-	private void deleteReclamoTablasAnexas(String nroReclamo) {
-		this.deleteReclamoFacturacion(nroReclamo);
-		this.deleteReclamoDistribucion(nroReclamo);
-		this.deleteReclamoZona(nroReclamo);
-		this.deleteReclamoCompuesto(nroReclamo);
-		this.deleteTratamientoReclamo(nroReclamo);
+	private void deleteReclamoTablasAnexas(Reclamo r) throws SQLException {
+		this.deleteReclamoFacturacion(r.getNroReclamo());
+		this.deleteReclamoDistribucion(r.getNroReclamo());
+		this.deleteReclamoZona(r.getNroReclamo());
+		this.deleteReclamoCompuesto(r);
+		this.deleteTratamientoReclamo(r.getNroReclamo());
 	}
 	
 	private void deleteReclamoFacturacion(String nroReclamo) {
@@ -91,16 +91,17 @@ public class ReclamoMapper extends Mapper {
 		}
 	}
 	
-	private void deleteReclamoCompuesto(String nroReclamo) {
-		try {
+	private void deleteReclamoCompuesto(Reclamo r) throws SQLException {
+		if(r.getTipo().equals("RECLAMO_COMPUESTO")) {
+			for(Reclamo rec : ((ReclamoCompuesto) r).getReclamos()) {
+				this.delete(rec);
+			}
 			Connection con = ConnectionManager.getInstance().connect();
 			PreparedStatement s = con.prepareStatement("DELETE FROM ReclamoCompuesto WHERE NroReclamo = ?");
-			s.setString(1, nroReclamo);
+			s.setString(1, r.getNroReclamo());
 			s.execute();
 			ConnectionManager.getInstance().closeCon();
-		} catch (Exception e) {
-			System.out.println();
-		}
+		}	
 	}
 	
 	private void deleteTratamientoReclamo(String nroReclamo) {
