@@ -11,7 +11,7 @@ import uade.tp.ai.tablero.TableroFacturacion;
 
 public abstract class ReclamoDistribucion extends Reclamo {
 	
-	private List<ItemReclamo> items = new ArrayList<ItemReclamo>();
+	protected List<ItemReclamo> items = new ArrayList<ItemReclamo>();
 
 	public List<ItemReclamo> getItems() {
 		return items;

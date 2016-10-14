@@ -22,8 +22,6 @@ public class ReclamoProducto extends ReclamoDistribucion {
 
 	@Override
 	public List<ItemReclamo> getItemsReclamo() {
-		List<ItemReclamo> items = new ArrayList<ItemReclamo>();
-		items.add(item);
 		return items;
 	}
 	
