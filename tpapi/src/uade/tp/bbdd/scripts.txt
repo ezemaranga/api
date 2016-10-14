@@ -87,3 +87,12 @@ CREATE TABLE TratamientoReclamo
 	Estado varchar(255),
 	Descripcion varchar(255)
 );
+
+insert into Usuario(Apodo,Nombre,Apellido,Password,Rol)
+values('callcenter','Juan','Lopez','123456','CALL_CENTER')
+
+insert into Usuario(Apodo,Nombre,Apellido,Password,Rol)
+values('respdistribucion','Martin','Pepperoni','123456','RESP_DISTRIBUCION')
+
+insert into Usuario(Apodo,Nombre,Apellido,Password,Rol)
+values('respzona','Luis','Segurola','123456','RESP_ZONA_ENTREGA')
