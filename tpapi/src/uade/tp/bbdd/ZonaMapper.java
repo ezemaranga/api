@@ -89,7 +89,7 @@ public class ZonaMapper extends Mapper {
 	public Zona buscarZona(String codZona) {
 		try {
 			Connection con = ConnectionManager.getInstance().connect();
-			PreparedStatement s = con.prepareStatement("SELECT * FROM Producto WHERE codigo = ?");
+			PreparedStatement s = con.prepareStatement("SELECT * FROM Zona WHERE codigo = ?");
 			s.setString(1, codZona);
 			
 			ResultSet result = s.executeQuery();

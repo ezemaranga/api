@@ -1,9 +1,10 @@
 package uade.tp.sistema;
 
 import java.sql.SQLException;
-import java.util.List;
 
-import uade.tp.ai.reclamo.Reclamo;
+import uade.tp.ai.Cliente;
+import uade.tp.ai.Zona;
+import uade.tp.ai.reclamo.ReclamoZona;
 
 public class CargaDeDatos {
 	
@@ -11,10 +12,7 @@ public class CargaDeDatos {
 		
 //		Producto hp = new Producto("Harry Potter", "ISBN10", "un libro", 100);
 //		hp.guardar();
-//		
-//		Producto anill = new Producto("Lord of the rings", "ISBN20", "otro libro", 150);
-//		anill.guardar();
-//		
+		
 //		Producto tortuga = new Producto("Tortugas Ninja", "ART90", "Una tortuga", 90);
 //		tortuga.guardar();
 //		
@@ -23,6 +21,9 @@ public class CargaDeDatos {
 //		
 //		Cliente eze = new Cliente("ezequiel", "direccion", "telef", "email", "dni");
 //		eze.guardar();
+		
+//		Cliente coco = new Cliente("coco", "dire de coco", "tel de coco", "email de coco", "dni de coco");
+//		coco.guardar();
 		
 //		Cliente eze = Cliente.buscar("dni");
 //		Producto pelota = Producto.buscar("ART80");
@@ -36,8 +37,20 @@ public class CargaDeDatos {
 //		
 //		reclamoProducto.guardarReclamo();
 		
-		List<Reclamo> distribucion = Reclamo.getReclamosDistribucion();
-		System.out.println(distribucion.size());
+//		Zona almagro = new Zona("A", "Almagro");
+//		almagro.guardar();
+		
+		Zona almagro = Zona.buscar("A");
+		Cliente coco = Cliente.buscar("dni de coco");
+		
+		ReclamoZona reclamoZona = new ReclamoZona();
+		reclamoZona.setCliente(coco);
+		reclamoZona.setDescripcion("desc reclamo zona");
+		reclamoZona.setEstadoActual("Iniciado");
+		reclamoZona.setZona(almagro);
+		
+		reclamoZona.guardarReclamo();
+		
 		
 	}
 
