@@ -33,8 +33,4 @@ public abstract class ReclamoDistribucion extends Reclamo {
 		// TODO Auto-generated method stub
 	}
 	
-	@Override
-	public String getTipo() {
-		return "RECLAMO_DISTRIBUCION";
-	}
 }

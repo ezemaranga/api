@@ -10,11 +10,15 @@ import java.util.Vector;
 
 import uade.tp.ai.Cliente;
 import uade.tp.ai.Factura;
+import uade.tp.ai.Producto;
 import uade.tp.ai.reclamo.ItemReclamo;
 import uade.tp.ai.reclamo.Reclamo;
+import uade.tp.ai.reclamo.ReclamoCantidad;
 import uade.tp.ai.reclamo.ReclamoCompuesto;
 import uade.tp.ai.reclamo.ReclamoDistribucion;
 import uade.tp.ai.reclamo.ReclamoFacturacion;
+import uade.tp.ai.reclamo.ReclamoFaltante;
+import uade.tp.ai.reclamo.ReclamoProducto;
 import uade.tp.ai.reclamo.ReclamoZona;
 import uade.tp.ai.reclamo.TratamientoReclamo;
 
@@ -140,7 +144,7 @@ public class ReclamoMapper extends Mapper {
 		this.insertTratamientoReclamo(r);
 		if (r.getTipo().equals("RECLAMO_COMPUESTO")) {
 			this.insertReclamoCompuesto((ReclamoCompuesto) r);
-		} else if (r.getTipo().equals("RECLAMO_DISTRIBUCION")) {
+		} else if (r.getTipo().equals("RECLAMO_CANTIDAD") || r.getTipo().equals("RECLAMO_FALTANTE") || r.getTipo().equals("RECLAMO_PRODUCTO")) {
 			this.insertReclamoDistribucion((ReclamoDistribucion) r);
 		} else if (r.getTipo().equals("RECLAMO_FACTURACION")) {
 			this.insertReclamoFacturacion((ReclamoFacturacion) r);
@@ -224,7 +228,7 @@ public class ReclamoMapper extends Mapper {
 		List<Reclamo> reclamos = new ArrayList<Reclamo>();
 		try {
 			Connection con = ConnectionManager.getInstance().connect();
-			PreparedStatement s = con.prepareStatement("SELECT * FROM Reclamo WHERE Tipo = 'RECLAMO_DISTRIBUCION'");
+			PreparedStatement s = con.prepareStatement("SELECT * FROM Reclamo WHERE Tipo in ('RECLAMO_CANTIDAD', 'RECLAMO_FALTANTE', 'RECLAMO_PRODUCTO'");
 			ResultSet result = s.executeQuery();
 			while (result.next()) {
 				String nroReclamo = result.getString(1);
@@ -245,9 +249,45 @@ public class ReclamoMapper extends Mapper {
 		return reclamos;
 	}
 
-	private Reclamo buildReclamoDistribucion(String nroReclamo, String fecha, Cliente cliente, String desc, String estado, String tipo) {
-		// TODO Auto-generated method stub
-		return null;
+	private Reclamo buildReclamoDistribucion(String nroReclamo, String fecha, Cliente cliente, String desc, String estado, String tipo) throws SQLException {
+		ReclamoDistribucion reclamo = null;
+		if(tipo.equals("RECLAMO_CANTIDAD")) {
+			reclamo = new ReclamoCantidad();
+		} else if (tipo.equals("RECLAMO_FALTANTE")) {
+			reclamo = new ReclamoFaltante();
+		} else if (tipo.equals("RECLAMO_PRODUCTO")) {
+			reclamo = new ReclamoProducto();
+		}
+		
+		reclamo.setNroReclamo(nroReclamo);
+		reclamo.setFecha(fecha);
+		reclamo.setCliente(cliente);
+		reclamo.setDescripcion(desc);
+		reclamo.setEstadoActual(estado);
+		
+		List<ItemReclamo> items = this.selectItemsReclamo(nroReclamo);
+		for(ItemReclamo item : items) {
+			reclamo.addItemReclamo(item.getProducto(), item.getCantidad());
+		}
+		return reclamo;
+	}
+	
+	private List<ItemReclamo> selectItemsReclamo(String nroReclamo) throws SQLException {
+		List<ItemReclamo> items = new ArrayList<ItemReclamo>();
+		Connection con = ConnectionManager.getInstance().connect();
+		PreparedStatement s = con.prepareStatement("SELECT * FROM ReclamoDistribucion WHERE NroReclamo = ?");
+		ResultSet result = s.executeQuery();
+		while (result.next()) {
+			String codigoProducto = result.getString(2);
+			int cantidad = result.getInt(3);
+			
+			Producto prod = ProductoMapper.getInstancia().buscarProducto(codigoProducto);
+			ItemReclamo ir = new ItemReclamo(prod, cantidad);
+			
+			items.add(ir);
+		}
+		ConnectionManager.getInstance().closeCon();
+		return items;
 	}
 
 	public List<Reclamo> getReclamosZona() {

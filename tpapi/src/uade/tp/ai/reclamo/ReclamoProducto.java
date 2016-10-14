@@ -26,5 +26,10 @@ public class ReclamoProducto extends ReclamoDistribucion {
 		items.add(item);
 		return items;
 	}
+	
+	@Override
+	public String getTipo() {
+		return "RECLAMO_PRODUCTO";
+	}
 
 }

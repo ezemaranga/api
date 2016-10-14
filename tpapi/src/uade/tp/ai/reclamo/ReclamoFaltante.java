@@ -23,5 +23,10 @@ public class ReclamoFaltante extends ReclamoDistribucion {
 	public List<ItemReclamo> getItemsReclamo() {
 		return this.items;
 	}
+	
+	@Override
+	public String getTipo() {
+		return "RECLAMO_FALTANTE";
+	}
 
 }
