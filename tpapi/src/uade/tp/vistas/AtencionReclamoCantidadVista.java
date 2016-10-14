@@ -79,7 +79,7 @@ public class AtencionReclamoCantidadVista extends javax.swing.JFrame{
 	private void initGUI() {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			this.setTitle("Atención de Reclamos - Reclamo de Cantidad");
+			this.setTitle("Atencion de Reclamos - Reclamo de Cantidad");
 			this.setPreferredSize(new java.awt.Dimension(700, 500));
 			this.setDefaultLookAndFeelDecorated(true);
 			this.setResizable(false);
@@ -90,7 +90,7 @@ public class AtencionReclamoCantidadVista extends javax.swing.JFrame{
 			{
 				jLabel1 = new JLabel();
 				jPanel.add(jLabel1);
-				jLabel1.setText("Atención de Reclamo Cantidad");
+				jLabel1.setText("Atencion de Reclamo Cantidad");
 				jLabel1.setFont(font);
 				jLabel1.setBounds(160, 21, 500, 22);
 			}

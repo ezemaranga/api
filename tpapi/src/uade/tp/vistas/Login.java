@@ -66,7 +66,7 @@ public class Login extends javax.swing.JFrame{
 			{
 				passwordLbl = new JLabel();
 				getContentPane().add(passwordLbl);
-				passwordLbl.setText("Contraseña:");
+				passwordLbl.setText("ContraseÃ±a:");
 				passwordLbl.setBounds(12, 73, 80, 16);
 			}
 			{
@@ -94,7 +94,7 @@ public class Login extends javax.swing.JFrame{
 						} 
 						
 						if(passwordTxt.getText().equals("")) {
-							JOptionPane.showMessageDialog(null, "Complete el campo Contraseña", "Error Login", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Complete el campo ContraseÃ±a", "Error Login", JOptionPane.ERROR_MESSAGE);
 							return;
 						}
 
@@ -104,7 +104,7 @@ public class Login extends javax.swing.JFrame{
 						
 //						if (usuario == null) 
 //						{
-//							JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecta", "Error Login", JOptionPane.ERROR_MESSAGE);
+//							JOptionPane.showMessageDialog(null, "Usuario/Contraseï¿½a incorrecta", "Error Login", JOptionPane.ERROR_MESSAGE);
 //							return;								
 //						} else {								
 							Menu.getInstancia().setLocationRelativeTo(null);
