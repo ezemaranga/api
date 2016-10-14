@@ -33,6 +33,11 @@ public class ReclamoZona extends Reclamo{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String getTipo() {
+		return "RECLAMO_ZONA";
+	}
 	
 	
 

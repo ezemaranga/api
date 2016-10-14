@@ -56,12 +56,11 @@ public class FacturaMapper extends Mapper {
 		}
 	}
 
-	public Factura buscarFactura(String nro, String fechaFactura) {
+	public Factura buscarFactura(String nro) {
 		try {
 			Connection con = ConnectionManager.getInstance().connect();
-			PreparedStatement s = con.prepareStatement("SELECT * FROM Factura WHERE numero = ? and fecha = ?");
+			PreparedStatement s = con.prepareStatement("SELECT * FROM Factura WHERE numero = ?");
 			s.setString(1, nro);
-			s.setString(2, fechaFactura);
 			ResultSet result = s.executeQuery();
 			while (result.next()) {
 				String fecha = result.getString(1);

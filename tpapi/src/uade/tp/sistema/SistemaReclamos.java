@@ -202,7 +202,7 @@ public class SistemaReclamos {
 				return factura;
 			}
 		}
-		return FacturaMapper.getInstancia().buscarFactura(nro, fecha);
+		return FacturaMapper.getInstancia().buscarFactura(nro);
 	}
 
 	private Reclamo buscarReclamo(String nro) {

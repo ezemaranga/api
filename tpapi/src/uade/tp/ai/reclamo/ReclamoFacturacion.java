@@ -14,6 +14,10 @@ public class ReclamoFacturacion extends Reclamo {
 	public void addFactura(Factura f) {
 		facturas.add(f);
 	}
+	
+	public List<Factura> getFacturas() {
+		return this.facturas;
+	}
 
 	@Override
 	public void agregarATablero() {
@@ -30,6 +34,11 @@ public class ReclamoFacturacion extends Reclamo {
 	public void setZona(Zona zona) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String getTipo() {
+		return "RECLAMO_FACTURACION";
 	}
 	
 }

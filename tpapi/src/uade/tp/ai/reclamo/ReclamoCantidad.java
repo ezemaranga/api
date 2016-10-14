@@ -20,5 +20,15 @@ public class ReclamoCantidad extends ReclamoDistribucion {
 	public void agregarATablero() {
 		TableroDistribucion.getInstance().agregarReclamo(this);
 	}
+
+	@Override
+	public List<ItemReclamo> getItemsReclamo() {
+		return this.items;
+	}
+	
+	@Override
+	public String getTipo() {
+		return "RECLAMO_CANTIDAD";
+	}
 	
 }

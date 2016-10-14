@@ -31,6 +31,8 @@ public abstract class ReclamoDistribucion extends Reclamo {
 	public void agregarATablero() {
 		TableroFacturacion.getInstance().agregarReclamo(this);
 	}
+	
+	public abstract List<ItemReclamo> getItemsReclamo();
 
 	@Override
 	public void addFactura(Factura fact){
@@ -41,4 +43,5 @@ public abstract class ReclamoDistribucion extends Reclamo {
 	public void setZona(Zona zona){
 		// TODO Auto-generated method stub
 	}
+	
 }

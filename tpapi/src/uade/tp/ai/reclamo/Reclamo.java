@@ -3,11 +3,13 @@ package uade.tp.ai.reclamo;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import uade.tp.ai.Cliente;
 import uade.tp.ai.Factura;
 import uade.tp.ai.Producto;
 import uade.tp.ai.Zona;
+import uade.tp.bbdd.ReclamoMapper;
 
 public abstract class Reclamo {
 	
@@ -30,6 +32,12 @@ public abstract class Reclamo {
 	public abstract void addItemReclamo(Producto prod, int cantidad);
 
 	public abstract void setZona(Zona zona);
+	
+	public abstract String getTipo();
+	
+	public void guardarReclamo() {
+		ReclamoMapper.getInstancia().insert(this);
+	}
 
 	public String getFecha() {
 		return fecha;
@@ -40,6 +48,9 @@ public abstract class Reclamo {
 	}
 
 	public String getNroReclamo() {
+		if(nroReclamo == null) {
+			nroReclamo = UUID.randomUUID().toString(); 
+		}
 		return nroReclamo;
 	}
 
@@ -73,6 +84,10 @@ public abstract class Reclamo {
 	
 	public void agregarTratamiento(String desc, String estado) {
 		this.tratamientos.add(new TratamientoReclamo(new Date().toString(), estado, desc));
+	}
+	
+	public List<TratamientoReclamo> getTratamientos() {
+		return this.tratamientos;
 	}
 	
 }
