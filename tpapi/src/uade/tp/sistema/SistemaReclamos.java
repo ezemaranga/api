@@ -248,7 +248,7 @@ public class SistemaReclamos {
 		return ClienteMapper.getInstancia().buscarCliente(dni);
 	}
 
-	private boolean existeCliente(String dni) {
+	public boolean existeCliente(String dni) {
 		Cliente c = this.buscarCliente(dni);
 		if (c != null)
 			recActual.setCliente(c);
