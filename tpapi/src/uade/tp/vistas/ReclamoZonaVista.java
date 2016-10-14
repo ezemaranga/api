@@ -3,6 +3,7 @@ package uade.tp.vistas;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.ComboBoxModel;
@@ -19,6 +20,7 @@ import javax.swing.WindowConstants;
 
 import uade.tp.ai.ClienteView;
 import uade.tp.ai.ZonaView;
+import uade.tp.bbdd.ZonaMapper;
 import uade.tp.sistema.SistemaReclamos;
 
 public class ReclamoZonaVista extends javax.swing.JFrame{
@@ -29,16 +31,10 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 	
 	private JLabel title;
 	private JLabel jLabel1;
-	private JLabel jLabel2;
-	private JLabel jLabel3;
 	private JLabel jLabel4;
 	private JLabel jLabel5;
-	private JLabel jLabel6;
 	private JLabel jLabel7;
 	private JLabel jLabel8;
-
-	private JTextField fechaReclamoText;
-	private JTextField numeroReclamoText;
 	private JTextField dniText;
 	private JTextField productoText;
 	private JTextField domicilio;
@@ -46,18 +42,18 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 	private JButton aceptar;
 	private JButton cancelar;
 
-	private JTextArea jTextArea;
+	private JTextArea descripcion;
 	private JScrollPane jScrollPane;
-	
-	private JComboBox clientesCombo;
 	private JComboBox zonasCombo;
 	
 	
 	//Combos
 	Vector<ClienteView> clientesView;
-	Vector<ZonaView> zonasView;
+	List<ZonaView> zonasView;
 	
 	private static ReclamoZonaVista instancia;
+	private JTextField textField;
+	private JLabel nombreCliente;
 	
 	public static ReclamoZonaVista getInstancia()
 	{
@@ -102,38 +98,10 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 				jLabel1.setBounds(202, 21, 200, 22);
 			}
 			{
-				jLabel2 = new JLabel();
-				getContentPane().add(jLabel2);
-				jLabel2.setText("Fecha Reclamo:");
-				jLabel2.setBounds(33, 59, 120, 16);
-			}
-			{
-				fechaReclamoText = new JTextField();
-				getContentPane().add(fechaReclamoText);
-				fechaReclamoText.setBounds(202, 56, 121, 21);
-			}
-			{
-				jLabel6 = new JLabel();
-				getContentPane().add(jLabel6);
-				jLabel6.setText("(yyyy-mm-dd)");
-				jLabel6.setBounds(328, 56, 121, 21);
-			}
-			{
-				jLabel3 = new JLabel();
-				getContentPane().add(jLabel3);
-				jLabel3.setText("Numero de Reclamo:");
-				jLabel3.setBounds(33, 94, 120, 16);
-			}
-			{
-				numeroReclamoText = new JTextField();
-				getContentPane().add(numeroReclamoText);
-				numeroReclamoText.setBounds(202, 91, 120, 22);
-			}
-			{
 				jLabel4 = new JLabel();
 				getContentPane().add(jLabel4);
 				jLabel4.setText("Cliente");
-				jLabel4.setBounds(33, 130, 78, 16);
+				jLabel4.setBounds(33, 70, 78, 16);
 			}
 			
 			{
@@ -148,10 +116,6 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 				}
 				@SuppressWarnings({ })
 				ComboBoxModel clientesModel = new DefaultComboBoxModel(clientes);
-				clientesCombo = new JComboBox();
-				getContentPane().add(clientesCombo);
-				clientesCombo.setModel(clientesModel);
-				clientesCombo.setBounds(202, 127, 120, 22);
 			}
 			
 //			{
@@ -166,13 +130,13 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 				jLabel5.setBounds(33, 172, 93, 16);
 			}
 			{
-				jTextArea = new JTextArea();
-				getContentPane().add(jTextArea);
-				jTextArea.setLineWrap(true);
-				jTextArea.setWrapStyleWord(true);
+				descripcion = new JTextArea();
+				getContentPane().add(descripcion);
+				descripcion.setLineWrap(true);
+				descripcion.setWrapStyleWord(true);
 			}
 			{
-				JScrollPane scrollPane = new JScrollPane(jTextArea); 
+				JScrollPane scrollPane = new JScrollPane(descripcion); 
 				getContentPane().add(scrollPane);
 				scrollPane.setBounds(202, 166, 161, 62);
 			}
@@ -183,14 +147,12 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 				jLabel7.setBounds(33, 240, 78, 16);
 			}
 			{
-//				zonasView = SistemaReclamos.getInstance().getTiposDocumentos();
-				zonasView = new Vector<ZonaView>();
+				zonasView = SistemaReclamos.getInstance().getZonasView();
 				
 				//Armar texto
-				Vector<String> zonas = new Vector<String>();
-				for (int i=0;i<zonasView.size();i++)
-				{
-					zonas.add(zonasView.elementAt(i).getNombre());
+				Vector<ZonaView> zonas = new Vector<ZonaView>();
+				for (ZonaView z : zonasView) {
+					zonas.add(z);
 				}
 				@SuppressWarnings({ })
 				ComboBoxModel zonasModel = new DefaultComboBoxModel(zonas);
@@ -209,26 +171,12 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 				aceptar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
+						SistemaReclamos.getInstance().ingresarDatosZona(((ZonaView)zonasCombo.getSelectedItem()).getCodigo());
+						SistemaReclamos.getInstance().agregarReclamo(descripcion.getText());
+						JOptionPane.showMessageDialog(null, "Reclamo Guardado", "Exito!", JOptionPane.PLAIN_MESSAGE);
+						limpiarPantalla();
+						dispose();
 
-//						SistemaReclamos.getInstance().agregarRelcamoCantidadAActual();
-//						long codigo = Long.parseLong(nroAfiliado.getText());
-//						TipoDocView tip = tipDocs.elementAt(tiposDoc.getSelectedIndex());
-//						if (((String)distribuidora.getSelectedItem()).equalsIgnoreCase("  "))
-//						{
-//							JOptionPane.showMessageDialog(null, "Debe seleccionar distribuidora", "Error en el Alta de Afiliado", JOptionPane.ERROR_MESSAGE);
-//							return;
-//						}
-//						int indice = distribuidora.getSelectedIndex()-1;
-//						DistribuidoraView dis = distri.elementAt(indice);
-//						String sex = (String)sexo.getSelectedItem();
-//						//Formato yyyy-mm-dd hh:mm:ss
-//						
-//						Timestamp fNac = Timestamp.valueOf(fechaNac.getText()+ " 00:00:00");
-//						
-//						Sistema.getInstancia().altaAfiliado(codigo, nombre.getText(), domicilio.getText(), telefono.getText(),
-//								tip, dni.getText(), sex, fNac, dis);
-//						
-//						limpiarPantalla();
 					}
 				});
 			}
@@ -238,11 +186,34 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 				getContentPane().add(cancelar);
 				cancelar.setText("Cancelar");
 				cancelar.setBounds(210, 360, 120, 22);
+				
+				textField = new JTextField();
+				textField.setBounds(192, 65, 130, 26);
+				getContentPane().add(textField);
+				textField.setColumns(10);
+				
+				JButton btnValidarCliente = new JButton("Validar cliente");
+				btnValidarCliente.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(SistemaReclamos.getInstance().existeCliente(textField.getText())) {
+							nombreCliente.setText(SistemaReclamos.getInstance().getReclamoActual().getCliente().getNombre());  
+						} else {
+							nombreCliente.setText("No existe el cliente");  
+						} 
+					}
+				});
+				btnValidarCliente.setBounds(349, 65, 117, 29);
+				getContentPane().add(btnValidarCliente);
+				{
+					nombreCliente = new JLabel("");
+					nombreCliente.setBounds(202, 112, 295, 22);
+					getContentPane().add(nombreCliente);
+				}
 				cancelar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
 						limpiarPantalla();
-						ReclamoCantidadVista.getInstancia().setVisible(false);
+						dispose();
 					}
 				});
 			}
@@ -259,11 +230,9 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 	}
 	public void limpiarPantalla()
 	{
-		fechaReclamoText.setText("");
-		numeroReclamoText.setText("");
-		dniText.setText("");
-		jTextArea.setText("");
-		productoText.setText("");
+		
+		textField.setText("");
+		descripcion.setText("");
+		zonasCombo.setSelectedIndex(0);;
 	}
-	
 }

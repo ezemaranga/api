@@ -195,7 +195,7 @@ public class SistemaReclamos {
 		}
 	}
 
-	public void ingresarDatosZona(String codZona, String barrio) {
+	public void ingresarDatosZona(String codZona) {
 		Zona zona = buscarZona(codZona);
 		if (zona != null) {
 			recActual.setZona(zona);

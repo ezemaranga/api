@@ -100,6 +100,7 @@ public class Menu extends javax.swing.JFrame {
 							jMenuReclamoCantidad.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) 
 							{
+								SistemaReclamos.getInstance().inicializarReclamoCantidad();
 								ReclamoCantidadVista.getInstancia().setLocationRelativeTo(null);
 								ReclamoCantidadVista.getInstancia().setVisible(true);
 							}
@@ -125,6 +126,7 @@ public class Menu extends javax.swing.JFrame {
 							jMenuReclamoFaltante.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) 
 							{
+								SistemaReclamos.getInstance().inicializarReclamoFaltante();
 								ReclamoFaltantesVista.getInstancia().setLocationRelativeTo(null);
 								ReclamoFaltantesVista.getInstancia().setVisible(true);
 							}
@@ -137,6 +139,7 @@ public class Menu extends javax.swing.JFrame {
 							jMenuReclamoZona.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) 
 							{
+								SistemaReclamos.getInstance().inicializarReclamoZona();
 								ReclamoZonaVista.getInstancia().setLocationRelativeTo(null);
 								ReclamoZonaVista.getInstancia().setVisible(true);
 							}
@@ -149,6 +152,7 @@ public class Menu extends javax.swing.JFrame {
 							jMenuReclamoFacturacion.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) 
 							{
+								SistemaReclamos.getInstance().inicializarReclamoFacturacion();
 								ReclamoFacturacionVista.getInstancia().setLocationRelativeTo(null);
 								ReclamoFacturacionVista.getInstancia().setVisible(true);
 							}

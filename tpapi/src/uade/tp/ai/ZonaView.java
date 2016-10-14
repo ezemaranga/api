@@ -18,4 +18,9 @@ public class ZonaView {
 		return nombre;
 	}
 	
+    @Override
+    public String toString(){
+        return nombre;
+    }
+	
 }
