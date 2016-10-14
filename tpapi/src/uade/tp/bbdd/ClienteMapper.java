@@ -107,7 +107,7 @@ public class ClienteMapper extends Mapper {
 				String domicilio = result.getString(3);
 				String telefono = result.getString(4);
 				String email = result.getString(5);
-				c = new Cliente(dni, nombre, domicilio, telefono, email);
+				c = new Cliente(nombre, domicilio, telefono, email, dni);
 				return c;
 			}
 			ConnectionManager.getInstance().closeCon();

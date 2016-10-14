@@ -105,7 +105,7 @@ public class ProductoMapper extends Mapper {
 				String descripcion = result.getString(3);
 				float precio = result.getFloat(4);
 				
-				Producto p = new Producto(codigo, titulo, descripcion, precio);
+				Producto p = new Producto(titulo, codigo, descripcion, precio);
 				return p;
 			}
 			ConnectionManager.getInstance().closeCon();

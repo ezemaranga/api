@@ -115,15 +115,15 @@ public class SistemaReclamos {
 	}
 	
 	public void agregarRelcamoProductoAActual() {
-		((ReclamoCompuesto) recActual).agregarReclamoProducto();;
+		((ReclamoCompuesto) recActual).agregarReclamoProducto();
 	}
 	
 	public void agregarRelcamoFaltanteAActual() {
-		((ReclamoCompuesto) recActual).agregarReclamoFaltante();;
+		((ReclamoCompuesto) recActual).agregarReclamoFaltante();
 	}
 	
 	public void agregarRelcamoFacturacionAActual() {
-		((ReclamoCompuesto) recActual).agregarReclamoFacturacion();;
+		((ReclamoCompuesto) recActual).agregarReclamoFacturacion();
 	}
 	
 	public void agregarRelcamoZonaAActual() {
@@ -241,7 +241,7 @@ public class SistemaReclamos {
 		return ZonaMapper.getInstancia().buscarZona(codZona);
 	}
 
-	private Cliente buscarCliente(String dni) {
+	public Cliente buscarCliente(String dni) {
 		for (Cliente cliente : clientes) {
 			if (cliente.getDni().equals(dni)) {
 				return cliente;
@@ -283,6 +283,10 @@ public class SistemaReclamos {
 		if (instancia == null)
 			instancia = new SistemaReclamos();
 		return instancia;
+	}
+
+	public Reclamo getReclamoActual() {
+		return recActual;
 	}
 
 }

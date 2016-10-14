@@ -10,6 +10,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 import uade.tp.ai.UsuarioView;
+import uade.tp.sistema.SistemaReclamos;
 
 @SuppressWarnings("serial")
 public class Menu extends javax.swing.JFrame {
@@ -111,6 +112,7 @@ public class Menu extends javax.swing.JFrame {
 							jMenuReclamoProducto.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) 
 							{
+								SistemaReclamos.getInstance().inicializarReclamoProducto();
 								ReclamoProductoVista.getInstancia().setLocationRelativeTo(null);
 								ReclamoProductoVista.getInstancia().setVisible(true);
 							}
