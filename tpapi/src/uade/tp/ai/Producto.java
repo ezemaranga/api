@@ -17,7 +17,7 @@ public class Producto {
 	}
 
 	public String getTitulo() {
-		return titulo;
+		return this.titulo;
 	}
 	
 	public void setTitulo(String titulo) {
@@ -25,7 +25,7 @@ public class Producto {
 	}
 	
 	public String getCodPublicacion() {
-		return codPublicacion;
+		return this.codPublicacion;
 	}
 	
 	public void setCodPublicacion(String codPublicacion) {
@@ -33,7 +33,7 @@ public class Producto {
 	}
 	
 	public String getDescripcion() {
-		return descripcion;
+		return this.descripcion;
 	}
 	
 	public void setDescripcion(String descripcion) {
@@ -41,7 +41,7 @@ public class Producto {
 	}
 	
 	public float getPrecio() {
-		return precio;
+		return this.precio;
 	}
 	
 	public void setPrecio(float precio) {
@@ -56,6 +56,14 @@ public class Producto {
 	
 	public void guardar() {
 		ProductoMapper.getInstancia().insert(this);
+	}
+	
+	public void borrar() {
+		ProductoMapper.getInstancia().delete(this);
+	}
+	
+	public static Producto buscar(String codigoProducto) {
+		return ProductoMapper.getInstancia().buscarProducto(codigoProducto);
 	}
 
 }

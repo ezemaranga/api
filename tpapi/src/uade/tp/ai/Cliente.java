@@ -1,5 +1,7 @@
 package uade.tp.ai;
 
+import uade.tp.bbdd.ClienteMapper;
+
 public class Cliente {
 
 	private String nombre;
@@ -14,6 +16,18 @@ public class Cliente {
 		this.telefono = telefono;
 		this.email = email;
 		this.dni = dni;
+	}
+	
+	public void guardar() {
+		ClienteMapper.getInstancia().insert(this);
+	}
+	
+	public void borrar() {
+		ClienteMapper.getInstancia().delete(this);
+	}
+	
+	public static Cliente buscar(String dniCliente) {
+		return ClienteMapper.getInstancia().buscarCliente(dniCliente);
 	}
 
 	public String getNombre() {

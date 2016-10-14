@@ -126,12 +126,13 @@ public class ReclamoMapper extends Mapper {
 		try {
 			Reclamo r = (Reclamo) o;
 			Connection con = ConnectionManager.getInstance().connect();
-			PreparedStatement s = con.prepareStatement("INSERT INTO Reclamo (fecha, DniCliente, Descripcion, EstadoActual, Tipo) VALUES (?, ?, ?, ?, ?)");
-			s.setString(1, r.getFecha());
-			s.setString(2, r.getCliente().getDni());
-			s.setString(3, r.getDescripcion());
-			s.setString(4, r.getEstadoActual());
-			s.setString(5, r.getTipo());
+			PreparedStatement s = con.prepareStatement("INSERT INTO Reclamo (NroReclamo, fecha, DniCliente, Descripcion, EstadoActual, Tipo) VALUES (?, ?, ?, ?, ?, ?)");
+			s.setString(1, r.getNroReclamo());
+			s.setString(2, r.getFecha());
+			s.setString(3, r.getCliente().getDni());
+			s.setString(4, r.getDescripcion());
+			s.setString(5, r.getEstadoActual());
+			s.setString(6, r.getTipo());
 			s.execute();
 			ConnectionManager.getInstance().closeCon();
 			

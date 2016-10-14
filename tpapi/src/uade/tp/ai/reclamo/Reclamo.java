@@ -40,6 +40,9 @@ public abstract class Reclamo {
 	}
 
 	public String getFecha() {
+		if(fecha == null) {
+			this.fecha = new Date().toString();
+		}
 		return fecha;
 	}
 
