@@ -1,9 +1,11 @@
 package uade.tp.sistema;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import uade.tp.ai.Cliente;
 import uade.tp.ai.Zona;
+import uade.tp.ai.reclamo.Reclamo;
 import uade.tp.ai.reclamo.ReclamoZona;
 
 public class CargaDeDatos {
@@ -40,16 +42,22 @@ public class CargaDeDatos {
 //		Zona almagro = new Zona("A", "Almagro");
 //		almagro.guardar();
 		
-		Zona almagro = Zona.buscar("A");
-		Cliente coco = Cliente.buscar("dni de coco");
+//		Zona almagro = Zona.buscar("A");
+//		Cliente coco = Cliente.buscar("dni de coco");
+//		
+//		ReclamoZona reclamoZona = new ReclamoZona();
+//		reclamoZona.setCliente(coco);
+//		reclamoZona.setDescripcion("desc reclamo zona");
+//		reclamoZona.setEstadoActual("Iniciado");
+//		reclamoZona.setZona(almagro);
+//		
+//		reclamoZona.guardarReclamo();
 		
-		ReclamoZona reclamoZona = new ReclamoZona();
-		reclamoZona.setCliente(coco);
-		reclamoZona.setDescripcion("desc reclamo zona");
-		reclamoZona.setEstadoActual("Iniciado");
-		reclamoZona.setZona(almagro);
+		List<Reclamo> reclamosZona = Reclamo.getReclamosZona();
+		System.out.println(reclamosZona.size());
 		
-		reclamoZona.guardarReclamo();
+		
+		
 		
 		
 	}

@@ -97,4 +97,8 @@ public abstract class Reclamo {
 		return ReclamoMapper.getInstancia().getReclamosDistribucion();
 	}
 	
+	public static List<Reclamo> getReclamosZona() {
+		return ReclamoMapper.getInstancia().getReclamosZona();
+	}
+	
 }
