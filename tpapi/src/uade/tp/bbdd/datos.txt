@@ -6,3 +6,10 @@ password=A_Interactivas_26
 
 Class.forName("com.mysql.jdbc.Driver");
 connection = DriverManager.getConnection("jdbc:mysql.hostinger.com.ar://u249061719_tpapi:1433", "u249061719_tpapi", "uadetpapi");
+
+
+Server: sql9.freemysqlhosting.net
+Name: sql9140087
+Username: sql9140087
+Password: JSm7bk1qZr
+Port number: 3306

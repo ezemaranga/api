@@ -86,27 +86,33 @@ public class SistemaReclamos {
 	// =========== inicializar reclamos simples ==========
 	public void inicializarReclamoFacturacion() {
 		recActual = new ReclamoFacturacion();
+		recActual.setEstadoActual("Ingresado");
 	}
 
 	public void inicializarReclamoFaltante() {
 		recActual = new ReclamoFaltante();
+		recActual.setEstadoActual("Ingresado");
 	}
 
 	public void inicializarReclamoCantidad() {
 		recActual = new ReclamoCantidad();
+		recActual.setEstadoActual("Ingresado");
 	}
 	
 	public void inicializarReclamoProducto() {
 		recActual = new ReclamoProducto();
+		recActual.setEstadoActual("Ingresado");
 	}
 
 	public void inicializarReclamoZona() {
 		recActual = new ReclamoZona();
+		recActual.setEstadoActual("Ingresado");
 	}
 	
 	// inicializar reclamo compuesto
 	public void inicializarReclamoCompuesto() {
 		recActual = new ReclamoCompuesto();
+		recActual.setEstadoActual("Ingresado");
 	}
 	
 	// ============== agregar reclamos a reclamo compuesto ============
@@ -139,6 +145,7 @@ public class SistemaReclamos {
 	public void agregarReclamo(String desc) {
 		recActual.setDescripcion(desc);
 		recActual.agregarATablero();
+		recActual.guardarReclamo();
 		reclamos.add(recActual);
 		recActual = null;
 	}
