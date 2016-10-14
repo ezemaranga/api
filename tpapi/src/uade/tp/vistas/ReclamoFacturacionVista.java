@@ -256,7 +256,7 @@ public class ReclamoFacturacionVista extends javax.swing.JFrame{
 					public void actionPerformed(ActionEvent evt) 
 					{
 						limpiarPantalla();
-						ReclamoCantidadVista.getInstancia().setVisible(false);
+						ReclamoFacturacionVista.getInstancia().setVisible(false);
 						
 					}
 				});
@@ -274,12 +274,16 @@ public class ReclamoFacturacionVista extends javax.swing.JFrame{
 	}
 	public void limpiarPantalla()
 	{
-		fechaReclamoText.setText("");
-		numeroReclamoText.setText("");
-		dniText.setText("");
-		jTextArea.setText("");
-		productoText.setText("");
-		cantidadText.setText("");
+		try{
+			fechaReclamoText.setText("");
+			numeroReclamoText.setText("");
+			dniText.setText("");
+			jTextArea.setText("");
+			productoText.setText("");
+			cantidadText.setText("");
+		} catch (Exception e) {
+	
+		}
 	}
 	
 	

@@ -296,7 +296,7 @@ public class ReclamoProductoVista extends javax.swing.JFrame{
 					public void actionPerformed(ActionEvent evt) 
 					{
 						limpiarPantalla();
-						ReclamoCantidadVista.getInstancia().setVisible(false);
+						ReclamoProductoVista.getInstancia().setVisible(false);
 						
 					}
 				});
@@ -314,12 +314,16 @@ public class ReclamoProductoVista extends javax.swing.JFrame{
 	}
 	public void limpiarPantalla()
 	{
-//		fechaReclamoText.setText("");
-//		numeroReclamoText.setText("");
-		dtm.getDataVector().clear();
-		textField.setText("");
-		descripcion.setText("");
-		codProd.setText("");
-		cantProd.setText("");
+		try {
+	//		fechaReclamoText.setText("");
+	//		numeroReclamoText.setText("");
+			dtm.getDataVector().clear();
+			textField.setText("");
+			descripcion.setText("");
+			codProd.setText("");
+			cantProd.setText("");
+		} catch (Exception e) {
+
+		}
 	}
 }

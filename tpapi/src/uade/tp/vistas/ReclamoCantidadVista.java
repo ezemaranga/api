@@ -281,11 +281,15 @@ public class ReclamoCantidadVista extends javax.swing.JFrame{
 	}
 	public void limpiarPantalla()
 	{
-		fechaReclamoText.setText("");
-		numeroReclamoText.setText("");
-		dniText.setText("");
-		jTextArea.setText("");
-		productoText.setText("");
-		cantidadText.setText("");
+		try {
+			fechaReclamoText.setText("");
+			numeroReclamoText.setText("");
+			dniText.setText("");
+			jTextArea.setText("");
+			productoText.setText("");
+			cantidadText.setText("");
+		} catch (Exception e) {
+
+		}
 	}
 }

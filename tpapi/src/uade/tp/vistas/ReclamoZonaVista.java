@@ -230,9 +230,12 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 	}
 	public void limpiarPantalla()
 	{
-		
-		textField.setText("");
-		descripcion.setText("");
-		zonasCombo.setSelectedIndex(0);;
+		try {
+			textField.setText("");
+			descripcion.setText("");
+			zonasCombo.setSelectedIndex(0);
+		} catch (Exception e) {
+
+		}
 	}
 }
