@@ -16,6 +16,7 @@ import uade.tp.ai.reclamo.ReclamoCompuesto;
 import uade.tp.ai.reclamo.ReclamoDistribucion;
 import uade.tp.ai.reclamo.ReclamoFacturacion;
 import uade.tp.ai.reclamo.ReclamoZona;
+import uade.tp.ai.reclamo.TratamientoReclamo;
 
 public class ReclamoMapper extends Mapper {
 	private static ReclamoMapper instancia;
@@ -135,6 +136,7 @@ public class ReclamoMapper extends Mapper {
 	}
 	
 	private void insertReclamoTablasAnexas(Reclamo r) throws SQLException {
+		this.insertTratamientoReclamo(r);
 		if (r.getTipo().equals("RECLAMO_COMPUESTO")) {
 			this.insertReclamoCompuesto((ReclamoCompuesto) r);
 		} else if (r.getTipo().equals("RECLAMO_DISTRIBUCION")) {
@@ -143,6 +145,19 @@ public class ReclamoMapper extends Mapper {
 			this.insertReclamoFacturacion((ReclamoFacturacion) r);
 		} else if (r.getTipo().equals("RECLAMO_ZONA")) {
 			this.insertReclamoZona((ReclamoZona) r);
+		}
+	}
+	
+	private void insertTratamientoReclamo(Reclamo r) throws SQLException {
+		for(TratamientoReclamo t : r.getTratamientos()) {
+			Connection con = ConnectionManager.getInstance().connect();
+			PreparedStatement s = con.prepareStatement("INSERT INTO TratamientoReclamo (NroReclamo, Fecha, Estado, Descripcion) VALUES (?, ?, ?, ?)");
+			s.setString(1, r.getNroReclamo());
+			s.setString(2, t.getFecha());
+			s.setString(3, t.getEstado());
+			s.setString(4, t.getDesc());
+			s.execute();
+			ConnectionManager.getInstance().closeCon();
 		}
 	}
 	
@@ -208,7 +223,7 @@ public class ReclamoMapper extends Mapper {
 		List<Reclamo> reclamos = new ArrayList<Reclamo>();
 		try {
 			Connection con = ConnectionManager.getInstance().connect();
-			PreparedStatement s = con.prepareStatement("SELECT * FROM Reclamo WHERE Tipo = 'Distribucion'");
+			PreparedStatement s = con.prepareStatement("SELECT * FROM Reclamo WHERE Tipo = 'RECLAMO_DISTRIBUCION'");
 			ResultSet result = s.executeQuery();
 			while (result.next()) {
 				String nroReclamo = result.getString(1);

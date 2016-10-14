@@ -81,4 +81,8 @@ public abstract class Reclamo {
 		this.tratamientos.add(new TratamientoReclamo(new Date().toString(), estado, desc));
 	}
 	
+	public List<TratamientoReclamo> getTratamientos() {
+		return this.tratamientos;
+	}
+	
 }
