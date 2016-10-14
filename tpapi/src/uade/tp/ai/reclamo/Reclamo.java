@@ -100,5 +100,5 @@ public abstract class Reclamo {
 	public static List<Reclamo> getReclamosZona() {
 		return ReclamoMapper.getInstancia().getReclamosZona();
 	}
-	
+
 }

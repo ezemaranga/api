@@ -2,6 +2,8 @@ package uade.tp.ai;
 
 import java.util.List;
 
+import uade.tp.bbdd.FacturaMapper;
+
 public class Factura {
 
 	private String fecha;
@@ -47,4 +49,16 @@ public class Factura {
 		this.items = items;
 	}
 
+	public void guardar() {
+		FacturaMapper.getInstancia().insert(this);
+	}
+	
+	public void borrar() {
+		FacturaMapper.getInstancia().delete(this);
+	}
+	
+	public static Factura buscar(String nroFactura) {
+		return FacturaMapper.getInstancia().buscarFactura(nroFactura);
+	}
+	
 }

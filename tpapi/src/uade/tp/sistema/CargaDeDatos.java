@@ -1,12 +1,10 @@
 package uade.tp.sistema;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import uade.tp.ai.Cliente;
-import uade.tp.ai.Zona;
-import uade.tp.ai.reclamo.Reclamo;
-import uade.tp.ai.reclamo.ReclamoZona;
+import uade.tp.ai.Producto;
+import uade.tp.ai.reclamo.ReclamoFaltante;
 
 public class CargaDeDatos {
 	
@@ -62,7 +60,16 @@ public class CargaDeDatos {
 //		List<Reclamo> reclamosZona = Reclamo.getReclamosZona();
 //		System.out.println(reclamosZona.size());
 		
-		
+//		Cliente eze = Cliente.buscar("dni");
+//		Producto pelota = Producto.buscar("ART80");
+//		
+//		ReclamoFaltante reclamoFaltante = new ReclamoFaltante();
+//		reclamoFaltante.setCliente(eze);
+//		reclamoFaltante.setDescripcion("desc reclamo faltante");
+//		reclamoFaltante.setEstadoActual("En proceso");
+//		reclamoFaltante.addItemReclamo(pelota, 5);
+//		
+//		reclamoFaltante.guardarReclamo();
 		
 		
 		
