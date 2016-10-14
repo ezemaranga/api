@@ -93,4 +93,8 @@ public abstract class Reclamo {
 		return this.tratamientos;
 	}
 	
+	public static List<Reclamo> getReclamosDistribucion() {
+		return ReclamoMapper.getInstancia().getReclamosDistribucion();
+	}
+	
 }

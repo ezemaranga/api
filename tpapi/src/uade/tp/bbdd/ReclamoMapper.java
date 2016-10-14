@@ -230,7 +230,7 @@ public class ReclamoMapper extends Mapper {
 		List<Reclamo> reclamos = new ArrayList<Reclamo>();
 		try {
 			Connection con = ConnectionManager.getInstance().connect();
-			PreparedStatement s = con.prepareStatement("SELECT * FROM Reclamo WHERE Tipo in ('RECLAMO_CANTIDAD', 'RECLAMO_FALTANTE', 'RECLAMO_PRODUCTO'");
+			PreparedStatement s = con.prepareStatement("SELECT * FROM Reclamo WHERE Tipo in ('RECLAMO_CANTIDAD', 'RECLAMO_FALTANTE', 'RECLAMO_PRODUCTO')");
 			ResultSet result = s.executeQuery();
 			while (result.next()) {
 				String nroReclamo = result.getString(1);

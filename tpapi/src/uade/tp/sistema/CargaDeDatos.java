@@ -1,11 +1,9 @@
 package uade.tp.sistema;
 
 import java.sql.SQLException;
-import java.util.Date;
+import java.util.List;
 
-import uade.tp.ai.Cliente;
-import uade.tp.ai.Producto;
-import uade.tp.ai.reclamo.ReclamoProducto;
+import uade.tp.ai.reclamo.Reclamo;
 
 public class CargaDeDatos {
 	
@@ -26,18 +24,20 @@ public class CargaDeDatos {
 //		Cliente eze = new Cliente("ezequiel", "direccion", "telef", "email", "dni");
 //		eze.guardar();
 		
-		Cliente eze = Cliente.buscar("dni");
-		Producto pelota = Producto.buscar("ART80");
+//		Cliente eze = Cliente.buscar("dni");
+//		Producto pelota = Producto.buscar("ART80");
+//		
+//		ReclamoProducto reclamoProducto = new ReclamoProducto();
+//		reclamoProducto.setCliente(eze);
+//		reclamoProducto.setDescripcion("desc reclamo producto");
+//		reclamoProducto.setEstadoActual("En proceso");
+//		
+//		reclamoProducto.addItemReclamo(pelota, 2);
+//		
+//		reclamoProducto.guardarReclamo();
 		
-		ReclamoProducto reclamoProducto = new ReclamoProducto();
-		reclamoProducto.setCliente(eze);
-		reclamoProducto.setDescripcion("desc reclamo producto");
-		reclamoProducto.setEstadoActual("En proceso");
-		
-		reclamoProducto.addItemReclamo(pelota, 2);
-		
-		reclamoProducto.guardarReclamo();
-		
+		List<Reclamo> distribucion = Reclamo.getReclamosDistribucion();
+		System.out.println(distribucion.size());
 		
 	}
 
