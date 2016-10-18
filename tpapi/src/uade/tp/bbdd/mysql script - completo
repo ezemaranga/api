@@ -1,0 +1,283 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: localhost:8889
+-- Tiempo de generación: 19-10-2016 a las 01:54:38
+-- Versión del servidor: 5.6.28
+-- Versión de PHP: 7.0.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Base de datos: `tpapi`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Cliente`
+--
+
+CREATE TABLE `Cliente` (
+  `Dni` varchar(255) DEFAULT NULL,
+  `Nombre` varchar(255) DEFAULT NULL,
+  `Domicilio` varchar(255) DEFAULT NULL,
+  `Telefono` varchar(255) DEFAULT NULL,
+  `Email` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Cliente`
+--
+
+INSERT INTO `Cliente` (`Dni`, `Nombre`, `Domicilio`, `Telefono`, `Email`) VALUES
+('123', 'Juancho', 'Calle falsa 123', '4443333', 'juancho@mail.com'),
+('dni', 'ezequiel', 'direccion', 'telef', 'email'),
+('dni de coco', 'coco', 'dire de coco', 'tel de coco', 'email de coco');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Factura`
+--
+
+CREATE TABLE `Factura` (
+  `Fecha` varchar(255) DEFAULT NULL,
+  `Numero` varchar(255) DEFAULT NULL,
+  `DniCliente` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Factura`
+--
+
+INSERT INTO `Factura` (`Fecha`, `Numero`, `DniCliente`) VALUES
+('Fri Oct 14 03:51:30 ART 2016', '1111', 'dni de coco'),
+('Fri Oct 14 03:51:33 ART 2016', '3333', 'dni');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ItemFactura`
+--
+
+CREATE TABLE `ItemFactura` (
+  `numeroFactura` varchar(255) DEFAULT NULL,
+  `codigoProducto` varchar(255) DEFAULT NULL,
+  `cantidad` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ItemFactura`
+--
+
+INSERT INTO `ItemFactura` (`numeroFactura`, `codigoProducto`, `cantidad`) VALUES
+('1111', 'ART80', 20),
+('3333', 'ART80', 50);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Producto`
+--
+
+CREATE TABLE `Producto` (
+  `Codigo` varchar(255) DEFAULT NULL,
+  `Titulo` varchar(255) DEFAULT NULL,
+  `Descripcion` varchar(255) DEFAULT NULL,
+  `Precio` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Producto`
+--
+
+INSERT INTO `Producto` (`Codigo`, `Titulo`, `Descripcion`, `Precio`) VALUES
+('ISBN10', 'Harry Potter', 'un libro', 100),
+('ISBN20', 'Lord of the rings', 'otro libro', 150),
+('ART90', 'Tortugas Ninja', 'Una tortuga', 90),
+('ART80', 'Pelota', 'un producto', 60);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Reclamo`
+--
+
+CREATE TABLE `Reclamo` (
+  `NroReclamo` varchar(255) DEFAULT NULL,
+  `Fecha` varchar(255) DEFAULT NULL,
+  `DniCliente` varchar(255) DEFAULT NULL,
+  `Descripcion` varchar(255) DEFAULT NULL,
+  `EstadoActual` varchar(255) DEFAULT NULL,
+  `Tipo` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Reclamo`
+--
+
+INSERT INTO `Reclamo` (`NroReclamo`, `Fecha`, `DniCliente`, `Descripcion`, `EstadoActual`, `Tipo`) VALUES
+('67c73ab9', 'Fri Oct 14 02:22:22 ART 2016', 'dni', 'weeeeee', 'Ingresado', 'RECLAMO_PRODUCTO'),
+('6346ce2e', 'Fri Oct 14 02:24:07 ART 2016', '123', 'uuuuuu', 'Ingresado', 'RECLAMO_PRODUCTO'),
+('c6fcf95e', 'Fri Oct 14 02:24:13 ART 2016', 'dni', 'desc reclamo producto', 'En proceso', 'RECLAMO_PRODUCTO'),
+('53ba4d58', 'Fri Oct 14 02:26:20 ART 2016', 'dni', 'desc reclamo producto', 'En proceso', 'RECLAMO_PRODUCTO'),
+('45cbe89c', 'Fri Oct 14 02:29:01 ART 2016', 'dni', 'uuuuuu', 'Ingresado', 'RECLAMO_PRODUCTO'),
+('74e1bd6d', 'Fri Oct 14 03:05:24 ART 2016', 'dni de coco', 'desc reclamo zona', 'Iniciado', 'RECLAMO_ZONA'),
+('13cc03cd', 'Fri Oct 14 03:40:07 ART 2016', 'dni', 'desc reclamo faltante', 'En proceso', 'RECLAMO_FALTANTE'),
+('91657e5c', 'Fri Oct 14 03:56:29 ART 2016', 'dni', 'desc reclamo facturacion', 'En espera', 'RECLAMO_FACTURACION'),
+('4d5b321c', 'Fri Oct 14 03:58:06 ART 2016', '123', 'deeeeeetttttt', 'Ingresado', 'RECLAMO_ZONA'),
+('1EoFW9Js', 'Tue Oct 18 18:40:36 ART 2016', '123', 'es la descripcion', 'Ingresado', 'RECLAMO_PRODUCTO'),
+('5yqqqCzc', 'Tue Oct 18 19:08:52 ART 2016', '123', '', 'Ingresado', 'RECLAMO_PRODUCTO'),
+('tDCN0OPk', 'Tue Oct 18 19:51:52 ART 2016', '123', 'descrip', 'Ingresado', 'RECLAMO_PRODUCTO'),
+('nGVFhKvJ', 'Tue Oct 18 19:57:40 ART 2016', 'dni', 'wwwww', 'Ingresado', 'RECLAMO_FALTANTE'),
+('IZBSbBmi', 'Tue Oct 18 20:03:20 ART 2016', 'dni de coco', 'ggggg', 'Ingresado', 'RECLAMO_CANTIDAD'),
+('6UL3XrQy', 'Tue Oct 18 20:49:36 ART 2016', '123', 'eeedddd', 'Ingresado', 'RECLAMO_FACTURACION');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ReclamoCompuesto`
+--
+
+CREATE TABLE `ReclamoCompuesto` (
+  `NroReclamo` varchar(255) DEFAULT NULL,
+  `NroReclamoComponente` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ReclamoDistribucion`
+--
+
+CREATE TABLE `ReclamoDistribucion` (
+  `NroReclamo` varchar(255) DEFAULT NULL,
+  `CodigoProducto` varchar(255) DEFAULT NULL,
+  `Cantidad` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ReclamoDistribucion`
+--
+
+INSERT INTO `ReclamoDistribucion` (`NroReclamo`, `CodigoProducto`, `Cantidad`) VALUES
+('eb108e33', 'ART80', 2),
+('45cbe89c', 'ISBN10', 33),
+('45cbe89c', 'ART90', 1),
+('13cc03cd', 'ART80', 5),
+('1EoFW9Js', 'ISBN10', 2),
+('1EoFW9Js', 'ART90', 3),
+('5yqqqCzc', 'ART90', 5),
+('5yqqqCzc', 'ART90', 5),
+('5yqqqCzc', 'ART90', 5),
+('tDCN0OPk', 'ISBN20', 44),
+('tDCN0OPk', 'ART80', 443),
+('tDCN0OPk', 'ISBN10', 4433),
+('nGVFhKvJ', 'ISBN10', 2),
+('nGVFhKvJ', 'ART80', 3),
+('nGVFhKvJ', 'ART80', 4),
+('IZBSbBmi', 'ART90', 3),
+('IZBSbBmi', 'ART80', 34),
+('IZBSbBmi', 'ISBN10', 3422);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ReclamoFacturacion`
+--
+
+CREATE TABLE `ReclamoFacturacion` (
+  `NroReclamo` varchar(255) DEFAULT NULL,
+  `NumeroFactura` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ReclamoFacturacion`
+--
+
+INSERT INTO `ReclamoFacturacion` (`NroReclamo`, `NumeroFactura`) VALUES
+('91657e5c', '1111'),
+('91657e5c', '3333'),
+('6UL3XrQy', '1111'),
+('6UL3XrQy', '3333');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ReclamoZona`
+--
+
+CREATE TABLE `ReclamoZona` (
+  `NroReclamo` varchar(255) DEFAULT NULL,
+  `CodigoZona` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ReclamoZona`
+--
+
+INSERT INTO `ReclamoZona` (`NroReclamo`, `CodigoZona`) VALUES
+('74e1bd6d', 'A'),
+('4d5b321c', 'B');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `TratamientoReclamo`
+--
+
+CREATE TABLE `TratamientoReclamo` (
+  `NroReclamo` varchar(255) DEFAULT NULL,
+  `Fecha` varchar(255) DEFAULT NULL,
+  `Estado` varchar(255) DEFAULT NULL,
+  `Descripcion` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Usuario`
+--
+
+CREATE TABLE `Usuario` (
+  `Apodo` varchar(255) DEFAULT NULL,
+  `Nombre` varchar(255) DEFAULT NULL,
+  `Apellido` varchar(255) DEFAULT NULL,
+  `Password` varchar(255) DEFAULT NULL,
+  `Rol` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Usuario`
+--
+
+INSERT INTO `Usuario` (`Apodo`, `Nombre`, `Apellido`, `Password`, `Rol`) VALUES
+('pepe', 'Pepe', 'Lopez', '123456', 'CALL_CENTER'),
+('tito', 'Tito', 'Muzzarella', '111111', 'RESP_DISTRIBUCION'),
+('tute', 'Matute', 'Maton', '111', 'RESP_ZONA_ENTREGA'),
+('pipo', 'Pipo', 'Perez', '111', 'RESP_ZONA_ENTREGA'),
+('pipo', 'Pipo', 'Perez', '111', 'RESP_ZONA_ENTREGA'),
+('papu', 'Papu', 'Gomez', '1', 'RESP_FACTURACION');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Zona`
+--
+
+CREATE TABLE `Zona` (
+  `Codigo` varchar(255) DEFAULT NULL,
+  `Nombre` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Zona`
+--
+
+INSERT INTO `Zona` (`Codigo`, `Nombre`) VALUES
+('A', 'Almagro'),
+('B', 'Boedo'),
+('C', 'Caballito');
