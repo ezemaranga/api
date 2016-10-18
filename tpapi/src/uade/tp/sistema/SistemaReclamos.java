@@ -2,10 +2,12 @@ package uade.tp.sistema;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import uade.tp.ai.Cliente;
 import uade.tp.ai.Factura;
 import uade.tp.ai.Producto;
+import uade.tp.ai.ProductoView;
 import uade.tp.ai.Usuario;
 import uade.tp.ai.UsuarioView;
 import uade.tp.ai.Zona;
@@ -257,6 +259,17 @@ public class SistemaReclamos {
 		}
 		return zonasView;
 	}
+	
+	
+	public Vector<ProductoView> getProductosView() {
+		Vector<ProductoView> productosView = new Vector<ProductoView>();
+		Vector<Producto> productos = Producto.getProductos();
+		for(Producto p : productos) {
+			productosView.add(p.getView());
+		}
+		return productosView;
+	}
+
 
 	public Cliente buscarCliente(String dni) {
 		for (Cliente cliente : clientes) {

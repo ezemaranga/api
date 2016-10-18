@@ -1,5 +1,6 @@
-package uade.tp.vistas; 
+package uade.tp.vistas;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,62 +12,71 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
 
 import uade.tp.ai.ClienteView;
+import uade.tp.ai.ProductoView;
+import uade.tp.ai.reclamo.ItemReclamo;
+import uade.tp.ai.reclamo.ReclamoDistribucion;
+import uade.tp.sistema.SistemaReclamos;
 
-public class ReclamoFaltantesVista extends javax.swing.JFrame{
-
+public class ReclamoFaltantesVista extends javax.swing.JFrame {
 	private static final long serialVersionUID = 1L;
-	
-	private Font font = new Font("Courier", Font.BOLD,16);
-	
+
+	private Font font = new Font("Courier", Font.BOLD, 16);
+
 	private JLabel title;
 	private JLabel jLabel1;
-	private JLabel jLabel2;
-	private JLabel jLabel3;
 	private JLabel jLabel4;
 	private JLabel jLabel5;
-	private JLabel jLabel6;
 	private JLabel jLabel7;
 	private JLabel jLabel8;
-
-	private JTextField fechaReclamoText;
-	private JTextField numeroReclamoText;
 	private JTextField dniText;
 	private JTextField productoText;
-	private JTextField cantidadText;
+	private JTextField cantProd;
 	private JTextField domicilio;
-	
+
 	private JButton aceptar;
 	private JButton cancelar;
 
-	private JTextArea jTextArea;
+	private JTextArea descripcion;
 	private JScrollPane jScrollPane;
-	
-	
-	private JComboBox clientesCombo;
-	
-	//Combos
-	
+
+	private JComboBox prod;
+
+	// Combos
+
 	Vector<ClienteView> clientesView;
-	
+	Vector<ProductoView> productosView;
+
 	private static ReclamoFaltantesVista instancia;
-	
-	public static ReclamoFaltantesVista getInstancia()
-	{
+	private JTextField textField;
+	private JButton btnValidarCliente;
+	private JButton btnAgregarProducto;
+	private JTable productosTable;
+
+	DefaultTableModel dtm;
+	Object[][] data = {};
+	String[] columnNames = { "Cantidad", "ID Producto", "Nombre", "Descripcion", "Precio" };
+
+	private JPanel jPanel;
+
+	public static ReclamoFaltantesVista getInstancia() {
 		if (instancia == null)
 			instancia = new ReclamoFaltantesVista();
 		return instancia;
 	}
 
 	/**
-	* Auto-generated main method to display this JFrame
-	*/
+	 * Auto-generated main method to display this JFrame
+	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -76,14 +86,20 @@ public class ReclamoFaltantesVista extends javax.swing.JFrame{
 			}
 		});
 	}
-	
+
 	public ReclamoFaltantesVista() {
 		super();
 		initGUI();
 	}
-	
-	@SuppressWarnings("static-access")
+
+	@SuppressWarnings({ "static-access", "unchecked", "rawtypes" })
 	private void initGUI() {
+		jPanel = new JPanel();
+		dtm = new DefaultTableModel(data, columnNames);
+		// Object[] newRow={"1", "123","fdg", new Integer(5), new
+		// Boolean(false)};
+		// dtm.addRow(newRow);
+
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
@@ -92,6 +108,7 @@ public class ReclamoFaltantesVista extends javax.swing.JFrame{
 			this.setDefaultLookAndFeelDecorated(true);
 			this.setResizable(false);
 			this.setMinimumSize(new java.awt.Dimension(600, 500));
+			final JLabel nombreCliente = new JLabel("");
 			{
 				jLabel1 = new JLabel();
 				getContentPane().add(jLabel1);
@@ -100,62 +117,29 @@ public class ReclamoFaltantesVista extends javax.swing.JFrame{
 				jLabel1.setBounds(202, 21, 200, 22);
 			}
 			{
-				jLabel2 = new JLabel();
-				getContentPane().add(jLabel2);
-				jLabel2.setText("Fecha Reclamo:");
-				jLabel2.setBounds(33, 59, 120, 16);
-			}
-			{
-				fechaReclamoText = new JTextField();
-				getContentPane().add(fechaReclamoText);
-				fechaReclamoText.setBounds(202, 56, 121, 21);
-			}
-			{
-				jLabel6 = new JLabel();
-				getContentPane().add(jLabel6);
-				jLabel6.setText("(yyyy-mm-dd)");
-				jLabel6.setBounds(328, 56, 121, 21);
-			}
-			{
-				jLabel3 = new JLabel();
-				getContentPane().add(jLabel3);
-				jLabel3.setText("Numero de Reclamo:");
-				jLabel3.setBounds(33, 94, 120, 16);
-			}
-			{
-				numeroReclamoText = new JTextField();
-				getContentPane().add(numeroReclamoText);
-				numeroReclamoText.setBounds(202, 91, 120, 22);
-			}
-			{
 				jLabel4 = new JLabel();
 				getContentPane().add(jLabel4);
 				jLabel4.setText("Cliente");
-				jLabel4.setBounds(33, 130, 78, 16);
+				jLabel4.setBounds(33, 71, 78, 16);
 			}
 			{
-//				clientesView = SistemaReclamos.getInstance().getClientes();
+				// clientesView = SistemaReclamos.getInstance().getClientes();
 				clientesView = new Vector<ClienteView>();
-				
-				//Armar texto
+
+				// Armar texto
 				Vector<String> clientes = new Vector<String>();
-				for (int i=0;i<clientesView.size();i++)
-				{
+				for (int i = 0; i < clientesView.size(); i++) {
 					clientes.add(clientesView.elementAt(i).getNombre());
 				}
-				@SuppressWarnings({ })
+				@SuppressWarnings({})
 				ComboBoxModel clientesModel = new DefaultComboBoxModel(clientes);
-				clientesCombo = new JComboBox();
-				getContentPane().add(clientesCombo);
-				clientesCombo.setModel(clientesModel);
-				clientesCombo.setBounds(202, 127, 120, 22);
 			}
-			
-//			{
-//				dniText = new JTextField();
-//				getContentPane().add(dniText);
-//				dniText.setBounds(202, 127, 120, 22);
-//			}
+			//
+			// {
+			// dniText = new JTextField();
+			// getContentPane().add(dniText);
+			// dniText.setBounds(202, 127, 120, 22);
+			// }
 			{
 				jLabel5 = new JLabel();
 				getContentPane().add(jLabel5);
@@ -163,13 +147,13 @@ public class ReclamoFaltantesVista extends javax.swing.JFrame{
 				jLabel5.setBounds(33, 172, 93, 16);
 			}
 			{
-				jTextArea = new JTextArea();
-				getContentPane().add(jTextArea);
-				jTextArea.setLineWrap(true);
-				jTextArea.setWrapStyleWord(true);
+				descripcion = new JTextArea();
+				getContentPane().add(descripcion);
+				descripcion.setLineWrap(true);
+				descripcion.setWrapStyleWord(true);
 			}
 			{
-				JScrollPane scrollPane = new JScrollPane(jTextArea); 
+				JScrollPane scrollPane = new JScrollPane(descripcion);
 				getContentPane().add(scrollPane);
 				scrollPane.setBounds(202, 166, 161, 62);
 			}
@@ -179,11 +163,25 @@ public class ReclamoFaltantesVista extends javax.swing.JFrame{
 				jLabel7.setText("Producto");
 				jLabel7.setBounds(33, 240, 78, 16);
 			}
+
 			{
-				productoText = new JTextField();
-				getContentPane().add(productoText);
-				productoText.setBounds(202, 240, 120, 22);
+				// productosView = SistemaReclamos.getInstance().getProductos();
+				productosView = new Vector<ProductoView>();
+
+				// Armar texto
+				Vector<String> productos = new Vector<String>();
+				for (int i = 0; i < productosView.size(); i++) {
+					productos.add(productosView.elementAt(i).getDescripcion());
+				}
+				@SuppressWarnings({})
+				ComboBoxModel productosModel = new DefaultComboBoxModel(productos);
 			}
+
+			// {
+			// productoText = new JTextField();
+			// getContentPane().add(productoText);
+			// productoText.setBounds(202, 240, 120, 22);
+			// }
 			{
 				jLabel8 = new JLabel();
 				getContentPane().add(jLabel8);
@@ -191,74 +189,112 @@ public class ReclamoFaltantesVista extends javax.swing.JFrame{
 				jLabel8.setBounds(33, 275, 78, 16);
 			}
 			{
-				cantidadText = new JTextField();
-				getContentPane().add(cantidadText);
-				cantidadText.setBounds(202, 275, 120, 22);
+				cantProd = new JTextField();
+				getContentPane().add(cantProd);
+				cantProd.setBounds(202, 275, 120, 22);
 			}
 			{
 				aceptar = new JButton();
 				getContentPane().add(aceptar);
 				aceptar.setText("Guardar");
-				aceptar.setBounds(70, 360, 123, 22);
+				aceptar.setBounds(205, 435, 123, 22);
 				aceptar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) 
-					{
-						if(fechaReclamoText.getText().equals("") || numeroReclamoText.getText().equals("") || dniText.getText().equals("") ||
-						   jTextArea.getText().equals("") || productoText.getText().equals("") || cantidadText.getText().equals("")){
-							if(fechaReclamoText.getText().equals("")){
-								JOptionPane.showMessageDialog(null, "Complete el campo Fecha Reclamo", "Error Alta Reclamo", JOptionPane.ERROR_MESSAGE);
-								return;
-							} else if(numeroReclamoText.getText().equals("")){
-								JOptionPane.showMessageDialog(null, "Complete el campo numero de reclamo", "Error Alta Reclamo", JOptionPane.ERROR_MESSAGE);
-								return;
-								} else if(dniText.getText().equals("")){
-									JOptionPane.showMessageDialog(null, "Complete el campo DNI", "Error Alta Reclamo", JOptionPane.ERROR_MESSAGE);
-									return;
-									} else if(jTextArea.getText().equals("")){
-										JOptionPane.showMessageDialog(null, "Complete el campo Descripcion", "Error Alta Reclamo", JOptionPane.ERROR_MESSAGE);
-										return;
-										}  else if(productoText.getText().equals("")){
-											JOptionPane.showMessageDialog(null, "Complete el campo Producto", "Error Alta Reclamo", JOptionPane.ERROR_MESSAGE);
-											return;
-											} if(cantidadText.getText().equals("")){
-												JOptionPane.showMessageDialog(null, "Complete el campo Cantidad", "Error Alta Reclamo", JOptionPane.ERROR_MESSAGE);
-												return;
-												} 
-						}
-						
-//						long codigo = Long.parseLong(nroAfiliado.getText());
-//						TipoDocView tip = tipDocs.elementAt(tiposDoc.getSelectedIndex());
-//						if (((String)distribuidora.getSelectedItem()).equalsIgnoreCase("  "))
-//						{
-//							JOptionPane.showMessageDialog(null, "Debe seleccionar distribuidora", "Error en el Alta de Afiliado", JOptionPane.ERROR_MESSAGE);
-//							return;
-//						}
-//						int indice = distribuidora.getSelectedIndex()-1;
-//						DistribuidoraView dis = distri.elementAt(indice);
-//						String sex = (String)sexo.getSelectedItem();
-//						//Formato yyyy-mm-dd hh:mm:ss
-//						
-//						Timestamp fNac = Timestamp.valueOf(fechaNac.getText()+ " 00:00:00");
-//						
-//						Sistema.getInstancia().altaAfiliado(codigo, nombre.getText(), domicilio.getText(), telefono.getText(),
-//								tip, dni.getText(), sex, fNac, dis);
-//						
-//						limpiarPantalla();
+					public void actionPerformed(ActionEvent evt) {
+						SistemaReclamos.getInstance().agregarReclamo(descripcion.getText());
+						JOptionPane.showMessageDialog(null, "Reclamo Guardado", "Exito!", JOptionPane.PLAIN_MESSAGE);
+						limpiarPantalla();
+						dispose();
 					}
 				});
 			}
 			{
-				
+
 				cancelar = new JButton();
 				getContentPane().add(cancelar);
 				cancelar.setText("Cancelar");
-				cancelar.setBounds(210, 360, 120, 22);
+				cancelar.setBounds(340, 435, 120, 22);
+				{
+					textField = new JTextField();
+					textField.setBounds(192, 66, 130, 26);
+					getContentPane().add(textField);
+					textField.setColumns(10);
+				}
+				{
+					btnValidarCliente = new JButton("Validar cliente");
+					btnValidarCliente.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							if (SistemaReclamos.getInstance().existeCliente(textField.getText())) {
+								nombreCliente.setText(
+										SistemaReclamos.getInstance().getReclamoActual().getCliente().getNombre());
+							} else {
+								nombreCliente.setText("No existe el cliente");
+							}
+						}
+					});
+					btnValidarCliente.setBounds(340, 66, 117, 29);
+					getContentPane().add(btnValidarCliente);
+				}
+
+				{
+					btnAgregarProducto = new JButton("Agregar producto");
+					btnAgregarProducto.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							SistemaReclamos.getInstance().ingresarDatosProducto(
+									((ProductoView) prod.getSelectedItem()).getCodPublicacion(),
+									Integer.parseInt(cantProd.getText()));
+							ReclamoDistribucion reclamo = (ReclamoDistribucion) SistemaReclamos.getInstance()
+									.getReclamoActual();
+							dtm.getDataVector().clear();
+							for (ItemReclamo itemRec : reclamo.getItems()) {
+								Object[] newRow = { itemRec.getCantidad(), itemRec.getProducto().getCodPublicacion(),
+										itemRec.getProducto().getTitulo(), itemRec.getProducto().getDescripcion(),
+										itemRec.getProducto().getPrecio() };
+								dtm.addRow(newRow);
+							}
+							productosTable = new JTable(dtm);
+							productosTable.setLocation(70, 307);
+							productosTable.setSize(375, 160);
+							productosTable.setPreferredScrollableViewportSize(new Dimension(650, 150));
+							productosTable.setFillsViewportHeight(true);
+
+						}
+					});
+					btnAgregarProducto.setBounds(334, 270, 157, 29);
+					getContentPane().add(btnAgregarProducto);
+				}
+
+				productosTable = new JTable(dtm);
+				productosTable.setLocation(70, 307);
+				productosTable.setSize(375, 160);
+				productosTable.setPreferredScrollableViewportSize(new Dimension(650, 150));
+				productosTable.setFillsViewportHeight(true);
+
+				jScrollPane = new JScrollPane(productosTable);
+				jScrollPane.setBounds(33, 303, 512, 96);
+
+				getContentPane().add(jScrollPane);
+
+				nombreCliente.setBounds(202, 112, 319, 16);
+				getContentPane().add(nombreCliente);
+
+				productosView = SistemaReclamos.getInstance().getProductosView();
+
+				Vector<ProductoView> productos = new Vector<ProductoView>();
+				for (ProductoView z : productosView) {
+					productos.add(z);
+				}
+				@SuppressWarnings({})
+				ComboBoxModel prodModel = new DefaultComboBoxModel(productos);
+				prod = new JComboBox();
+				prod.setModel(prodModel);
+				prod.setBounds(202, 236, 289, 27);
+				getContentPane().add(prod);
+
 				cancelar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) 
-					{
+					public void actionPerformed(ActionEvent evt) {
 						limpiarPantalla();
 						ReclamoFaltantesVista.getInstancia().setVisible(false);
-						
+
 					}
 				});
 			}
@@ -269,22 +305,24 @@ public class ReclamoFaltantesVista extends javax.swing.JFrame{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public JTextField getDomicilio() {
 		return domicilio;
 	}
-	public void limpiarPantalla()
-	{
+
+	public void limpiarPantalla() {
 		try {
-			fechaReclamoText.setText("");
-			numeroReclamoText.setText("");
-			dniText.setText("");
-			jTextArea.setText("");
-			productoText.setText("");
-			cantidadText.setText("");
+			// fechaReclamoText.setText("");
+			// numeroReclamoText.setText("");
+			dtm.getDataVector().clear();
+			textField.setText("");
+			descripcion.setText("");
+			prod.setSelectedIndex(0);
+			;
+			cantProd.setText("");
 		} catch (Exception e) {
 
 		}
 	}
-	
+
 }

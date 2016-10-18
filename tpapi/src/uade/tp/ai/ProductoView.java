@@ -29,4 +29,9 @@ public class ProductoView {
 	public float getPrecio() {
 		return precio;
 	}
+	
+    @Override
+    public String toString(){
+        return titulo;
+    }
 }

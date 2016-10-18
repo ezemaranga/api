@@ -59,7 +59,7 @@ public class ProductoMapper extends Mapper {
 				String codigo = result.getString(1);
 				String titulo = result.getString(2);
 				String descripcion = result.getString(3);
-				float precio = result.getFloat(3);
+				float precio = result.getFloat(4);
 				
 				Producto p = new Producto(titulo, codigo, descripcion, precio);
 				productosVector.add(p);

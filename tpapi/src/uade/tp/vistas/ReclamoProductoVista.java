@@ -26,7 +26,9 @@ import javax.swing.table.TableModel;
 
 import uade.tp.ai.Cliente;
 import uade.tp.ai.ClienteView;
+import uade.tp.ai.Producto;
 import uade.tp.ai.ProductoView;
+import uade.tp.ai.ZonaView;
 import uade.tp.ai.reclamo.ItemReclamo;
 import uade.tp.ai.reclamo.ReclamoDistribucion;
 import uade.tp.sistema.SistemaReclamos;
@@ -55,6 +57,8 @@ public class ReclamoProductoVista extends javax.swing.JFrame{
 	private JTextArea descripcion;
 	private JScrollPane jScrollPane;
 	
+	private JComboBox prod;
+	
 	//Combos
 	
 	Vector<ClienteView> clientesView;
@@ -63,7 +67,6 @@ public class ReclamoProductoVista extends javax.swing.JFrame{
 	private static ReclamoProductoVista instancia;
 	private JTextField textField;
 	private JButton btnValidarCliente;
-	private JTextField codProd;
 	private JButton btnAgregarProducto;
 	private JTable productosTable;
 	
@@ -246,19 +249,13 @@ public class ReclamoProductoVista extends javax.swing.JFrame{
 					btnValidarCliente.setBounds(340, 66, 117, 29);
 					getContentPane().add(btnValidarCliente);
 				}
-				{
-					codProd = new JTextField();
-					codProd.setBounds(202, 240, 130, 26);
-					getContentPane().add(codProd);
-					codProd.setColumns(10);
-				}
 				
 				
 				{
 					btnAgregarProducto = new JButton("Agregar producto");
 					btnAgregarProducto.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							SistemaReclamos.getInstance().ingresarDatosProducto(codProd.getText(), Integer.parseInt(cantProd.getText()));
+							SistemaReclamos.getInstance().ingresarDatosProducto(((ProductoView)prod.getSelectedItem()).getCodPublicacion(), Integer.parseInt(cantProd.getText()));
 							ReclamoDistribucion reclamo = (ReclamoDistribucion) SistemaReclamos.getInstance().getReclamoActual();
 							dtm.getDataVector().clear();
 						    for(ItemReclamo itemRec : reclamo.getItems()) {
@@ -273,7 +270,7 @@ public class ReclamoProductoVista extends javax.swing.JFrame{
 							
 						}
 					});
-					btnAgregarProducto.setBounds(334, 262, 157, 29);
+					btnAgregarProducto.setBounds(334, 270, 157, 29);
 					getContentPane().add(btnAgregarProducto);
 				}
 				
@@ -291,6 +288,19 @@ public class ReclamoProductoVista extends javax.swing.JFrame{
 				
 				nombreCliente.setBounds(202, 112, 319, 16);
 				getContentPane().add(nombreCliente);
+				
+				productosView = SistemaReclamos.getInstance().getProductosView();
+				
+				Vector<ProductoView> productos = new Vector<ProductoView>();
+				for (ProductoView z : productosView) {
+					productos.add(z);
+				}
+				@SuppressWarnings({ })
+				ComboBoxModel prodModel = new DefaultComboBoxModel(productos);
+				prod = new JComboBox();
+				prod.setModel(prodModel);
+				prod.setBounds(202, 236, 289, 27);
+				getContentPane().add(prod);
 				
 				cancelar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
@@ -320,7 +330,7 @@ public class ReclamoProductoVista extends javax.swing.JFrame{
 			dtm.getDataVector().clear();
 			textField.setText("");
 			descripcion.setText("");
-			codProd.setText("");
+			prod.setSelectedIndex(0);;
 			cantProd.setText("");
 		} catch (Exception e) {
 

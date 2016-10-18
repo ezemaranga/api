@@ -159,7 +159,7 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 				zonasCombo = new JComboBox();
 				getContentPane().add(zonasCombo);
 				zonasCombo.setModel(zonasModel);
-				zonasCombo.setBounds(202, 240, 120, 22);
+				zonasCombo.setBounds(202, 240, 200, 22);
 			}
 			
 			

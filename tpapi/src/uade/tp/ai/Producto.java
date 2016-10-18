@@ -1,6 +1,11 @@
 package uade.tp.ai;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
 import uade.tp.bbdd.ProductoMapper;
+import uade.tp.bbdd.ZonaMapper;
 
 public class Producto {
 	
@@ -64,6 +69,15 @@ public class Producto {
 	
 	public static Producto buscar(String codigoProducto) {
 		return ProductoMapper.getInstancia().buscarProducto(codigoProducto);
+	}
+
+	public static Vector<Producto> getProductos() {
+		Vector<Producto> listaProductos = new Vector<Producto>();
+		Vector<Object> productos = ProductoMapper.getInstancia().select(null);
+		for(Object p : productos) {
+			listaProductos.add((Producto) p);
+		}
+		return listaProductos;
 	}
 
 }
