@@ -187,8 +187,8 @@ public class Menu extends javax.swing.JFrame {
 							jMenuAtencionReclamoProducto.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) 
 							{
-								AtencionReclamoProductoVista.getInstancia().setLocationRelativeTo(null);
-								AtencionReclamoProductoVista.getInstancia().setVisible(true);
+								AtencionReclamoDistribucionVista.getInstancia().setLocationRelativeTo(null);
+								AtencionReclamoDistribucionVista.getInstancia().setVisible(true);
 							}
 						});
 						}
@@ -204,8 +204,8 @@ public class Menu extends javax.swing.JFrame {
 							jMenuAtencionReclamoFacturacion.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) 
 							{
-								AtencionReclamoFaltantesVista.getInstancia().setLocationRelativeTo(null);
-								AtencionReclamoFaltantesVista.getInstancia().setVisible(true);
+								AtencionReclamoFacturacionVista.getInstancia().setLocationRelativeTo(null);
+								AtencionReclamoFacturacionVista.getInstancia().setVisible(true);
 							}
 						});
 						}

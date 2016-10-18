@@ -15,14 +15,17 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
-public class AtencionReclamoCantidadVista extends javax.swing.JFrame{
+import uade.tp.ai.reclamo.ReclamoView;
+import uade.tp.sistema.SistemaReclamos;
+
+public class AtencionReclamoDistribucionVista extends javax.swing.JFrame{
 
 	private static final long serialVersionUID = 1L;
 	
 	private Font font = new Font("Courier", Font.BOLD,16);
 	
 	private JLabel jLabel1;
-	
+
 	private JButton atender;
 	private JButton cancelar;
 
@@ -31,29 +34,22 @@ public class AtencionReclamoCantidadVista extends javax.swing.JFrame{
 	
 	private JScrollPane jScrollPane;
 	
-	Object[][] data = {
-		    {"Kathy", "Smith", "Snowboarding", new Integer(5), "Zona 1", new Boolean(false)},
-		    {"John", "Doe", "Rowing", new Integer(3), "Zona 2", new Boolean(true)},
-		    {"Sue", "Black", "Knitting", new Integer(2), "Zona 3", new Boolean(false)},
-		    {"Jane", "White", "Speed reading", new Integer(20), "Zona 4", new Boolean(true)},
-		    {"Joe", "Brown", "Pool", new Integer(10), "Zona 5", new Boolean(false)}
-		};
+	Object[][] data = {};
 	
 	String[] columnNames = {"ID Reclamo",
+							"Tipo",
             				"Fecha",
             				"Cliente",
-            				"Estado",
-            				"Zona",
-            				"Atender"};
+            				"Estado"};
 	
 	//Combos
 	
-	private static AtencionReclamoCantidadVista instancia;
+	private static AtencionReclamoDistribucionVista instancia;
 	
-	public static AtencionReclamoCantidadVista getInstancia()
+	public static AtencionReclamoDistribucionVista getInstancia()
 	{
 		if (instancia == null)
-			instancia = new AtencionReclamoCantidadVista();
+			instancia = new AtencionReclamoDistribucionVista();
 		return instancia;
 	}
 
@@ -63,14 +59,14 @@ public class AtencionReclamoCantidadVista extends javax.swing.JFrame{
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				AtencionReclamoCantidadVista inst = new AtencionReclamoCantidadVista();
+				AtencionReclamoDistribucionVista inst = new AtencionReclamoDistribucionVista();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 	
-	public AtencionReclamoCantidadVista() {
+	public AtencionReclamoDistribucionVista() {
 		super();
 		initGUI();
 	}
@@ -79,7 +75,7 @@ public class AtencionReclamoCantidadVista extends javax.swing.JFrame{
 	private void initGUI() {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			this.setTitle("Atencion de Reclamos - Reclamo de Cantidad");
+			this.setTitle("Atencion de Reclamos - Reclamo de Distribucion");
 			this.setPreferredSize(new java.awt.Dimension(700, 500));
 			this.setDefaultLookAndFeelDecorated(true);
 			this.setResizable(false);
@@ -90,32 +86,36 @@ public class AtencionReclamoCantidadVista extends javax.swing.JFrame{
 			{
 				jLabel1 = new JLabel();
 				jPanel.add(jLabel1);
-				jLabel1.setText("Atencion de Reclamo Cantidad");
+				jLabel1.setText("Atencion de Reclamos Distribucion");
 				jLabel1.setFont(font);
 				jLabel1.setBounds(160, 21, 500, 22);
 			}
 
 			{
 			    DefaultTableModel dtm= new DefaultTableModel(data, columnNames);
-			    Object[] newRow={"Pepe", "Grillo","Tenis", new Integer(5), new Boolean(false)};
-			    dtm.addRow(newRow);
+			    for(ReclamoView rec : SistemaReclamos.getInstance().getReclamosDistribucion()) {
+			    	Object[] newRow={rec.getNroReclamo(), rec.getTipo(), rec.getFecha(), rec.getCliente().getNombre(), rec.getEstado()};
+				    dtm.addRow(newRow);
+			    }
+
+			    
 			    
 				jTable = new JTable(dtm);
 				jTable.setPreferredScrollableViewportSize(new Dimension(650, 100));
 				jTable.setFillsViewportHeight(true);
 				
-				for (int i = 0; i < 5; i++) {
+				/*for (int i = 0; i < 5; i++) {
 				    if (i == 2) {
 				    	jTable.getColumnModel().getColumn(i).setPreferredWidth(100);
 				    } else {
 				    	jTable.getColumnModel().getColumn(i).setPreferredWidth(50);
 				    }
-				}
+				}*/
 				
 				jScrollPane = new JScrollPane(jTable);
 				jScrollPane.setBounds(50, 60, 600, 22);
 				
-				jPanel.add(jScrollPane, BorderLayout.CENTER);								
+				jPanel.add(jScrollPane, BorderLayout.CENTER);									
 			}
 					
 			{
@@ -126,12 +126,12 @@ public class AtencionReclamoCantidadVista extends javax.swing.JFrame{
 				atender.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
-						
+
 					}
 				});
 			}
 			
-			{				
+			{
 				cancelar = new JButton();
 				jPanel.add(cancelar);
 				cancelar.setText("Cancelar");
@@ -140,7 +140,7 @@ public class AtencionReclamoCantidadVista extends javax.swing.JFrame{
 					public void actionPerformed(ActionEvent evt) 
 					{
 						limpiarPantalla();
-						AtencionReclamoCantidadVista.getInstancia().setVisible(false);
+						AtencionReclamoDistribucionVista.getInstancia().setVisible(false);
 					}
 				});
 			}
