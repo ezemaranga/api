@@ -3,6 +3,7 @@ package uade.tp.ai.reclamo;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import uade.tp.ai.Cliente;
@@ -52,7 +53,7 @@ public abstract class Reclamo {
 
 	public String getNroReclamo() {
 		if(nroReclamo == null) {
-			nroReclamo = UUID.randomUUID().toString(); 
+			nroReclamo = crearNumeroReclamo(); 
 		}
 		return nroReclamo;
 	}
@@ -103,6 +104,17 @@ public abstract class Reclamo {
 	
 	public static List<Reclamo> getReclamosFacturacion() {
 		return ReclamoMapper.getInstancia().getReclamosFacturacion();
+	}
+	
+	private final static char[] caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
+	private static String crearNumeroReclamo() {
+	    char[] nro = new char[8];
+	    Random r = new Random(System.currentTimeMillis());
+	    for (int i = 0;  i < 8;  i++) {
+	        nro[i] = caracteres[r.nextInt(caracteres.length)];
+
+	    }
+	    return new String(nro);
 	}
 
 }
