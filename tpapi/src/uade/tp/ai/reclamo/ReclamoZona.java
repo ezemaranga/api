@@ -39,6 +39,11 @@ public class ReclamoZona extends Reclamo{
 		return "RECLAMO_ZONA";
 	}
 	
-	
+	@Override
+	public ReclamoView getReclamoView() {
+		ReclamoView rv = ReclamoView.createReclamoView(this);
+		rv.setZona(this.getZona().getNombre());
+		return rv;
+	}
 
 }

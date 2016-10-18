@@ -10,6 +10,7 @@ public class ReclamoView {
 	private String descripcion;
 	private String estado;
 	private String tipo;
+	private String zona;
 
 	public static ReclamoView createReclamoView(Reclamo r) {
 		ReclamoView rv = new ReclamoView();
@@ -81,6 +82,14 @@ public class ReclamoView {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public String getZona() {
+		return zona;
+	}
+
+	public void setZona(String zona) {
+		this.zona = zona;
 	}
 
 }
