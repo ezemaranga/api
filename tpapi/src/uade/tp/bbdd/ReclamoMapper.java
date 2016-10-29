@@ -143,7 +143,6 @@ public class ReclamoMapper extends Mapper {
 	}
 	
 	private void insertReclamoTablasAnexas(Reclamo r) throws SQLException {
-		this.insertTratamientoReclamo(r);
 		if (r.getTipo().equals("RECLAMO_COMPUESTO")) {
 			this.insertReclamoCompuesto((ReclamoCompuesto) r);
 		} else if (r.getTipo().equals("RECLAMO_CANTIDAD") || r.getTipo().equals("RECLAMO_FALTANTE") || r.getTipo().equals("RECLAMO_PRODUCTO")) {
@@ -155,17 +154,15 @@ public class ReclamoMapper extends Mapper {
 		}
 	}
 	
-	private void insertTratamientoReclamo(Reclamo r) throws SQLException {
-		for(TratamientoReclamo t : r.getTratamientos()) {
-			Connection con = ConnectionManager.getInstance().connect();
-			PreparedStatement s = con.prepareStatement("INSERT INTO TratamientoReclamo (NroReclamo, Fecha, Estado, Descripcion) VALUES (?, ?, ?, ?)");
-			s.setString(1, r.getNroReclamo());
-			s.setString(2, t.getFecha());
-			s.setString(3, t.getEstado());
-			s.setString(4, t.getDesc());
-			s.execute();
-			ConnectionManager.getInstance().closeCon();
-		}
+	private void insertTratamientoReclamo(TratamientoReclamo t, String nroReclamo) throws SQLException {
+		Connection con = ConnectionManager.getInstance().connect();
+		PreparedStatement s = con.prepareStatement("INSERT INTO TratamientoReclamo (NroReclamo, Fecha, Estado, Descripcion) VALUES (?, ?, ?, ?)");
+		s.setString(1, nroReclamo);
+		s.setString(2, t.getFecha());
+		s.setString(3, t.getEstado());
+		s.setString(4, t.getDesc());
+		s.execute();
+		ConnectionManager.getInstance().closeCon();
 	}
 	
 	public void insertReclamoCompuesto(ReclamoCompuesto r) throws SQLException {
@@ -221,17 +218,26 @@ public class ReclamoMapper extends Mapper {
 	public void update(Object o) {
 		try {
 			Reclamo r = (Reclamo) o;
-			Connection con = ConnectionManager.getInstance().connect();
-			PreparedStatement s = con.prepareStatement("UPDATE Reclamo " +
-					"set EstadoActual = ? WHERE NroReclamo = ?");
-			
-			s.setString(1, r.getEstadoActual());
-			s.setString(2, r.getNroReclamo());
-			s.execute();
-			ConnectionManager.getInstance().closeCon();
+			this.updateReclamoTablasAnexas(r);
 		} catch (Exception e) {
 			System.out.println();
 		}
+	}
+
+	private void updateReclamo(Reclamo r) throws SQLException {
+		Connection con = ConnectionManager.getInstance().connect();
+		PreparedStatement s = con.prepareStatement("UPDATE Reclamo " +
+				"set EstadoActual = ? WHERE NroReclamo = ?");
+		
+		s.setString(1, r.getEstadoActual());
+		s.setString(2, r.getNroReclamo());
+		s.execute();
+		ConnectionManager.getInstance().closeCon();
+	}
+	
+	private void updateReclamoTablasAnexas(Reclamo r) throws SQLException {
+		this.updateReclamo(r);
+		this.insertTratamientoReclamo(r.getTratamientos().get(r.getTratamientos().size()-1), r.getNroReclamo());
 	}
 
 	public Reclamo buscarReclamo(String nro) {
