@@ -34,7 +34,7 @@ import uade.tp.ai.reclamo.ReclamoDistribucion;
 import uade.tp.sistema.SistemaReclamos;
 import javax.swing.JTable;
 
-public class ReclamoProductoVista extends javax.swing.JFrame{
+public class AgregarReclamoProductoVista extends javax.swing.JFrame{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -64,7 +64,7 @@ public class ReclamoProductoVista extends javax.swing.JFrame{
 	Vector<ClienteView> clientesView;
 	Vector<ProductoView> productosView;
 	
-	private static ReclamoProductoVista instancia;
+	private static AgregarReclamoProductoVista instancia;
 	private JTextField textField;
 	private JButton btnValidarCliente;
 	private JButton btnAgregarProducto;
@@ -80,10 +80,10 @@ public class ReclamoProductoVista extends javax.swing.JFrame{
 
 	private JPanel jPanel;
 	
-	public static ReclamoProductoVista getInstancia()
+	public static AgregarReclamoProductoVista getInstancia()
 	{
 		if (instancia == null)
-			instancia = new ReclamoProductoVista();
+			instancia = new AgregarReclamoProductoVista();
 		return instancia;
 	}
 
@@ -93,14 +93,14 @@ public class ReclamoProductoVista extends javax.swing.JFrame{
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				ReclamoProductoVista inst = new ReclamoProductoVista();
+				AgregarReclamoProductoVista inst = new AgregarReclamoProductoVista();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 	
-	public ReclamoProductoVista() {
+	public AgregarReclamoProductoVista() {
 		super();
 		initGUI();
 	}
@@ -306,7 +306,7 @@ public class ReclamoProductoVista extends javax.swing.JFrame{
 					public void actionPerformed(ActionEvent evt) 
 					{
 						limpiarPantalla();
-						ReclamoProductoVista.getInstancia().setVisible(false);
+						AgregarReclamoProductoVista.getInstancia().setVisible(false);
 						
 					}
 				});

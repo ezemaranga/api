@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -17,6 +18,10 @@ import javax.swing.table.DefaultTableModel;
 
 import uade.tp.ai.reclamo.ReclamoView;
 import uade.tp.sistema.SistemaReclamos;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import java.awt.FlowLayout;
+import java.awt.Dialog.ModalExclusionType;
 
 public class AtencionReclamoDistribucionVista extends javax.swing.JFrame{
 
@@ -41,10 +46,14 @@ public class AtencionReclamoDistribucionVista extends javax.swing.JFrame{
             				"Fecha",
             				"Cliente",
             				"Estado"};
-	
+	DefaultTableModel dtm= new DefaultTableModel(data, columnNames);
 	//Combos
 	
 	private static AtencionReclamoDistribucionVista instancia;
+	private JButton btnNewButton;
+	private JButton btnNewButton_1;
+	private JTextField textField;
+	private JButton btnNewButton_2;
 	
 	public static AtencionReclamoDistribucionVista getInstancia()
 	{
@@ -76,12 +85,15 @@ public class AtencionReclamoDistribucionVista extends javax.swing.JFrame{
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			this.setTitle("Atencion de Reclamos - Reclamo de Distribucion");
-			this.setPreferredSize(new java.awt.Dimension(700, 500));
+			this.setPreferredSize(new Dimension(700, 600));
 			this.setDefaultLookAndFeelDecorated(true);
 			this.setResizable(false);
 			this.setMinimumSize(new java.awt.Dimension(700, 500));
 			
 			jPanel = new JPanel();
+			FlowLayout flowLayout = (FlowLayout) jPanel.getLayout();
+			flowLayout.setVgap(50);
+			flowLayout.setHgap(50);
 			
 			{
 				jLabel1 = new JLabel();
@@ -92,7 +104,7 @@ public class AtencionReclamoDistribucionVista extends javax.swing.JFrame{
 			}
 
 			{
-			    DefaultTableModel dtm= new DefaultTableModel(data, columnNames);
+			    
 			    for(ReclamoView rec : SistemaReclamos.getInstance().getReclamosDistribucion()) {
 			    	Object[] newRow={rec.getNroReclamo(), rec.getTipo(), rec.getFecha(), rec.getCliente().getNombre(), rec.getEstado()};
 				    dtm.addRow(newRow);
@@ -117,19 +129,64 @@ public class AtencionReclamoDistribucionVista extends javax.swing.JFrame{
 				
 				jPanel.add(jScrollPane, BorderLayout.CENTER);									
 			}
+			{
+				btnNewButton_2 = new JButton("Ver Reclamo");
+				btnNewButton_2.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+					}
+				});
+				jPanel.add(btnNewButton_2);
+			}
+			{
+				textField = new JTextField();
+				jPanel.add(textField);
+				textField.setColumns(50);
+			}
+			{
+				btnNewButton = new JButton("Solucionar Reclamo");
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Vector reclamo = (Vector) dtm.getDataVector().get(jTable.getSelectedRow());
+						SistemaReclamos.getInstance().solucionarReclamo(reclamo.get(0).toString(), textField.getText());
+						reclamo.set(4, "Solucionado");		
+						dtm.fireTableDataChanged();
+					}
+				});
+				{
+					btnNewButton_1 = new JButton("Tratar Reclamo");
+					btnNewButton_1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							Vector reclamo = (Vector) dtm.getDataVector().get(jTable.getSelectedRow());
+							SistemaReclamos.getInstance().tratarReclamo(reclamo.get(0).toString(), textField.getText());
+							reclamo.set(4, "En tratamiento");		
+							dtm.fireTableDataChanged();
+						}
+					});
+					jPanel.add(btnNewButton_1);
+				}
+				jPanel.add(btnNewButton);
+			}
 					
 			{
 				atender = new JButton();
+				atender.setHorizontalAlignment(SwingConstants.LEFT);
 				jPanel.add(atender);
-				atender.setText("Guardar");
+				atender.setText("Cerrar Reclamo");
 				atender.setBounds(70, 360, 123, 22);
 				atender.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
-
+						Vector reclamo = (Vector) dtm.getDataVector().get(jTable.getSelectedRow());
+						SistemaReclamos.getInstance().cerrarReclamo(reclamo.get(0).toString(), textField.getText());
+						reclamo.set(4, "Cerrado");		
+						dtm.fireTableDataChanged();
 					}
 				});
 			}
+
+			jPanel.setOpaque(true);
+			this.setContentPane(jPanel);
 			
 			{
 				cancelar = new JButton();
@@ -144,9 +201,6 @@ public class AtencionReclamoDistribucionVista extends javax.swing.JFrame{
 					}
 				});
 			}
-
-			jPanel.setOpaque(true);
-			this.setContentPane(jPanel);
 			this.pack();
 		} catch (Exception e) {
 			e.printStackTrace();

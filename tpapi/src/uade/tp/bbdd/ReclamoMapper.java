@@ -219,11 +219,50 @@ public class ReclamoMapper extends Mapper {
 
 	@Override
 	public void update(Object o) {
-
+		try {
+			Reclamo r = (Reclamo) o;
+			Connection con = ConnectionManager.getInstance().connect();
+			PreparedStatement s = con.prepareStatement("UPDATE Reclamo " +
+					"set EstadoActual = ? WHERE NroReclamo = ?");
+			
+			s.setString(1, r.getEstadoActual());
+			s.setString(2, r.getNroReclamo());
+			s.execute();
+			ConnectionManager.getInstance().closeCon();
+		} catch (Exception e) {
+			System.out.println();
+		}
 	}
 
 	public Reclamo buscarReclamo(String nro) {
-		return null;
+		Reclamo reclamo = null;
+		try {
+			Connection con = ConnectionManager.getInstance().connect();
+			PreparedStatement s = con.prepareStatement("SELECT * FROM Reclamo WHERE NroReclamo = ?");
+			s.setString(1, nro);
+			ResultSet result = s.executeQuery();
+			while (result.next()) {
+				String nroReclamo = result.getString(1);
+				String fecha = result.getString(2);
+				String dniCliente = result.getString(3);
+				Cliente cliente = ClienteMapper.getInstancia().buscarCliente(dniCliente);
+				String descripcion = result.getString(4);
+				String estadoActual = result.getString(5);
+				String tipo = result.getString(6);
+				
+				if(tipo.equals("RECLAMO_ZONA")) {
+					reclamo = this.buildReclamoZona(nroReclamo, fecha, cliente, descripcion, estadoActual, tipo);
+				} else if (tipo.equals("RECLAMO_FACTURACION")) {
+					reclamo = this.buildReclamoFacturacion(nroReclamo, fecha, cliente, descripcion, estadoActual, tipo);
+				} else {
+					reclamo = this.buildReclamoDistribucion(nroReclamo, fecha, cliente, descripcion, estadoActual, tipo);
+				}
+			}
+			ConnectionManager.getInstance().closeCon();
+		} catch (Exception e) {
+			System.out.println();
+		}
+		return reclamo;
 	}
 
 	public List<Reclamo> getReclamosDistribucion() {

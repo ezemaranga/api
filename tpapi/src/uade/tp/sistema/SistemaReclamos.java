@@ -162,6 +162,7 @@ public class SistemaReclamos {
 			String estado = "Cerrado";
 			r.setEstadoActual(estado);
 			r.agregarTratamiento(desc, estado);
+			ReclamoMapper.getInstancia().update(r);
 		}
 
 	}
@@ -172,6 +173,7 @@ public class SistemaReclamos {
 			String estado = "En tratamiento";
 			r.setEstadoActual(estado);
 			r.agregarTratamiento(desc, estado);
+			ReclamoMapper.getInstancia().update(r);
 		}
 	}
 
@@ -181,6 +183,7 @@ public class SistemaReclamos {
 			String estado = "Solucionado";
 			r.setEstadoActual(estado);
 			r.agregarTratamiento(desc, estado);
+			ReclamoMapper.getInstancia().update(r);
 		}
 	}
 

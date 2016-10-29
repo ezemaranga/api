@@ -23,7 +23,7 @@ import uade.tp.ai.ZonaView;
 import uade.tp.bbdd.ZonaMapper;
 import uade.tp.sistema.SistemaReclamos;
 
-public class ReclamoZonaVista extends javax.swing.JFrame{
+public class AgregarReclamoZonaVista extends javax.swing.JFrame{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -51,14 +51,14 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 	Vector<ClienteView> clientesView;
 	List<ZonaView> zonasView;
 	
-	private static ReclamoZonaVista instancia;
+	private static AgregarReclamoZonaVista instancia;
 	private JTextField textField;
 	private JLabel nombreCliente;
 	
-	public static ReclamoZonaVista getInstancia()
+	public static AgregarReclamoZonaVista getInstancia()
 	{
 		if (instancia == null)
-			instancia = new ReclamoZonaVista();
+			instancia = new AgregarReclamoZonaVista();
 		return instancia;
 	}
 
@@ -68,14 +68,14 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				ReclamoZonaVista inst = new ReclamoZonaVista();
+				AgregarReclamoZonaVista inst = new AgregarReclamoZonaVista();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 	
-	public ReclamoZonaVista() {
+	public AgregarReclamoZonaVista() {
 		super();
 		initGUI();
 	}

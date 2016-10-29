@@ -5,12 +5,15 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
@@ -40,6 +43,14 @@ public class AtencionReclamoFacturacionVista extends javax.swing.JFrame{
             				"Fecha",
             				"Cliente",
             				"Estado"};
+	DefaultTableModel dtm= new DefaultTableModel(data, columnNames);
+	private JButton btnNewButton_2;
+
+	private JTextField textField;
+
+	private JButton btnNewButton;
+
+	private JButton btnNewButton_1;
 	
 	//Combos
 	
@@ -91,7 +102,7 @@ public class AtencionReclamoFacturacionVista extends javax.swing.JFrame{
 			}
 
 			{
-			    DefaultTableModel dtm= new DefaultTableModel(data, columnNames);
+			    
 			    for(ReclamoView rec : SistemaReclamos.getInstance().getReclamosFacturacion()) {
 			    	Object[] newRow={rec.getNroReclamo(), rec.getFecha(), rec.getCliente().getNombre(), rec.getEstado()};
 				    dtm.addRow(newRow);
@@ -118,18 +129,61 @@ public class AtencionReclamoFacturacionVista extends javax.swing.JFrame{
 			}
 					
 			{
+				btnNewButton_2 = new JButton("Ver Reclamo");
+				btnNewButton_2.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+					}
+				});
+				jPanel.add(btnNewButton_2);
+			}
+			{
+				textField = new JTextField();
+				jPanel.add(textField);
+				textField.setColumns(50);
+			}
+			{
+				btnNewButton = new JButton("Solucionar Reclamo");
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Vector reclamo = (Vector) dtm.getDataVector().get(jTable.getSelectedRow());
+						SistemaReclamos.getInstance().solucionarReclamo(reclamo.get(0).toString(), textField.getText());
+						reclamo.set(3, "Solucionado");		
+						dtm.fireTableDataChanged();
+					}
+				});
+				{
+					btnNewButton_1 = new JButton("Tratar Reclamo");
+					btnNewButton_1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							Vector reclamo = (Vector) dtm.getDataVector().get(jTable.getSelectedRow());
+							SistemaReclamos.getInstance().tratarReclamo(reclamo.get(0).toString(), textField.getText());
+							reclamo.set(3, "En tratamiento");		
+							dtm.fireTableDataChanged();
+						}
+					});
+					jPanel.add(btnNewButton_1);
+				}
+				jPanel.add(btnNewButton);
+			}
+					
+			{
 				atender = new JButton();
+				atender.setHorizontalAlignment(SwingConstants.LEFT);
 				jPanel.add(atender);
-				atender.setText("Guardar");
+				atender.setText("Cerrar Reclamo");
 				atender.setBounds(70, 360, 123, 22);
 				atender.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) 
 					{
-
+						Vector reclamo = (Vector) dtm.getDataVector().get(jTable.getSelectedRow());
+						SistemaReclamos.getInstance().cerrarReclamo(reclamo.get(0).toString(), textField.getText());
+						reclamo.set(3, "Cerrado");		
+						dtm.fireTableDataChanged();
 					}
 				});
 			}
-			
+
 			{
 				cancelar = new JButton();
 				jPanel.add(cancelar);
@@ -139,7 +193,7 @@ public class AtencionReclamoFacturacionVista extends javax.swing.JFrame{
 					public void actionPerformed(ActionEvent evt) 
 					{
 						limpiarPantalla();
-						AtencionReclamoFacturacionVista.getInstancia().setVisible(false);
+						AtencionReclamoDistribucionVista.getInstancia().setVisible(false);
 					}
 				});
 			}

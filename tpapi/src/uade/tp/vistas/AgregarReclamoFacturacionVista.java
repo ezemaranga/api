@@ -29,7 +29,7 @@ import uade.tp.ai.reclamo.ReclamoDistribucion;
 import uade.tp.ai.reclamo.ReclamoFacturacion;
 import uade.tp.sistema.SistemaReclamos;
 
-public class ReclamoFacturacionVista extends javax.swing.JFrame{
+public class AgregarReclamoFacturacionVista extends javax.swing.JFrame{
 	private static final long serialVersionUID = 1L;
 
 	private Font font = new Font("Courier", Font.BOLD, 16);
@@ -55,7 +55,7 @@ public class ReclamoFacturacionVista extends javax.swing.JFrame{
 	Vector<ClienteView> clientesView;
 	Vector<ProductoView> productosView;
 
-	private static ReclamoFacturacionVista instancia;
+	private static AgregarReclamoFacturacionVista instancia;
 	private JTextField textField;
 	private JButton btnValidarCliente;
 	private JButton btnAgregarProducto;
@@ -67,9 +67,9 @@ public class ReclamoFacturacionVista extends javax.swing.JFrame{
 
 	private JPanel jPanel;
 
-	public static ReclamoFacturacionVista getInstancia() {
+	public static AgregarReclamoFacturacionVista getInstancia() {
 		if (instancia == null)
-			instancia = new ReclamoFacturacionVista();
+			instancia = new AgregarReclamoFacturacionVista();
 		return instancia;
 	}
 
@@ -79,14 +79,14 @@ public class ReclamoFacturacionVista extends javax.swing.JFrame{
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				ReclamoFacturacionVista inst = new ReclamoFacturacionVista();
+				AgregarReclamoFacturacionVista inst = new AgregarReclamoFacturacionVista();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 
-	public ReclamoFacturacionVista() {
+	public AgregarReclamoFacturacionVista() {
 		super();
 		initGUI();
 	}
@@ -279,7 +279,7 @@ public class ReclamoFacturacionVista extends javax.swing.JFrame{
 				cancelar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						limpiarPantalla();
-						ReclamoFacturacionVista.getInstancia().setVisible(false);
+						AgregarReclamoFacturacionVista.getInstancia().setVisible(false);
 
 					}
 				});

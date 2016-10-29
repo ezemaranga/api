@@ -1,10 +1,9 @@
 package uade.tp.vistas;
 
 import java.awt.Dimension;
-import java.awt.Font; 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Timestamp;
 import java.util.Vector;
 
 import javax.swing.ComboBoxModel;
@@ -12,13 +11,12 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
@@ -26,17 +24,10 @@ import javax.swing.table.DefaultTableModel;
 import uade.tp.ai.ClienteView;
 import uade.tp.ai.ProductoView;
 import uade.tp.ai.reclamo.ItemReclamo;
-import uade.tp.ai.reclamo.ReclamoCantidad;
 import uade.tp.ai.reclamo.ReclamoDistribucion;
 import uade.tp.sistema.SistemaReclamos;
 
-//import Controlador.Sistema;
-//import Negocio.DistribuidoraView;
-//import Negocio.TipoDocView;
-//import Vista.AltaAfiliado;
-
-public class ReclamoCantidadVista extends javax.swing.JFrame{
-
+public class AgregarReclamoFaltantesVista extends javax.swing.JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private Font font = new Font("Courier", Font.BOLD, 16);
@@ -65,7 +56,7 @@ public class ReclamoCantidadVista extends javax.swing.JFrame{
 	Vector<ClienteView> clientesView;
 	Vector<ProductoView> productosView;
 
-	private static ReclamoCantidadVista instancia;
+	private static AgregarReclamoFaltantesVista instancia;
 	private JTextField textField;
 	private JButton btnValidarCliente;
 	private JButton btnAgregarProducto;
@@ -77,9 +68,9 @@ public class ReclamoCantidadVista extends javax.swing.JFrame{
 
 	private JPanel jPanel;
 
-	public static ReclamoCantidadVista getInstancia() {
+	public static AgregarReclamoFaltantesVista getInstancia() {
 		if (instancia == null)
-			instancia = new ReclamoCantidadVista();
+			instancia = new AgregarReclamoFaltantesVista();
 		return instancia;
 	}
 
@@ -89,14 +80,14 @@ public class ReclamoCantidadVista extends javax.swing.JFrame{
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				ReclamoCantidadVista inst = new ReclamoCantidadVista();
+				AgregarReclamoFaltantesVista inst = new AgregarReclamoFaltantesVista();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 
-	public ReclamoCantidadVista() {
+	public AgregarReclamoFaltantesVista() {
 		super();
 		initGUI();
 	}
@@ -112,7 +103,7 @@ public class ReclamoCantidadVista extends javax.swing.JFrame{
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-			this.setTitle("Alta de Reclamos - Reclamo de Cantidad");
+			this.setTitle("Alta de Reclamos - Reclamo de Faltantes");
 			this.setPreferredSize(new java.awt.Dimension(600, 500));
 			this.setDefaultLookAndFeelDecorated(true);
 			this.setResizable(false);
@@ -121,7 +112,7 @@ public class ReclamoCantidadVista extends javax.swing.JFrame{
 			{
 				jLabel1 = new JLabel();
 				getContentPane().add(jLabel1);
-				jLabel1.setText("Reclamo Cantidad");
+				jLabel1.setText("Reclamo Faltantes");
 				jLabel1.setFont(font);
 				jLabel1.setBounds(202, 21, 200, 22);
 			}
@@ -302,7 +293,7 @@ public class ReclamoCantidadVista extends javax.swing.JFrame{
 				cancelar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						limpiarPantalla();
-						ReclamoCantidadVista.getInstancia().setVisible(false);
+						AgregarReclamoFaltantesVista.getInstancia().setVisible(false);
 
 					}
 				});
@@ -333,4 +324,5 @@ public class ReclamoCantidadVista extends javax.swing.JFrame{
 
 		}
 	}
+
 }

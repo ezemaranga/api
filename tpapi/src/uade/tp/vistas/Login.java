@@ -12,6 +12,7 @@ import javax.swing.WindowConstants;
 
 import uade.tp.ai.UsuarioView;
 import uade.tp.sistema.SistemaReclamos;
+import javax.swing.JPasswordField;
 
 @SuppressWarnings("serial")
 public class Login extends javax.swing.JFrame{
@@ -20,7 +21,7 @@ public class Login extends javax.swing.JFrame{
 	private JLabel passwordLbl;
 	
 	private JTextField usuarioTxt;
-	private JTextField passwordTxt;
+	private JPasswordField passwordTxt;
 
 	private JButton aceptar;
 	
@@ -71,7 +72,7 @@ public class Login extends javax.swing.JFrame{
 				passwordLbl.setBounds(12, 73, 80, 16);
 			}
 			{
-				passwordTxt = new JTextField();
+				passwordTxt = new JPasswordField();
 				getContentPane().add(passwordTxt);
 				passwordTxt.setBounds(142, 71, 121, 21);
 			}
