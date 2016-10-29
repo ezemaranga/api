@@ -172,8 +172,8 @@ public class ReclamoZonaVista extends javax.swing.JFrame{
 					public void actionPerformed(ActionEvent evt) 
 					{
 						SistemaReclamos.getInstance().ingresarDatosZona(((ZonaView)zonasCombo.getSelectedItem()).getCodigo());
-						SistemaReclamos.getInstance().agregarReclamo(descripcion.getText());
-						JOptionPane.showMessageDialog(null, "Reclamo Guardado", "Exito!", JOptionPane.PLAIN_MESSAGE);
+						String nroReclamo = SistemaReclamos.getInstance().agregarReclamo(descripcion.getText());
+						JOptionPane.showMessageDialog(null, "Reclamo Guardado.\n Su numero de reclamo es : " + nroReclamo, "Exito!", JOptionPane.PLAIN_MESSAGE);
 						limpiarPantalla();
 						dispose();
 

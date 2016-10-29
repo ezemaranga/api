@@ -145,12 +145,14 @@ public class SistemaReclamos {
 	}
 	
 	// guardar reclamo simple
-	public void agregarReclamo(String desc) {
+	public String agregarReclamo(String desc) {
 		recActual.setDescripcion(desc);
 		recActual.agregarATablero();
 		recActual.guardarReclamo();
 		reclamos.add(recActual);
+		String nroReclamo = recActual.getNroReclamo();
 		recActual = null;
+		return nroReclamo;
 	}
 
 	// ============= tratamiento de reclamos =================

@@ -193,8 +193,8 @@ public class ReclamoFacturacionVista extends javax.swing.JFrame{
 				aceptar.setBounds(205, 435, 123, 22);
 				aceptar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
-						SistemaReclamos.getInstance().agregarReclamo(descripcion.getText());
-						JOptionPane.showMessageDialog(null, "Reclamo Guardado", "Exito!", JOptionPane.PLAIN_MESSAGE);
+						String nroReclamo = SistemaReclamos.getInstance().agregarReclamo(descripcion.getText());
+						JOptionPane.showMessageDialog(null, "Reclamo Guardado.\n Su numero de reclamo es : " + nroReclamo, "Exito!", JOptionPane.PLAIN_MESSAGE);
 						limpiarPantalla();
 						dispose();
 					}
