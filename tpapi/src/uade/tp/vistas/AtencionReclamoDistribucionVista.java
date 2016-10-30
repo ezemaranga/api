@@ -133,7 +133,9 @@ public class AtencionReclamoDistribucionVista extends javax.swing.JFrame{
 				btnNewButton_2 = new JButton("Ver Reclamo");
 				btnNewButton_2.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						Vector reclamo = (Vector) dtm.getDataVector().get(jTable.getSelectedRow());
+						ReclamoDistribucionVista.getInstancia(reclamo.get(0).toString()).setLocationRelativeTo(null);
+						ReclamoDistribucionVista.getInstancia(reclamo.get(0).toString()).setVisible(true);
 					}
 				});
 				jPanel.add(btnNewButton_2);

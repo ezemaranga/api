@@ -1,6 +1,9 @@
 package uade.tp.ai.reclamo;
 
+import java.util.List;
+
 import uade.tp.ai.Cliente;
+import uade.tp.ai.Factura;
 
 public class ReclamoView {
 
@@ -11,6 +14,9 @@ public class ReclamoView {
 	private String estado;
 	private String tipo;
 	private String zona;
+	private List<TratamientoReclamo> tratamientos;
+	private List<ItemReclamo> items;
+	private List<Factura> facturas;
 
 	public static ReclamoView createReclamoView(Reclamo r) {
 		ReclamoView rv = new ReclamoView();
@@ -20,6 +26,14 @@ public class ReclamoView {
 		rv.setDescripcion(r.getDescripcion());
 		rv.setEstado(r.getEstadoActual());
 		rv.setTipo(r.getTipo());
+		rv.setTratamientos(r.getTratamientos());
+		if(rv.getTipo() == "Facturacion") {
+			rv.setFacturas(((ReclamoFacturacion) r).getFacturas());
+		} else if(rv.getTipo() == "Producto"  || rv.getTipo() == "Faltante"  ||rv.getTipo() == "Cantidad") {
+			rv.setItems(((ReclamoDistribucion) r).getItems());
+		} else {
+			rv.setZona(((ReclamoZona) r).getZona().getNombre());
+		}
 		return rv;
 	}
 
@@ -90,6 +104,30 @@ public class ReclamoView {
 
 	public void setZona(String zona) {
 		this.zona = zona;
+	}
+
+	public List<TratamientoReclamo> getTratamientos() {
+		return tratamientos;
+	}
+
+	public void setTratamientos(List<TratamientoReclamo> tratamientos) {
+		this.tratamientos = tratamientos;
+	}
+
+	public List<ItemReclamo> getItems() {
+		return items;
+	}
+
+	public void setItems(List<ItemReclamo> items) {
+		this.items = items;
+	}
+
+	public List<Factura> getFacturas() {
+		return facturas;
+	}
+
+	public void setFacturas(List<Factura> facturas) {
+		this.facturas = facturas;
 	}
 
 }

@@ -324,4 +324,8 @@ public class SistemaReclamos {
 		return recActual;
 	}
 
+	public ReclamoView getReclamoView(String reclamoID) {
+		return this.buscarReclamo(reclamoID).getReclamoView();
+	}
+
 }
