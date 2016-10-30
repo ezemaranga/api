@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
 import uade.tp.ai.Cliente;
 import uade.tp.ai.Factura;
