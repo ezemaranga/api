@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uade.tp.ai.reclamo.Reclamo;
-import uade.tp.ai.reclamo.ReclamoDistribucion;
 import uade.tp.ai.reclamo.ReclamoZona;
 import uade.tp.bbdd.ReclamoMapper;
 
