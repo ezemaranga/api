@@ -7,12 +7,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import uade.tp.ai.UsuarioView;
 import uade.tp.sistema.SistemaReclamos;
-import javax.swing.JPasswordField;
 
 @SuppressWarnings("serial")
 public class Login extends javax.swing.JFrame{
@@ -95,14 +95,19 @@ public class Login extends javax.swing.JFrame{
 							return;
 						} 
 						
-						if(passwordTxt.getText().equals("")) {
+						if(passwordTxt.getPassword().equals("")) {
 							JOptionPane.showMessageDialog(null, "Complete el campo Contraseña", "Error Login", JOptionPane.ERROR_MESSAGE);
 							return;
 						}
 
 						//usuario = new UsuarioView("Responsable Facturacion", "Apellido C", "Apodo C", "PASS C", "RESP_FACTURACION");
+						//usuario = new UsuarioView("Call Center", "Apellido A", "Apodo A", "PASS A", "CALL_CENTER");
+						//usuario = new UsuarioView("Responsable Zona Entrega", "Apellido B", "Apodo B", "PASS B", "RESP_ZONA_ENTREGA");
+						//usuario = new UsuarioView("Responsable Distribucion", "Apellido D", "Apodo D", "PASS D", "RESP_DISTRIBUCION");
+						//usuario = new UsuarioView("Administrador", "Apellido C", "Apodo C", "PASS C", "ADMINISTRADOR");
+						//usuario = new UsuarioView("Consulta", "Apellido E", "Apodo E", "PASS E", "CONSULTA");
 						
-						usuario = SistemaReclamos.getInstance().buscarUsuario((String) usuarioTxt.getText(), (String) passwordTxt.getText());
+						usuario = SistemaReclamos.getInstance().buscarUsuario(usuarioTxt.getText(), String.valueOf(passwordTxt.getPassword()));
 						
 						if (usuario == null) 
 						{

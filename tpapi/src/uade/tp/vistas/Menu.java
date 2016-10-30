@@ -41,11 +41,6 @@ public class Menu extends javax.swing.JFrame {
 
 	private UsuarioView usuarioView;
 	
-//	usuarioView = new UsuarioView("Call Center", "Apellido A", "Apodo A", "PASS A", "CALL_CENTER");
-//	usuarioView = new UsuarioView("Responsable Zona Entrega", "Apellido B", "Apodo B", "PASS B", "RESP_ZONA_ENTREGA");
-//	usuarioView = new UsuarioView("Responsable Facturacion", "Apellido C", "Apodo C", "PASS C", "RESP_FACTURACION");
-//	usuarioView = new UsuarioView("Responsable Distribucion", "Apellido D", "Apodo D", "PASS D", "RESP_DISTRIBUCION");
-	
 	
 	/**
 	* Auto-generated main method to display this JFrame
@@ -194,6 +189,30 @@ public class Menu extends javax.swing.JFrame {
 							{
 								AtencionReclamoDistribucionVista.getInstancia().setLocationRelativeTo(null);
 								AtencionReclamoDistribucionVista.getInstancia().setVisible(true);
+							}
+						});
+						}
+						{
+							jMenuAtencionReclamoCantidad = new JMenuItem();
+							jMenu2.add(jMenuAtencionReclamoCantidad);
+							jMenuAtencionReclamoCantidad.setText("Atencion Reclamos por Cantidad");
+							jMenuAtencionReclamoCantidad.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) 
+							{
+								AtencionReclamoCantidadVista.getInstancia().setLocationRelativeTo(null);
+								AtencionReclamoCantidadVista.getInstancia().setVisible(true);
+							}
+						});
+						}
+						{
+							jMenuAtencionReclamoFaltante = new JMenuItem();
+							jMenu2.add(jMenuAtencionReclamoFaltante);
+							jMenuAtencionReclamoFaltante.setText("Atencion Reclamos por Faltante");
+							jMenuAtencionReclamoFaltante.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) 
+							{
+								AtencionReclamoFaltanteVista.getInstancia().setLocationRelativeTo(null);
+								AtencionReclamoFaltanteVista.getInstancia().setVisible(true);
 							}
 						});
 						}
