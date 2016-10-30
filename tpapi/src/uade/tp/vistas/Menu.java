@@ -33,6 +33,11 @@ public class Menu extends javax.swing.JFrame {
 	private JMenuItem jMenuAtencionReclamoFaltante;
 	private JMenuItem jMenuAtencionReclamoZona;
 	private JMenuItem jMenuAtencionReclamoFacturacion;
+	
+	private JMenuItem jMenuReporteRnkCliMayorRec;
+	private JMenuItem jMenuReporteCantRecPorMes;
+	private JMenuItem jMenuReporteRnkTratRec;
+	private JMenuItem jMenuReporteTiempoPromRec;
 
 	private UsuarioView usuarioView;
 	
@@ -206,6 +211,59 @@ public class Menu extends javax.swing.JFrame {
 							{
 								AtencionReclamoFacturacionVista.getInstancia().setLocationRelativeTo(null);
 								AtencionReclamoFacturacionVista.getInstancia().setVisible(true);
+							}
+						});
+						}
+					}
+					if(usuarioView.getRol().equals("CONSULTA")){
+						jMenu2 = new JMenu();
+						jMenuBar1.add(jMenu2);
+						jMenu2.setText("Consulta de Reportes");
+						{
+							jMenuReporteRnkCliMayorRec = new JMenuItem();
+							jMenu2.add(jMenuReporteRnkCliMayorRec);
+							jMenuReporteRnkCliMayorRec.setText("Ranking Clientes con mayor cantidad de Reclamos");
+							jMenuReporteRnkCliMayorRec.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) 
+							{
+								ReporteRnkCliMayorRec.getInstancia().setLocationRelativeTo(null);
+								ReporteRnkCliMayorRec.getInstancia().setVisible(true);
+							}
+						});
+						}
+						{
+							jMenuReporteCantRecPorMes = new JMenuItem();
+							jMenu2.add(jMenuReporteCantRecPorMes);
+							jMenuReporteCantRecPorMes.setText("Cantidad de Reclamos tratados por Mes");
+							jMenuReporteCantRecPorMes.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) 
+							{
+								ReporteCantRecPorMes.getInstancia().setLocationRelativeTo(null);
+								ReporteCantRecPorMes.getInstancia().setVisible(true);
+							}
+						});
+						}
+						{
+							jMenuReporteRnkTratRec = new JMenuItem();
+							jMenu2.add(jMenuReporteRnkTratRec);
+							jMenuReporteRnkTratRec.setText("Ranking de Tratamientos de Reclamos");
+							jMenuReporteRnkTratRec.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) 
+							{
+								ReporteRnkTratRec.getInstancia().setLocationRelativeTo(null);
+								ReporteRnkTratRec.getInstancia().setVisible(true);
+							}
+						});
+						}
+						{
+							jMenuReporteTiempoPromRec = new JMenuItem();
+							jMenu2.add(jMenuReporteTiempoPromRec);
+							jMenuReporteTiempoPromRec.setText("Tiempo promedio de respuesta de Reclamos por Responsable");
+							jMenuReporteTiempoPromRec.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) 
+							{
+								ReporteTiempoPromRec.getInstancia().setLocationRelativeTo(null);
+								ReporteTiempoPromRec.getInstancia().setVisible(true);
 							}
 						});
 						}
