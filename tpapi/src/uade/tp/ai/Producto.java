@@ -1,11 +1,8 @@
 package uade.tp.ai;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
 
 import uade.tp.bbdd.ProductoMapper;
-import uade.tp.bbdd.ZonaMapper;
 
 public class Producto {
 	
@@ -54,9 +51,7 @@ public class Producto {
 	}
 	
 	public ProductoView getView() {
-		ProductoView pv = new ProductoView(titulo, codPublicacion, descripcion, precio);
-		
-		return pv;
+		return new ProductoView(titulo, codPublicacion, descripcion, precio);
 	}
 	
 	public void guardar() {

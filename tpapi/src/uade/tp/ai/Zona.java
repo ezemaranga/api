@@ -33,9 +33,7 @@ public class Zona {
 	}
 	
 	public ZonaView getView() {
-		ZonaView zv = new ZonaView(codigo, nombre);
-		
-		return zv;
+		return new ZonaView(codigo, nombre);
 	}
 	
 	public void guardar() {

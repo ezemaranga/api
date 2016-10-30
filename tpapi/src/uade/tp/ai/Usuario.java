@@ -57,9 +57,7 @@ public class Usuario {
 	}
 	
 	public UsuarioView getView() {
-		UsuarioView uv = new UsuarioView(nombre, apellido, apodo, password, rol);
-		
-		return uv;
+		return new UsuarioView(nombre, apellido, apodo, password, rol);
 	}
 
 }

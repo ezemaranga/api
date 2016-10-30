@@ -17,18 +17,6 @@ public class Cliente {
 		this.email = email;
 		this.dni = dni;
 	}
-	
-	public void guardar() {
-		ClienteMapper.getInstancia().insert(this);
-	}
-	
-	public void borrar() {
-		ClienteMapper.getInstancia().delete(this);
-	}
-	
-	public static Cliente buscar(String dniCliente) {
-		return ClienteMapper.getInstancia().buscarCliente(dniCliente);
-	}
 
 	public String getNombre() {
 		return nombre;
@@ -71,9 +59,19 @@ public class Cliente {
 	}
 
 	public ClienteView getView() {
-		ClienteView cv = new ClienteView(nombre, domicilio, telefono, email, dni);
-		
-		return cv;
+		return new ClienteView(nombre, domicilio, telefono, email, dni);
+	}
+	
+	public void guardar() {
+		ClienteMapper.getInstancia().insert(this);
+	}
+	
+	public void borrar() {
+		ClienteMapper.getInstancia().delete(this);
+	}
+	
+	public static Cliente buscar(String dniCliente) {
+		return ClienteMapper.getInstancia().buscarCliente(dniCliente);
 	}
 	
 }
