@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:8889
--- Tiempo de generación: 19-10-2016 a las 01:54:38
+-- Tiempo de generación: 03-11-2016 a las 03:03:09
 -- Versión del servidor: 5.6.28
 -- Versión de PHP: 7.0.10
 
@@ -120,21 +120,30 @@ CREATE TABLE `Reclamo` (
 --
 
 INSERT INTO `Reclamo` (`NroReclamo`, `Fecha`, `DniCliente`, `Descripcion`, `EstadoActual`, `Tipo`) VALUES
-('67c73ab9', 'Fri Oct 14 02:22:22 ART 2016', 'dni', 'weeeeee', 'Ingresado', 'RECLAMO_PRODUCTO'),
-('6346ce2e', 'Fri Oct 14 02:24:07 ART 2016', '123', 'uuuuuu', 'Ingresado', 'RECLAMO_PRODUCTO'),
+('67c73ab9', 'Fri Oct 14 02:22:22 ART 2016', 'dni', 'weeeeee', 'Cerrado', 'RECLAMO_PRODUCTO'),
+('6346ce2e', 'Fri Oct 14 02:24:07 ART 2016', '123', 'uuuuuu', 'Solucionado', 'RECLAMO_PRODUCTO'),
 ('c6fcf95e', 'Fri Oct 14 02:24:13 ART 2016', 'dni', 'desc reclamo producto', 'En proceso', 'RECLAMO_PRODUCTO'),
-('53ba4d58', 'Fri Oct 14 02:26:20 ART 2016', 'dni', 'desc reclamo producto', 'En proceso', 'RECLAMO_PRODUCTO'),
+('53ba4d58', 'Fri Oct 14 02:26:20 ART 2016', 'dni', 'desc reclamo producto', 'Cerrado', 'RECLAMO_PRODUCTO'),
 ('45cbe89c', 'Fri Oct 14 02:29:01 ART 2016', 'dni', 'uuuuuu', 'Ingresado', 'RECLAMO_PRODUCTO'),
-('74e1bd6d', 'Fri Oct 14 03:05:24 ART 2016', 'dni de coco', 'desc reclamo zona', 'Iniciado', 'RECLAMO_ZONA'),
+('74e1bd6d', 'Fri Oct 14 03:05:24 ART 2016', 'dni de coco', 'desc reclamo zona', 'En tratamiento', 'RECLAMO_ZONA'),
 ('13cc03cd', 'Fri Oct 14 03:40:07 ART 2016', 'dni', 'desc reclamo faltante', 'En proceso', 'RECLAMO_FALTANTE'),
-('91657e5c', 'Fri Oct 14 03:56:29 ART 2016', 'dni', 'desc reclamo facturacion', 'En espera', 'RECLAMO_FACTURACION'),
+('91657e5c', 'Fri Oct 14 03:56:29 ART 2016', 'dni', 'desc reclamo facturacion', 'Cerrado', 'RECLAMO_FACTURACION'),
 ('4d5b321c', 'Fri Oct 14 03:58:06 ART 2016', '123', 'deeeeeetttttt', 'Ingresado', 'RECLAMO_ZONA'),
 ('1EoFW9Js', 'Tue Oct 18 18:40:36 ART 2016', '123', 'es la descripcion', 'Ingresado', 'RECLAMO_PRODUCTO'),
 ('5yqqqCzc', 'Tue Oct 18 19:08:52 ART 2016', '123', '', 'Ingresado', 'RECLAMO_PRODUCTO'),
 ('tDCN0OPk', 'Tue Oct 18 19:51:52 ART 2016', '123', 'descrip', 'Ingresado', 'RECLAMO_PRODUCTO'),
 ('nGVFhKvJ', 'Tue Oct 18 19:57:40 ART 2016', 'dni', 'wwwww', 'Ingresado', 'RECLAMO_FALTANTE'),
 ('IZBSbBmi', 'Tue Oct 18 20:03:20 ART 2016', 'dni de coco', 'ggggg', 'Ingresado', 'RECLAMO_CANTIDAD'),
-('6UL3XrQy', 'Tue Oct 18 20:49:36 ART 2016', '123', 'eeedddd', 'Ingresado', 'RECLAMO_FACTURACION');
+('6UL3XrQy', 'Tue Oct 18 20:49:36 ART 2016', '123', 'eeedddd', 'Ingresado', 'RECLAMO_FACTURACION'),
+('bxxVZmTs', 'Sat Oct 29 18:36:08 ART 2016', '123', 'eeeeee', 'Cerrado', 'RECLAMO_CANTIDAD'),
+('uMkB8Yn0', 'Sat Oct 29 18:46:51 ART 2016', '123', '22222', 'Cerrado', 'RECLAMO_PRODUCTO'),
+('DJLCdWq4', 'Sat Oct 29 18:49:55 ART 2016', '123', 'wwqeqwe', 'Cerrado', 'RECLAMO_CANTIDAD'),
+('IDO7ueIu', 'Sat Oct 29 18:52:52 ART 2016', '123', 'eeeee', 'Ingresado', 'RECLAMO_FACTURACION'),
+('53ba4d58', 'Fri Oct 14 02:26:20 ART 2016', 'dni', 'desc reclamo producto', 'Cerrado', 'RECLAMO_PRODUCTO'),
+('6346ce2e', 'Fri Oct 14 02:24:07 ART 2016', '123', 'uuuuuu', 'Solucionado', 'RECLAMO_PRODUCTO'),
+('eGBbxoZ7', 'Sat Oct 29 20:17:04 ART 2016', '123', 'retet', 'Ingresado', 'RECLAMO_ZONA'),
+('LrlgIx6Z', 'Sat Oct 29 20:55:46 ART 2016', '123', 'qweqwe', 'Solucionado', 'RECLAMO_PRODUCTO'),
+('bm1VmVJf', 'Wed Nov 02 22:51:55 ART 2016', '123', 'dsfsadf sadfsadf sadfsadf sadf', 'Ingresado', 'RECLAMO_PRODUCTO');
 
 -- --------------------------------------------------------
 
@@ -181,7 +190,17 @@ INSERT INTO `ReclamoDistribucion` (`NroReclamo`, `CodigoProducto`, `Cantidad`) V
 ('nGVFhKvJ', 'ART80', 4),
 ('IZBSbBmi', 'ART90', 3),
 ('IZBSbBmi', 'ART80', 34),
-('IZBSbBmi', 'ISBN10', 3422);
+('IZBSbBmi', 'ISBN10', 3422),
+('bxxVZmTs', 'ISBN20', 11),
+('bxxVZmTs', 'ART80', 111),
+('bxxVZmTs', 'ART80', 111),
+('bxxVZmTs', 'ART80', 111),
+('uMkB8Yn0', 'ART90', 11111),
+('DJLCdWq4', 'ART80', 2),
+('DJLCdWq4', 'ISBN20', 3),
+('LrlgIx6Z', 'ART90', 3),
+('LrlgIx6Z', 'ART80', 3),
+('bm1VmVJf', 'ISBN10', 33);
 
 -- --------------------------------------------------------
 
@@ -202,7 +221,8 @@ INSERT INTO `ReclamoFacturacion` (`NroReclamo`, `NumeroFactura`) VALUES
 ('91657e5c', '1111'),
 ('91657e5c', '3333'),
 ('6UL3XrQy', '1111'),
-('6UL3XrQy', '3333');
+('6UL3XrQy', '3333'),
+('IDO7ueIu', '1111');
 
 -- --------------------------------------------------------
 
@@ -221,7 +241,8 @@ CREATE TABLE `ReclamoZona` (
 
 INSERT INTO `ReclamoZona` (`NroReclamo`, `CodigoZona`) VALUES
 ('74e1bd6d', 'A'),
-('4d5b321c', 'B');
+('4d5b321c', 'B'),
+('eGBbxoZ7', 'C');
 
 -- --------------------------------------------------------
 
@@ -235,6 +256,17 @@ CREATE TABLE `TratamientoReclamo` (
   `Estado` varchar(255) DEFAULT NULL,
   `Descripcion` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `TratamientoReclamo`
+--
+
+INSERT INTO `TratamientoReclamo` (`NroReclamo`, `Fecha`, `Estado`, `Descripcion`) VALUES
+('53ba4d58', 'Sat Oct 29 19:31:48 ART 2016', 'Cerrado', 'deeeeeee'),
+('6346ce2e', 'Sat Oct 29 19:36:41 ART 2016', 'Cerrado', '4444444'),
+('53ba4d58', 'Sat Oct 29 20:58:03 ART 2016', 'En tratamiento', ''),
+('53ba4d58', 'Sat Oct 29 20:58:20 ART 2016', 'Solucionado', 'dfgdfgdfgfdg'),
+('53ba4d58', 'Sat Oct 29 20:59:52 ART 2016', 'Cerrado', 'tttt');
 
 -- --------------------------------------------------------
 
@@ -260,7 +292,8 @@ INSERT INTO `Usuario` (`Apodo`, `Nombre`, `Apellido`, `Password`, `Rol`) VALUES
 ('tute', 'Matute', 'Maton', '111', 'RESP_ZONA_ENTREGA'),
 ('pipo', 'Pipo', 'Perez', '111', 'RESP_ZONA_ENTREGA'),
 ('pipo', 'Pipo', 'Perez', '111', 'RESP_ZONA_ENTREGA'),
-('papu', 'Papu', 'Gomez', '1', 'RESP_FACTURACION');
+('papu', 'Papu', 'Gomez', '1', 'RESP_FACTURACION'),
+('pepo', 'pepo', 'gede', '111', 'CONSULTA');
 
 -- --------------------------------------------------------
 
