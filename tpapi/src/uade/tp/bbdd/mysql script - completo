@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:8889
--- Tiempo de generación: 03-11-2016 a las 03:46:17
+-- Tiempo de generación: 03-11-2016 a las 04:00:15
 -- Versión del servidor: 5.6.28
 -- Versión de PHP: 7.0.10
 
@@ -127,7 +127,7 @@ INSERT INTO `Reclamo` (`NroReclamo`, `Fecha`, `DniCliente`, `Descripcion`, `Esta
 ('45cbe89c', 'Fri Oct 14 02:29:01 ART 2016', 'dni', 'uuuuuu', 'Ingresado', 'RECLAMO_PRODUCTO'),
 ('74e1bd6d', 'Fri Oct 14 03:05:24 ART 2016', 'dni de coco', 'desc reclamo zona', 'En tratamiento', 'RECLAMO_ZONA'),
 ('13cc03cd', 'Fri Oct 14 03:40:07 ART 2016', 'dni', 'desc reclamo faltante', 'En proceso', 'RECLAMO_FALTANTE'),
-('91657e5c', 'Fri Oct 14 03:56:29 ART 2016', 'dni', 'desc reclamo facturacion', 'Cerrado', 'RECLAMO_FACTURACION'),
+('91657e5c', 'Fri Oct 14 03:56:29 ART 2016', 'dni', 'desc reclamo facturacion', 'En tratamiento', 'RECLAMO_FACTURACION'),
 ('4d5b321c', 'Fri Oct 14 03:58:06 ART 2016', '123', 'deeeeeetttttt', 'Ingresado', 'RECLAMO_ZONA'),
 ('1EoFW9Js', 'Tue Oct 18 18:40:36 ART 2016', '123', 'es la descripcion', 'Ingresado', 'RECLAMO_PRODUCTO'),
 ('5yqqqCzc', 'Tue Oct 18 19:08:52 ART 2016', '123', '', 'Cerrado', 'RECLAMO_PRODUCTO'),
@@ -272,7 +272,14 @@ INSERT INTO `TratamientoReclamo` (`NroReclamo`, `Fecha`, `Estado`, `Descripcion`
 ('6346ce2e', 'Wed Nov 02 23:24:47 ART 2016', 'Cerrado', ''),
 ('6346ce2e', 'Wed Nov 02 23:39:48 ART 2016', 'Solucionado', 'rtyrtyrtyrty'),
 ('5yqqqCzc', 'Wed Nov 02 23:45:44 ART 2016', 'Solucionado', ''),
-('5yqqqCzc', 'Wed Nov 02 23:45:46 ART 2016', 'Cerrado', '');
+('5yqqqCzc', 'Wed Nov 02 23:45:46 ART 2016', 'Cerrado', ''),
+('91657e5c', 'Wed Nov 02 23:51:59 ART 2016', 'Cerrado', ''),
+('91657e5c', 'Wed Nov 02 23:52:01 ART 2016', 'Solucionado', ''),
+('91657e5c', 'Wed Nov 02 23:52:03 ART 2016', 'En tratamiento', ''),
+('91657e5c', 'Wed Nov 02 23:53:57 ART 2016', 'En tratamiento', 'fghfgh'),
+('74e1bd6d', 'Wed Nov 02 23:57:56 ART 2016', 'Cerrado', ''),
+('74e1bd6d', 'Wed Nov 02 23:57:58 ART 2016', 'Solucionado', ''),
+('74e1bd6d', 'Wed Nov 02 23:58:00 ART 2016', 'En tratamiento', 'hjkhjkhjk');
 
 -- --------------------------------------------------------
 
