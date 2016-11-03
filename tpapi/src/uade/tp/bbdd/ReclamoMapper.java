@@ -312,6 +312,8 @@ public class ReclamoMapper extends Mapper {
 		reclamo.setDescripcion(desc);
 		reclamo.setEstadoActual(estado);
 		
+		reclamo.setTratamientos(this.getTratamientoReclamo(nroReclamo));
+		
 		List<ItemReclamo> items = this.selectItemsReclamo(nroReclamo);
 		for(ItemReclamo item : items) {
 			reclamo.addItemReclamo(item.getProducto(), item.getCantidad());
@@ -363,6 +365,19 @@ public class ReclamoMapper extends Mapper {
 		return reclamos;
 	}
 	
+	private List<TratamientoReclamo> getTratamientoReclamo(String nroReclamo) throws SQLException {
+		Connection con = ConnectionManager.getInstance().connect();
+		PreparedStatement s = con.prepareStatement("SELECT * FROM TratamientoReclamo WHERE NroReclamo = ?");
+		s.setString(1, nroReclamo);
+		ResultSet result = s.executeQuery();
+		List<TratamientoReclamo> tratamientos = new ArrayList<TratamientoReclamo>();
+		while (result.next()) {
+			tratamientos.add(new TratamientoReclamo(result.getString(2), result.getString(3), result.getString(4)));
+		}
+		ConnectionManager.getInstance().closeCon();
+		return tratamientos;
+	}
+	
 	private Reclamo buildReclamoZona(String nroReclamo, String fecha, Cliente cliente, String descripcion, String estadoActual, String tipo) throws SQLException {
 		ReclamoZona reclamo = new ReclamoZona();;
 		
@@ -372,6 +387,7 @@ public class ReclamoMapper extends Mapper {
 		reclamo.setDescripcion(descripcion);
 		reclamo.setEstadoActual(estadoActual);
 		
+		reclamo.setTratamientos(this.getTratamientoReclamo(nroReclamo));
 		Zona zona = this.selectZonaReclamo(nroReclamo);
 		reclamo.setZona(zona);
 		
@@ -425,6 +441,8 @@ public class ReclamoMapper extends Mapper {
 		reclamo.setCliente(cliente);
 		reclamo.setDescripcion(descripcion);
 		reclamo.setEstadoActual(estadoActual);
+		
+		reclamo.setTratamientos(this.getTratamientoReclamo(nroReclamo));
 		
 		List<Factura> facturas = this.selectFacturasReclamo(nroReclamo);
 		for(Factura f : facturas) {

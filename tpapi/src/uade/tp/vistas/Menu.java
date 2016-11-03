@@ -192,7 +192,7 @@ public class Menu extends javax.swing.JFrame {
 							}
 						});
 						}
-						{
+						/*{
 							jMenuAtencionReclamoCantidad = new JMenuItem();
 							jMenu2.add(jMenuAtencionReclamoCantidad);
 							jMenuAtencionReclamoCantidad.setText("Atencion Reclamos por Cantidad");
@@ -215,7 +215,7 @@ public class Menu extends javax.swing.JFrame {
 								AtencionReclamoFaltanteVista.getInstancia().setVisible(true);
 							}
 						});
-						}
+						}*/
 					}
 					if(usuarioView.getRol().equals("RESP_FACTURACION")){
 						jMenu2 = new JMenu();

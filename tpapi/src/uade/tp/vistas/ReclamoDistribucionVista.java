@@ -29,6 +29,7 @@ import uade.tp.ai.reclamo.ItemReclamo;
 import uade.tp.ai.reclamo.ReclamoCantidad;
 import uade.tp.ai.reclamo.ReclamoDistribucion;
 import uade.tp.ai.reclamo.ReclamoView;
+import uade.tp.ai.reclamo.TratamientoReclamo;
 import uade.tp.sistema.SistemaReclamos;
 import java.awt.Component;
 import javax.swing.table.TableModel;
@@ -83,6 +84,7 @@ public class ReclamoDistribucionVista extends javax.swing.JFrame{
 	private JLabel lblTratamientos;
 
 	private String reclamoID;
+	private JTextField textField_2;
 
 	public static ReclamoDistribucionVista getInstancia(String nroReclamo) {
 		if (nroReclamo != null) {
@@ -121,9 +123,24 @@ public class ReclamoDistribucionVista extends javax.swing.JFrame{
 	@SuppressWarnings({ "static-access", "unchecked", "rawtypes" })
 	private void initGUI() {
 		jPanel = new JPanel();
+		
+		// tabla productos
 		dtm = new DefaultTableModel(data, columnNames);
+		for (ItemReclamo itemRec : reclamoView.getItems()) {
+			Object[] newRow = { itemRec.getCantidad(), itemRec.getProducto().getCodPublicacion(),
+					itemRec.getProducto().getTitulo(), itemRec.getProducto().getDescripcion(),
+					itemRec.getProducto().getPrecio() };
+			dtm.addRow(newRow);
+		}
+		
+		
+		// tabla tratamientos
 		tratamientosDtm = new DefaultTableModel(tratamientosData, tratamientosColumnNames);
-
+		for (TratamientoReclamo trat : reclamoView.getTratamientos()) {
+			Object[] newRow = { trat.getFecha(), trat.getEstado(), trat.getDesc()};
+			tratamientosDtm.addRow(newRow);
+		}
+		
 		
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -137,7 +154,7 @@ public class ReclamoDistribucionVista extends javax.swing.JFrame{
 				jLabel1 = new JLabel();
 				getContentPane().add(jLabel1);
 				
-				jLabel1.setText("Reclamo Cantidad");
+				jLabel1.setText("Reclamo " + reclamoView.getTipo());
 				jLabel1.setFont(font);
 				jLabel1.setBounds(202, 21, 200, 22);
 			}
@@ -145,7 +162,7 @@ public class ReclamoDistribucionVista extends javax.swing.JFrame{
 				jLabel4 = new JLabel();
 				getContentPane().add(jLabel4);
 				jLabel4.setText("Cliente");
-				jLabel4.setBounds(33, 71, 78, 16);
+				jLabel4.setBounds(33, 103, 78, 16);
 			}
 			{
 				// clientesView = SistemaReclamos.getInstance().getClientes();
@@ -206,7 +223,7 @@ public class ReclamoDistribucionVista extends javax.swing.JFrame{
 				{
 					textField = new JTextField();
 					textField.setEditable(false);
-					textField.setBounds(192, 66, 130, 26);
+					textField.setBounds(202, 98, 130, 26);
 					getContentPane().add(textField);
 					textField.setColumns(10);
 					textField.setText(reclamoView.getCliente().getNombre());
@@ -222,27 +239,18 @@ public class ReclamoDistribucionVista extends javax.swing.JFrame{
 				jScrollPane.setBounds(33, 280, 512, 96);
 
 				getContentPane().add(jScrollPane);
-
-				productosView = SistemaReclamos.getInstance().getProductosView();
-
-				Vector<ProductoView> productos = new Vector<ProductoView>();
-				for (ProductoView z : productosView) {
-					productos.add(z);
-				}
-				@SuppressWarnings({})
-				ComboBoxModel prodModel = new DefaultComboBoxModel(productos);
 				
 				JLabel lblNombre = new JLabel("Nombre");
-				lblNombre.setBounds(123, 71, 61, 16);
+				lblNombre.setBounds(123, 103, 61, 16);
 				getContentPane().add(lblNombre);
 				
 				JLabel lblDni = new JLabel("DNI");
-				lblDni.setBounds(123, 99, 61, 16);
+				lblDni.setBounds(123, 131, 61, 16);
 				getContentPane().add(lblDni);
 				
 				textField_1 = new JTextField();
 				textField_1.setEditable(false);
-				textField_1.setBounds(192, 102, 130, 26);
+				textField_1.setBounds(202, 126, 130, 26);
 				getContentPane().add(textField_1);
 				textField_1.setColumns(10);
 				textField_1.setText(reclamoView.getCliente().getDni());
@@ -264,6 +272,16 @@ public class ReclamoDistribucionVista extends javax.swing.JFrame{
 				lblTratamientos.setBounds(245, 401, 93, 16);
 				getContentPane().add(lblTratamientos);
 				
+				JLabel lblNumeroDeReclamo = new JLabel("Numero de Reclamo");
+				lblNumeroDeReclamo.setBounds(33, 61, 151, 16);
+				getContentPane().add(lblNumeroDeReclamo);
+				
+				textField_2 = new JTextField();
+				textField_2.setEditable(false);
+				textField_2.setBounds(202, 55, 130, 26);
+				getContentPane().add(textField_2);
+				textField_2.setColumns(10);
+				textField_2.setText(reclamoView.getNroReclamo());
 
 				cancelar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
@@ -287,5 +305,4 @@ public class ReclamoDistribucionVista extends javax.swing.JFrame{
 	public void setReclamoID(String recID) {
 		reclamoID = recID;
 	}
-
 }

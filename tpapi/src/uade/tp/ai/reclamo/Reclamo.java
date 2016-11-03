@@ -93,6 +93,10 @@ public abstract class Reclamo {
 		return this.tratamientos;
 	}
 	
+	public void setTratamientos(List<TratamientoReclamo> tratamientos) {
+		this.tratamientos = tratamientos;
+	}
+	
 	public static List<Reclamo> getReclamosDistribucion() {
 		return ReclamoMapper.getInstancia().getReclamosDistribucion();
 	}
