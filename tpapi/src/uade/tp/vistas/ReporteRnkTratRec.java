@@ -15,6 +15,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
+import uade.tp.ai.reportes.ReporteRankingReclamosView;
+import uade.tp.sistema.SistemaReclamos;
+
 public class ReporteRnkTratRec extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -86,10 +89,12 @@ public class ReporteRnkTratRec extends javax.swing.JFrame {
 
 			{
 			    DefaultTableModel dtm= new DefaultTableModel(data, columnNames);
-			    /*for(ReclamoView rec : SistemaReclamos.getInstance().getReclamosZona()) {
-			    	Object[] newRow={rec.getNroReclamo(), rec.getZona(), rec.getFecha(), rec.getCliente().getNombre(), rec.getEstado()};
+			    int i = 0;
+			    for(ReporteRankingReclamosView rec : SistemaReclamos.getInstance().obtenerReporteRankingReclamos()) {
+			    	i ++;
+			    	Object[] newRow={i , rec.getTipoReclamo(), rec.getCantReclamos()};
 				    dtm.addRow(newRow);
-			    }*/
+			    }
 
 			    
 			    
