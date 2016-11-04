@@ -21,6 +21,10 @@ import uade.tp.ai.reclamo.ReclamoFaltante;
 import uade.tp.ai.reclamo.ReclamoProducto;
 import uade.tp.ai.reclamo.ReclamoView;
 import uade.tp.ai.reclamo.ReclamoZona;
+import uade.tp.ai.reportes.ReporteRankingCliente;
+import uade.tp.ai.reportes.ReporteRankingClienteView;
+import uade.tp.ai.reportes.ReporteRankingReclamos;
+import uade.tp.ai.reportes.ReporteRankingReclamosView;
 import uade.tp.ai.tablero.TableroDistribucion;
 import uade.tp.ai.tablero.TableroFacturacion;
 import uade.tp.ai.tablero.TableroZona;
@@ -28,6 +32,7 @@ import uade.tp.bbdd.ClienteMapper;
 import uade.tp.bbdd.FacturaMapper;
 import uade.tp.bbdd.ProductoMapper;
 import uade.tp.bbdd.ReclamoMapper;
+import uade.tp.bbdd.ReportesMapper;
 import uade.tp.bbdd.UsuarioMapper;
 import uade.tp.bbdd.ZonaMapper;
 
@@ -40,6 +45,9 @@ public class SistemaReclamos {
 	private List<Factura> facturas;
 	private List<Reclamo> reclamos;
 	private Reclamo recActual;
+	
+	private List<ReporteRankingClienteView> reporteRankingCliente;
+	private List<ReporteRankingReclamos> reporteRankingReclamos;
 	
 	private static SistemaReclamos instancia;
 
@@ -292,6 +300,32 @@ public class SistemaReclamos {
 		return c != null;
 	}
 
+	// =================================== Reportes ===================================
+	
+	public List<ReporteRankingReclamosView> obtenerReporteRankingReclamos(){
+		
+		List<ReporteRankingReclamos> reporteRankingReclamos = ReportesMapper.getInstancia().obtenerReporteRankingReclamos();
+		
+		List<ReporteRankingReclamosView> reporteRankingReclamosView = new ArrayList<ReporteRankingReclamosView>();
+		
+		for(ReporteRankingReclamos p : reporteRankingReclamos) {
+			reporteRankingReclamosView.add(p.getReporteRankingReclamosView());
+		}
+		return reporteRankingReclamosView;
+	}
+	
+	public List<ReporteRankingClienteView> obtenerReporteRankingCliente(){
+		
+		List<ReporteRankingCliente> reporteRankingCliente = ReportesMapper.getInstancia().obtenerReporteRankingCliente();
+		
+		List<ReporteRankingClienteView> reporteRankingClienteView = new ArrayList<ReporteRankingClienteView>();
+		
+		for(ReporteRankingCliente p : reporteRankingCliente) {
+			reporteRankingClienteView.add(p.getReporteRankingClienteView());
+		}
+		return reporteRankingClienteView;
+	}
+	
 	// ==========================   TODO remove this, just for testing ================
 	private void agregarCliente(Cliente c) {
 		this.clientes.add(c);
