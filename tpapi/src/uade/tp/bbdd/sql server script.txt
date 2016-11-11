@@ -1,0 +1,393 @@
+/****** Object:  Table [dbo].[Cliente]    Script Date: 11/11/2016 07:30:45 p.m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Cliente](
+	[Dni] [varchar](255) NULL,
+	[Nombre] [varchar](255) NULL,
+	[Domicilio] [varchar](255) NULL,
+	[Telefono] [varchar](255) NULL,
+	[Email] [varchar](255) NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Factura]    Script Date: 11/11/2016 07:30:45 p.m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Factura](
+	[Fecha] [varchar](255) NULL,
+	[Numero] [varchar](255) NULL,
+	[DniCliente] [varchar](255) NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[ItemFactura]    Script Date: 11/11/2016 07:30:45 p.m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[ItemFactura](
+	[numeroFactura] [varchar](50) NULL,
+	[codigoProducto] [varchar](50) NULL,
+	[cantidad] [int] NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Producto]    Script Date: 11/11/2016 07:30:45 p.m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Producto](
+	[Codigo] [varchar](255) NULL,
+	[Titulo] [varchar](255) NULL,
+	[Descripcion] [varchar](255) NULL,
+	[Precio] [float] NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Reclamo]    Script Date: 11/11/2016 07:30:45 p.m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Reclamo](
+	[NroReclamo] [varchar](255) NULL,
+	[Fecha] [varchar](255) NULL,
+	[DniCliente] [varchar](255) NULL,
+	[Descripcion] [varchar](255) NULL,
+	[EstadoActual] [varchar](255) NULL,
+	[Tipo] [varchar](255) NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[ReclamoCompuesto]    Script Date: 11/11/2016 07:30:45 p.m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[ReclamoCompuesto](
+	[NroReclamo] [varchar](255) NULL,
+	[NroReclamoComponente] [varchar](255) NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[ReclamoDistribucion]    Script Date: 11/11/2016 07:30:45 p.m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[ReclamoDistribucion](
+	[NroReclamo] [varchar](255) NULL,
+	[CodigoProducto] [varchar](255) NULL,
+	[Cantidad] [int] NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[ReclamoFacturacion]    Script Date: 11/11/2016 07:30:45 p.m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[ReclamoFacturacion](
+	[NroReclamo] [varchar](255) NULL,
+	[NumeroFactura] [varchar](255) NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[ReclamoZona]    Script Date: 11/11/2016 07:30:45 p.m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[ReclamoZona](
+	[NroReclamo] [varchar](255) NULL,
+	[CodigoZona] [varchar](255) NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[TratamientoReclamo]    Script Date: 11/11/2016 07:30:45 p.m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[TratamientoReclamo](
+	[NroReclamo] [varchar](255) NULL,
+	[Fecha] [varchar](255) NULL,
+	[Estado] [varchar](255) NULL,
+	[Descripcion] [varchar](255) NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Usuario]    Script Date: 11/11/2016 07:30:45 p.m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Usuario](
+	[Apodo] [varchar](255) NULL,
+	[Nombre] [varchar](255) NULL,
+	[Apellido] [varchar](255) NULL,
+	[Password] [varchar](255) NULL,
+	[Rol] [varchar](255) NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Zona]    Script Date: 11/11/2016 07:30:45 p.m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Zona](
+	[Codigo] [varchar](255) NULL,
+	[Nombre] [varchar](255) NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+INSERT [dbo].[Cliente] ([Dni], [Nombre], [Domicilio], [Telefono], [Email]) VALUES (N'123', N'Juancho', N'Calle falsa 123', N'4443333', N'juancho@mail.com')
+INSERT [dbo].[Cliente] ([Dni], [Nombre], [Domicilio], [Telefono], [Email]) VALUES (N'dni', N'ezequiel', N'direccion', N'telef', N'email')
+INSERT [dbo].[Cliente] ([Dni], [Nombre], [Domicilio], [Telefono], [Email]) VALUES (N'dni de coco', N'coco', N'dire de coco', N'tel de coco', N'email de coco')
+INSERT [dbo].[Factura] ([Fecha], [Numero], [DniCliente]) VALUES (N'Fri Oct 14 03:51:30 ART 2016', N'1111', N'dni de coco')
+INSERT [dbo].[Factura] ([Fecha], [Numero], [DniCliente]) VALUES (N'Fri Oct 14 03:51:33 ART 2016', N'3333', N'dni')
+INSERT [dbo].[ItemFactura] ([numeroFactura], [codigoProducto], [cantidad]) VALUES (N'1111', N'ART80', 20)
+INSERT [dbo].[ItemFactura] ([numeroFactura], [codigoProducto], [cantidad]) VALUES (N'3333', N'ART80', 50)
+INSERT [dbo].[Producto] ([Codigo], [Titulo], [Descripcion], [Precio]) VALUES (N'ISBN10', N'Harry Potter', N'un libro', 100)
+INSERT [dbo].[Producto] ([Codigo], [Titulo], [Descripcion], [Precio]) VALUES (N'ISBN20', N'Lord of the rings', N'otro libro', 150)
+INSERT [dbo].[Producto] ([Codigo], [Titulo], [Descripcion], [Precio]) VALUES (N'ART90', N'Tortugas Ninja', N'Una tortuga', 90)
+INSERT [dbo].[Producto] ([Codigo], [Titulo], [Descripcion], [Precio]) VALUES (N'ART80', N'Pelota', N'un producto', 60)
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'67c73ab9', N'Fri Oct 14 02:22:22 ART 2016', N'dni', N'weeeeee', N'Cerrado', N'RECLAMO_PRODUCTO')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'6346ce2e', N'Fri Oct 14 02:24:07 ART 2016', N'123', N'uuuuuu', N'Solucionado', N'RECLAMO_PRODUCTO')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'c6fcf95e', N'Fri Oct 14 02:24:13 ART 2016', N'dni', N'desc reclamo producto', N'En proceso', N'RECLAMO_PRODUCTO')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'53ba4d58', N'Fri Oct 14 02:26:20 ART 2016', N'dni', N'desc reclamo producto', N'Cerrado', N'RECLAMO_PRODUCTO')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'45cbe89c', N'Fri Oct 14 02:29:01 ART 2016', N'dni', N'uuuuuu', N'Ingresado', N'RECLAMO_PRODUCTO')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'74e1bd6d', N'Fri Oct 14 03:05:24 ART 2016', N'dni de coco', N'desc reclamo zona', N'En tratamiento', N'RECLAMO_ZONA')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'13cc03cd', N'Fri Oct 14 03:40:07 ART 2016', N'dni', N'desc reclamo faltante', N'En proceso', N'RECLAMO_FALTANTE')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'91657e5c', N'Fri Oct 14 03:56:29 ART 2016', N'dni', N'desc reclamo facturacion', N'En tratamiento', N'RECLAMO_FACTURACION')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'4d5b321c', N'Fri Oct 14 03:58:06 ART 2016', N'123', N'deeeeeetttttt', N'Solucionado', N'RECLAMO_ZONA')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'1EoFW9Js', N'Tue Oct 18 18:40:36 ART 2016', N'123', N'es la descripcion', N'Ingresado', N'RECLAMO_PRODUCTO')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'5yqqqCzc', N'Tue Oct 18 19:08:52 ART 2016', N'123', N'', N'Cerrado', N'RECLAMO_PRODUCTO')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'tDCN0OPk', N'Tue Oct 18 19:51:52 ART 2016', N'123', N'descrip', N'Cerrado', N'RECLAMO_PRODUCTO')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'nGVFhKvJ', N'Tue Oct 18 19:57:40 ART 2016', N'dni', N'wwwww', N'Ingresado', N'RECLAMO_FALTANTE')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'IZBSbBmi', N'Tue Oct 18 20:03:20 ART 2016', N'dni de coco', N'ggggg', N'Ingresado', N'RECLAMO_CANTIDAD')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'6UL3XrQy', N'Tue Oct 18 20:49:36 ART 2016', N'123', N'eeedddd', N'Ingresado', N'RECLAMO_FACTURACION')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'bxxVZmTs', N'Sat Oct 29 18:36:08 ART 2016', N'123', N'eeeeee', N'Cerrado', N'RECLAMO_CANTIDAD')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'uMkB8Yn0', N'Sat Oct 29 18:46:51 ART 2016', N'123', N'22222', N'Cerrado', N'RECLAMO_PRODUCTO')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'DJLCdWq4', N'Sat Oct 29 18:49:55 ART 2016', N'123', N'wwqeqwe', N'Cerrado', N'RECLAMO_CANTIDAD')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'IDO7ueIu', N'Sat Oct 29 18:52:52 ART 2016', N'123', N'eeeee', N'Ingresado', N'RECLAMO_FACTURACION')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'53ba4d58', N'Fri Oct 14 02:26:20 ART 2016', N'dni', N'desc reclamo producto', N'Cerrado', N'RECLAMO_PRODUCTO')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'6346ce2e', N'Fri Oct 14 02:24:07 ART 2016', N'123', N'uuuuuu', N'Solucionado', N'RECLAMO_PRODUCTO')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'eGBbxoZ7', N'Sat Oct 29 20:17:04 ART 2016', N'123', N'retet', N'Ingresado', N'RECLAMO_ZONA')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'LrlgIx6Z', N'Sat Oct 29 20:55:46 ART 2016', N'123', N'qweqwe', N'Solucionado', N'RECLAMO_PRODUCTO')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'bm1VmVJf', N'Wed Nov 02 22:51:55 ART 2016', N'123', N'dsfsadf sadfsadf sadfsadf sadf', N'Ingresado', N'RECLAMO_PRODUCTO')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'XUzgHMhe', N'Fri Nov 04 18:46:47 ART 2016', N'123', N'13eqw', N'Ingresado', N'RECLAMO_CANTIDAD')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'0fmLIrWF', N'Fri Nov 04 18:57:39 ART 2016', N'123', N'deesripcion', N'Cerrado', N'RECLAMO_CANTIDAD')
+INSERT [dbo].[Reclamo] ([NroReclamo], [Fecha], [DniCliente], [Descripcion], [EstadoActual], [Tipo]) VALUES (N'Ad2OV6GW', N'Fri Nov 11 19:13:49 ART 2016', N'123', N'sdasdfsdaf', N'En tratamiento', N'RECLAMO_CANTIDAD')
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'eb108e33', N'ART80', 2)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'45cbe89c', N'ISBN10', 33)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'45cbe89c', N'ART90', 1)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'13cc03cd', N'ART80', 5)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'1EoFW9Js', N'ISBN10', 2)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'1EoFW9Js', N'ART90', 3)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'5yqqqCzc', N'ART90', 5)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'5yqqqCzc', N'ART90', 5)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'5yqqqCzc', N'ART90', 5)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'tDCN0OPk', N'ISBN20', 44)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'tDCN0OPk', N'ART80', 443)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'tDCN0OPk', N'ISBN10', 4433)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'nGVFhKvJ', N'ISBN10', 2)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'nGVFhKvJ', N'ART80', 3)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'nGVFhKvJ', N'ART80', 4)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'IZBSbBmi', N'ART90', 3)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'IZBSbBmi', N'ART80', 34)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'IZBSbBmi', N'ISBN10', 3422)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'bxxVZmTs', N'ISBN20', 11)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'bxxVZmTs', N'ART80', 111)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'bxxVZmTs', N'ART80', 111)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'bxxVZmTs', N'ART80', 111)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'uMkB8Yn0', N'ART90', 11111)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'DJLCdWq4', N'ART80', 2)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'DJLCdWq4', N'ISBN20', 3)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'LrlgIx6Z', N'ART90', 3)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'LrlgIx6Z', N'ART80', 3)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'bm1VmVJf', N'ISBN10', 33)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'XUzgHMhe', N'ISBN20', 33)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'0fmLIrWF', N'ART80', 1)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'0fmLIrWF', N'ISBN10', 3)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'Ad2OV6GW', N'ART90', 22)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'Ad2OV6GW', N'ART80', 22)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'Ad2OV6GW', N'ART80', 22)
+INSERT [dbo].[ReclamoDistribucion] ([NroReclamo], [CodigoProducto], [Cantidad]) VALUES (N'Ad2OV6GW', N'ART80', 22)
+INSERT [dbo].[ReclamoFacturacion] ([NroReclamo], [NumeroFactura]) VALUES (N'91657e5c', N'1111')
+INSERT [dbo].[ReclamoFacturacion] ([NroReclamo], [NumeroFactura]) VALUES (N'91657e5c', N'3333')
+INSERT [dbo].[ReclamoFacturacion] ([NroReclamo], [NumeroFactura]) VALUES (N'6UL3XrQy', N'1111')
+INSERT [dbo].[ReclamoFacturacion] ([NroReclamo], [NumeroFactura]) VALUES (N'6UL3XrQy', N'3333')
+INSERT [dbo].[ReclamoFacturacion] ([NroReclamo], [NumeroFactura]) VALUES (N'IDO7ueIu', N'1111')
+INSERT [dbo].[ReclamoZona] ([NroReclamo], [CodigoZona]) VALUES (N'74e1bd6d', N'A')
+INSERT [dbo].[ReclamoZona] ([NroReclamo], [CodigoZona]) VALUES (N'4d5b321c', N'B')
+INSERT [dbo].[ReclamoZona] ([NroReclamo], [CodigoZona]) VALUES (N'eGBbxoZ7', N'C')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'53ba4d58', N'Sat Oct 29 19:31:48 ART 2016', N'Cerrado', N'deeeeeee')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'6346ce2e', N'Sat Oct 29 19:36:41 ART 2016', N'Cerrado', N'4444444')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'53ba4d58', N'Sat Oct 29 20:58:03 ART 2016', N'En tratamiento', N'')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'53ba4d58', N'Sat Oct 29 20:58:20 ART 2016', N'Solucionado', N'dfgdfgdfgfdg')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'53ba4d58', N'Sat Oct 29 20:59:52 ART 2016', N'Cerrado', N'tttt')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'6346ce2e', N'Wed Nov 02 23:24:43 ART 2016', N'Solucionado', N'')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'6346ce2e', N'Wed Nov 02 23:24:45 ART 2016', N'En tratamiento', N'')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'6346ce2e', N'Wed Nov 02 23:24:47 ART 2016', N'Cerrado', N'')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'6346ce2e', N'Wed Nov 02 23:39:48 ART 2016', N'Solucionado', N'rtyrtyrtyrty')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'5yqqqCzc', N'Wed Nov 02 23:45:44 ART 2016', N'Solucionado', N'')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'5yqqqCzc', N'Wed Nov 02 23:45:46 ART 2016', N'Cerrado', N'')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'91657e5c', N'Wed Nov 02 23:51:59 ART 2016', N'Cerrado', N'')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'91657e5c', N'Wed Nov 02 23:52:01 ART 2016', N'Solucionado', N'')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'91657e5c', N'Wed Nov 02 23:52:03 ART 2016', N'En tratamiento', N'')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'91657e5c', N'Wed Nov 02 23:53:57 ART 2016', N'En tratamiento', N'fghfgh')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'74e1bd6d', N'Wed Nov 02 23:57:56 ART 2016', N'Cerrado', N'')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'74e1bd6d', N'Wed Nov 02 23:57:58 ART 2016', N'Solucionado', N'')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'74e1bd6d', N'Wed Nov 02 23:58:00 ART 2016', N'En tratamiento', N'hjkhjkhjk')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'tDCN0OPk', N'Fri Nov 04 18:47:17 ART 2016', N'Cerrado', N'tyutyutyu')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'4d5b321c', N'Fri Nov 04 18:53:39 ART 2016', N'En tratamiento', N'hola')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'4d5b321c', N'Fri Nov 04 18:53:44 ART 2016', N'Solucionado', N'rtyrty')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'0fmLIrWF', N'Fri Nov 04 18:58:15 ART 2016', N'Cerrado', N'cerrado por papapapa')
+INSERT [dbo].[TratamientoReclamo] ([NroReclamo], [Fecha], [Estado], [Descripcion]) VALUES (N'Ad2OV6GW', N'Fri Nov 11 19:14:15 ART 2016', N'En tratamiento', N'tertertert')
+INSERT [dbo].[Usuario] ([Apodo], [Nombre], [Apellido], [Password], [Rol]) VALUES (N'pepe', N'Pepe', N'Lopez', N'123456', N'CALL_CENTER')
+INSERT [dbo].[Usuario] ([Apodo], [Nombre], [Apellido], [Password], [Rol]) VALUES (N'tito', N'Tito', N'Muzzarella', N'111111', N'RESP_DISTRIBUCION')
+INSERT [dbo].[Usuario] ([Apodo], [Nombre], [Apellido], [Password], [Rol]) VALUES (N'tute', N'Matute', N'Maton', N'111', N'RESP_ZONA_ENTREGA')
+INSERT [dbo].[Usuario] ([Apodo], [Nombre], [Apellido], [Password], [Rol]) VALUES (N'pipo', N'Pipo', N'Perez', N'111', N'RESP_ZONA_ENTREGA')
+INSERT [dbo].[Usuario] ([Apodo], [Nombre], [Apellido], [Password], [Rol]) VALUES (N'pipo', N'Pipo', N'Perez', N'111', N'RESP_ZONA_ENTREGA')
+INSERT [dbo].[Usuario] ([Apodo], [Nombre], [Apellido], [Password], [Rol]) VALUES (N'papu', N'Papu', N'Gomez', N'1', N'RESP_FACTURACION')
+INSERT [dbo].[Usuario] ([Apodo], [Nombre], [Apellido], [Password], [Rol]) VALUES (N'pepo', N'pepo', N'gede', N'111', N'CONSULTA')
+INSERT [dbo].[Zona] ([Codigo], [Nombre]) VALUES (N'A', N'Almagro')
+INSERT [dbo].[Zona] ([Codigo], [Nombre]) VALUES (N'B', N'Boedo')
+INSERT [dbo].[Zona] ([Codigo], [Nombre]) VALUES (N'C', N'Caballito')
+ALTER TABLE [dbo].[Cliente] ADD  DEFAULT (NULL) FOR [Dni]
+GO
+ALTER TABLE [dbo].[Cliente] ADD  DEFAULT (NULL) FOR [Nombre]
+GO
+ALTER TABLE [dbo].[Cliente] ADD  DEFAULT (NULL) FOR [Domicilio]
+GO
+ALTER TABLE [dbo].[Cliente] ADD  DEFAULT (NULL) FOR [Telefono]
+GO
+ALTER TABLE [dbo].[Cliente] ADD  DEFAULT (NULL) FOR [Email]
+GO
+ALTER TABLE [dbo].[Factura] ADD  DEFAULT (NULL) FOR [Fecha]
+GO
+ALTER TABLE [dbo].[Factura] ADD  DEFAULT (NULL) FOR [Numero]
+GO
+ALTER TABLE [dbo].[Factura] ADD  DEFAULT (NULL) FOR [DniCliente]
+GO
+ALTER TABLE [dbo].[ItemFactura] ADD  DEFAULT (NULL) FOR [numeroFactura]
+GO
+ALTER TABLE [dbo].[ItemFactura] ADD  DEFAULT (NULL) FOR [codigoProducto]
+GO
+ALTER TABLE [dbo].[ItemFactura] ADD  DEFAULT (NULL) FOR [cantidad]
+GO
+ALTER TABLE [dbo].[Producto] ADD  DEFAULT (NULL) FOR [Codigo]
+GO
+ALTER TABLE [dbo].[Producto] ADD  DEFAULT (NULL) FOR [Titulo]
+GO
+ALTER TABLE [dbo].[Producto] ADD  DEFAULT (NULL) FOR [Descripcion]
+GO
+ALTER TABLE [dbo].[Producto] ADD  DEFAULT (NULL) FOR [Precio]
+GO
+ALTER TABLE [dbo].[Reclamo] ADD  DEFAULT (NULL) FOR [NroReclamo]
+GO
+ALTER TABLE [dbo].[Reclamo] ADD  DEFAULT (NULL) FOR [Fecha]
+GO
+ALTER TABLE [dbo].[Reclamo] ADD  DEFAULT (NULL) FOR [DniCliente]
+GO
+ALTER TABLE [dbo].[Reclamo] ADD  DEFAULT (NULL) FOR [Descripcion]
+GO
+ALTER TABLE [dbo].[Reclamo] ADD  DEFAULT (NULL) FOR [EstadoActual]
+GO
+ALTER TABLE [dbo].[Reclamo] ADD  DEFAULT (NULL) FOR [Tipo]
+GO
+ALTER TABLE [dbo].[ReclamoCompuesto] ADD  DEFAULT (NULL) FOR [NroReclamo]
+GO
+ALTER TABLE [dbo].[ReclamoCompuesto] ADD  DEFAULT (NULL) FOR [NroReclamoComponente]
+GO
+ALTER TABLE [dbo].[ReclamoDistribucion] ADD  DEFAULT (NULL) FOR [NroReclamo]
+GO
+ALTER TABLE [dbo].[ReclamoDistribucion] ADD  DEFAULT (NULL) FOR [CodigoProducto]
+GO
+ALTER TABLE [dbo].[ReclamoDistribucion] ADD  DEFAULT (NULL) FOR [Cantidad]
+GO
+ALTER TABLE [dbo].[ReclamoFacturacion] ADD  DEFAULT (NULL) FOR [NroReclamo]
+GO
+ALTER TABLE [dbo].[ReclamoFacturacion] ADD  DEFAULT (NULL) FOR [NumeroFactura]
+GO
+ALTER TABLE [dbo].[ReclamoZona] ADD  DEFAULT (NULL) FOR [NroReclamo]
+GO
+ALTER TABLE [dbo].[ReclamoZona] ADD  DEFAULT (NULL) FOR [CodigoZona]
+GO
+ALTER TABLE [dbo].[TratamientoReclamo] ADD  DEFAULT (NULL) FOR [NroReclamo]
+GO
+ALTER TABLE [dbo].[TratamientoReclamo] ADD  DEFAULT (NULL) FOR [Fecha]
+GO
+ALTER TABLE [dbo].[TratamientoReclamo] ADD  DEFAULT (NULL) FOR [Estado]
+GO
+ALTER TABLE [dbo].[TratamientoReclamo] ADD  DEFAULT (NULL) FOR [Descripcion]
+GO
+ALTER TABLE [dbo].[Usuario] ADD  DEFAULT (NULL) FOR [Apodo]
+GO
+ALTER TABLE [dbo].[Usuario] ADD  DEFAULT (NULL) FOR [Nombre]
+GO
+ALTER TABLE [dbo].[Usuario] ADD  DEFAULT (NULL) FOR [Apellido]
+GO
+ALTER TABLE [dbo].[Usuario] ADD  DEFAULT (NULL) FOR [Password]
+GO
+ALTER TABLE [dbo].[Usuario] ADD  DEFAULT (NULL) FOR [Rol]
+GO
+ALTER TABLE [dbo].[Zona] ADD  DEFAULT (NULL) FOR [Codigo]
+GO
+ALTER TABLE [dbo].[Zona] ADD  DEFAULT (NULL) FOR [Nombre]
+GO
